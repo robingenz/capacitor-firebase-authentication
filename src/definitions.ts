@@ -5,5 +5,18 @@ declare module '@capacitor/core' {
 }
 
 export interface FirebaseAuthenticationPlugin {
-  echo(options: { value: string }): Promise<{ value: string }>;
+  signIn(options: SignInOptions): Promise<SignInResult>;
+  signOut(): Promise<void>;
+}
+
+export interface SignInOptions {
+  provider: SignInProvider;
+}
+
+export enum SignInProvider {
+  GOOGLE = 'google',
+}
+
+export interface SignInResult {
+  // TODO
 }
