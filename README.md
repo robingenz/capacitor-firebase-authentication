@@ -30,6 +30,17 @@ npm install @robingenz/capacitor-firebase-authentication
 npx cap sync
 ```
 
+Add Firebase to your project if you haven't already ([Android](https://firebase.google.com/docs/android/setup) / [iOS](https://firebase.google.com/docs/ios/setup)).
+
+### Android
+
+#### Variables
+
+This plugin will use the following project variables (defined in your app’s `variables.gradle` file):
+
+- `$firebaseAuthVersion` version of `com.google.firebase:firebase-auth` (default: `21.0.1`)
+- `$playServicesAuthVersion` version of `com.google.android.gms:play-services-auth` (default: `19.0.0`)
+
 ## Configuration
 
 No configuration required for this plugin.
