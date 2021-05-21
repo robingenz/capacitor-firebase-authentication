@@ -34,9 +34,10 @@
     "@capacitor/core": "^2.4.7"
   },
   "files": [
+    "android/src/main/",
+    "android/build.gradle",
     "dist/",
-    "ios/",
-    "android/",
+    "ios/Plugin/",
     "RobingenzCapacitorFirebaseAuthentication.podspec"
   ],
   "keywords": [
