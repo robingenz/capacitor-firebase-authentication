@@ -50,6 +50,7 @@ dependencies {
     implementation project(':capacitor-android')
     implementation "com.google.firebase:firebase-auth:$firebaseAuthVersion"
     implementation "com.google.android.gms:play-services-auth:$playServicesAuthVersion"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
