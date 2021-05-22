@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.getcapacitor.PluginCall;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
@@ -37,7 +39,7 @@ public class GoogleIdentityProviderHandler implements IdentityProviderHandler {
     }
 
     public void signOut() {
-        FirebaseAuth.getInstance().signOut();
+        mGoogleSignInClient.signOut();
     }
 
     public boolean isAuthenticated() {

@@ -12,6 +12,7 @@ import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -31,11 +32,11 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     public static final String ERROR_PROVIDER_NOT_SUPPORTED = "provider is not supported.";
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
     private FirebaseAuth mAuth;
-    HashMap<IdentityProvider, IdentityProviderHandler> handlers = new HashMap();
+    HashMap<IdentityProvider, IdentityProviderHandler> identityProviderHandlers = new HashMap();
 
     public void load() {
         mAuth = FirebaseAuth.getInstance();
-        handlers.put(IdentityProvider.GOOGLE, new GoogleIdentityProviderHandler(this));
+        identityProviderHandlers.put(IdentityProvider.GOOGLE, new GoogleIdentityProviderHandler(this));
     }
 
     @PluginMethod
@@ -52,18 +53,22 @@ public class FirebaseAuthenticationPlugin extends Plugin {
             return;
         }
 
-        boolean isAuthenticated = handlers.get(parsedProvider).isAuthenticated();
+        boolean isAuthenticated = identityProviderHandlers.get(parsedProvider).isAuthenticated();
         if (isAuthenticated) {
-            handlers.get(parsedProvider).signIn(call);
+            // TODO
             return;
         }
 
-        handlers.get(parsedProvider).signIn(call);
+        identityProviderHandlers.get(parsedProvider).signIn(call);
     }
 
     @PluginMethod
     public void signOut(PluginCall call) {
         FirebaseAuth.getInstance().signOut();
+        for (IdentityProvider provider : identityProviderHandlers.keySet()) {
+            IdentityProviderHandler handler = identityProviderHandlers.get(provider);
+            handler.signOut();
+        }
         call.resolve();
     }
 
@@ -76,8 +81,8 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     @Override
     public void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
         super.handleOnActivityResult(requestCode, resultCode, data);
-        for (IdentityProvider provider : handlers.keySet()) {
-            IdentityProviderHandler handler = handlers.get(provider);
+        for (IdentityProvider provider : identityProviderHandlers.keySet()) {
+            IdentityProviderHandler handler = identityProviderHandlers.get(provider);
             if (handler.getRequestCode() == requestCode) {
                 handler.handleOnActivityResult(requestCode, resultCode, data);
             }
@@ -92,12 +97,18 @@ public class FirebaseAuthenticationPlugin extends Plugin {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential succeeded.");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            JSObject signInResult = createSignInResult(user);
+                            JSObject signInResult = createSignInResultFrom(user);
                             call.resolve(signInResult);
                         } else {
                             Log.w(TAG, "signInWithCredential failed.", task.getException());
                             call.reject(ERROR_SIGN_IN_FAILED);
                         }
+                    }
+                }).addOnFailureListener(this.getActivity(), new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception ex) {
+                        Log.w(TAG, "signInWithCredential failed.", ex);
+                        call.reject(ERROR_SIGN_IN_FAILED);
                     }
                 });
     }
@@ -115,10 +126,12 @@ public class FirebaseAuthenticationPlugin extends Plugin {
         }
     }
 
-    private JSObject createSignInResult(FirebaseUser user) {
+    private JSObject createSignInResultFrom(FirebaseUser user) {
         JSObject result = new JSObject();
         result.put("idToken", user.getIdToken(false));
+        result.put("uid", user.getUid());
         result.put("email", user.getEmail());
+        result.put("displayName", user.getDisplayName());
         return result;
     }
 }
