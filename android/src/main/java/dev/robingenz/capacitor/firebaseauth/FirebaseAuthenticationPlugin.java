@@ -53,9 +53,11 @@ public class FirebaseAuthenticationPlugin extends Plugin {
             return;
         }
 
-        boolean isAuthenticated = identityProviderHandlers.get(parsedProvider).isAuthenticated();
-        if (isAuthenticated) {
-            // TODO
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Log.d(TAG, "User already signed in.");
+            JSObject signInResult = createSignInResultFrom(currentUser);
+            call.resolve(signInResult);
             return;
         }
 
