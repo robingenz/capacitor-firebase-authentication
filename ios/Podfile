@@ -9,6 +9,8 @@ end
 
 target 'Plugin' do
   capacitor_pods
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
 end
 
 target 'PluginTests' do

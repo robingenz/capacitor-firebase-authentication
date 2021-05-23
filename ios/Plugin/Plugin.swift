@@ -8,10 +8,14 @@ import Capacitor
 @objc(FirebaseAuthentication)
 public class FirebaseAuthentication: CAPPlugin {
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
+    @objc func signIn(_ call: CAPPluginCall) {
+        let provider = call.getString("provider") ?? ""
         call.success([
             "value": value
         ])
+    }
+
+    @objc func signOut(_ call: CAPPluginCall) {
+        call.success()
     }
 }
