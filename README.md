@@ -32,14 +32,36 @@ npx cap sync
 
 Add Firebase to your project if you haven't already ([Android](https://firebase.google.com/docs/android/setup) / [iOS](https://firebase.google.com/docs/ios/setup)).
 
-### Android
+On **Android**, register the plugin in your main activity:
 
-#### Variables
+```java
+import dev.robingenz.capacitor.firebaseauth.FirebaseAuthentication;
 
-This plugin will use the following project variables (defined in your app’s `variables.gradle` file):
+public class MainActivity extends BridgeActivity {
 
-- `$firebaseAuthVersion` version of `com.google.firebase:firebase-auth` (default: `21.0.1`)
-- `$playServicesAuthVersion` version of `com.google.android.gms:play-services-auth` (default: `19.0.0`)
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    // Initializes the Bridge
+    this.init(
+        savedInstanceState,
+        new ArrayList<Class<? extends Plugin>>() {
+
+          {
+            // Additional plugins you've installed go here
+            // Ex: add(TotallyAwesomePlugin.class);
+            add(FirebaseAuthentication.class);
+          }
+        }
+      );
+  }
+}
+```
+
+The further installation steps depend on the selected authentication method:
+
+- [Google Sign-In](https://github.com/robingenz/capacitor-firebase-authentication/blob/main/docs/setup-google.md)
 
 ## Configuration
 
@@ -52,7 +74,8 @@ A working example can be found here: [robingenz/capacitor-plugin-demo](https://g
 ## Usage
 
 ```typescript
-import { FirebaseAuthentication } from '@robingenz/capacitor-firebase-authentication';
+import { Plugins } from '@capacitor/core';
+const { FirebaseAuthentication } = Plugins;
 
 // WIP
 ```

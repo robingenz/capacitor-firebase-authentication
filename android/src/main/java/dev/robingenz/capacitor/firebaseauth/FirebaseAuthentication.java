@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 
 import java.util.HashMap;
 
@@ -25,8 +26,10 @@ import dev.robingenz.capacitor.firebaseauth.handlers.GoogleIdentityProviderHandl
 import dev.robingenz.capacitor.firebaseauth.handlers.IdentityProviderHandler;
 import dev.robingenz.capacitor.firebaseauth.util.IdentityProvider;
 
-@NativePlugin
-public class FirebaseAuthenticationPlugin extends Plugin {
+@NativePlugin(
+        requestCodes={GoogleIdentityProviderHandler.RC_SIGN_IN}
+)
+public class FirebaseAuthentication extends Plugin {
     public static final String TAG = "FirebaseAuthentication";
     public static final String ERROR_PROVIDER_MISSING = "provider must be provided.";
     public static final String ERROR_PROVIDER_NOT_SUPPORTED = "provider is not supported.";
@@ -39,7 +42,7 @@ public class FirebaseAuthenticationPlugin extends Plugin {
         identityProviderHandlers.put(IdentityProvider.GOOGLE, new GoogleIdentityProviderHandler(this));
     }
 
-    @PluginMethod
+    @PluginMethod()
     public void signIn(PluginCall call) {
         String provider = call.getString("provider");
         if (provider == null) {
@@ -64,7 +67,7 @@ public class FirebaseAuthenticationPlugin extends Plugin {
         identityProviderHandlers.get(parsedProvider).signIn(call);
     }
 
-    @PluginMethod
+    @PluginMethod()
     public void signOut(PluginCall call) {
         FirebaseAuth.getInstance().signOut();
         for (IdentityProvider provider : identityProviderHandlers.keySet()) {
@@ -87,6 +90,7 @@ public class FirebaseAuthenticationPlugin extends Plugin {
             IdentityProviderHandler handler = identityProviderHandlers.get(provider);
             if (handler.getRequestCode() == requestCode) {
                 handler.handleOnActivityResult(requestCode, resultCode, data);
+                break;
             }
         }
     }
@@ -107,12 +111,12 @@ public class FirebaseAuthenticationPlugin extends Plugin {
                         }
                     }
                 }).addOnFailureListener(this.getActivity(), new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception ex) {
-                        Log.w(TAG, "signInWithCredential failed.", ex);
-                        call.reject(ERROR_SIGN_IN_FAILED);
-                    }
-                });
+            @Override
+            public void onFailure(@NonNull Exception ex) {
+                Log.w(TAG, "signInWithCredential failed.", ex);
+                call.reject(ERROR_SIGN_IN_FAILED);
+            }
+        });
     }
 
     public void handleFailedSignIn(PluginCall call, ApiException exception) {
@@ -129,8 +133,9 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     }
 
     private JSObject createSignInResultFrom(FirebaseUser user) {
+        GetTokenResult tokenResult = user.getIdToken(false).getResult();
         JSObject result = new JSObject();
-        result.put("idToken", user.getIdToken(false));
+        result.put("idToken", tokenResult.getToken());
         result.put("uid", user.getUid());
         result.put("email", user.getEmail());
         result.put("displayName", user.getDisplayName());
