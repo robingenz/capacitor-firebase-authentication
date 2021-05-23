@@ -30,6 +30,39 @@ npm install @robingenz/capacitor-firebase-authentication
 npx cap sync
 ```
 
+Add Firebase to your project if you haven't already ([Android](https://firebase.google.com/docs/android/setup) / [iOS](https://firebase.google.com/docs/ios/setup)).
+
+On **Android**, register the plugin in your main activity:
+
+```java
+import dev.robingenz.capacitor.firebaseauth.FirebaseAuthentication;
+
+public class MainActivity extends BridgeActivity {
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    // Initializes the Bridge
+    this.init(
+        savedInstanceState,
+        new ArrayList<Class<? extends Plugin>>() {
+
+          {
+            // Additional plugins you've installed go here
+            // Ex: add(TotallyAwesomePlugin.class);
+            add(FirebaseAuthentication.class);
+          }
+        }
+      );
+  }
+}
+```
+
+The further installation steps depend on the selected authentication method:
+
+- [Google Sign-In](https://github.com/robingenz/capacitor-firebase-authentication/blob/main/docs/setup-google.md)
+
 ## Configuration
 
 No configuration required for this plugin.
@@ -41,7 +74,8 @@ A working example can be found here: [robingenz/capacitor-plugin-demo](https://g
 ## Usage
 
 ```typescript
-import { FirebaseAuthentication } from '@robingenz/capacitor-firebase-authentication';
+import { Plugins } from '@capacitor/core';
+const { FirebaseAuthentication } = Plugins;
 
 // WIP
 ```

@@ -5,7 +5,17 @@ declare module '@capacitor/core' {
 }
 
 export interface FirebaseAuthenticationPlugin {
+  /**
+   * Starts the sign-in flow.
+   *
+   * Only available for Android and iOS.
+   */
   signIn(options: SignInOptions): Promise<SignInResult>;
+  /**
+   * Starts the sign-out flow.
+   *
+   * Only available for Android and iOS.
+   */
   signOut(): Promise<void>;
 }
 
@@ -14,9 +24,12 @@ export interface SignInOptions {
 }
 
 export enum SignInProvider {
-  GOOGLE = 'google',
+  Google = 'google',
 }
 
 export interface SignInResult {
-  // TODO
+  idToken: string;
+  uid: string;
+  email: string;
+  displayName: string;
 }
