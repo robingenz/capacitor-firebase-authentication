@@ -19,6 +19,9 @@ public class FirebaseAuthentication: CAPPlugin {
             FirebaseApp.configure()
         }
         identiyProviderHandlers[IdentityProvider.Google] = GoogleIdentityProviderHandler(plugin: self)
+        for handler in self.identiyProviderHandlers.values {
+            handler.initialize()
+        }
     }
 
     @objc func signIn(_ call: CAPPluginCall) {

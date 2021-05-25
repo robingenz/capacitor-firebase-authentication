@@ -5,11 +5,13 @@ import FirebaseAuth
 import GoogleSignIn
 
 class GoogleIdentityProviderHandler: NSObject, IdentityProviderHandler, GIDSignInDelegate {
-    let plugin: FirebaseAuthentication? = nil
+    var plugin: FirebaseAuthentication? = nil
     
     init(plugin: FirebaseAuthentication) {
         self.plugin = plugin
-        
+    }
+    
+    func initialize() -> Void {
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().presentingViewController = self.plugin?.bridge.viewController
@@ -18,7 +20,7 @@ class GoogleIdentityProviderHandler: NSObject, IdentityProviderHandler, GIDSignI
     }
     
     func signIn(call: CAPPluginCall) -> Void {
-        
+        GIDSignIn.sharedInstance().signIn()
     }
     
     func signOut() -> Void {
