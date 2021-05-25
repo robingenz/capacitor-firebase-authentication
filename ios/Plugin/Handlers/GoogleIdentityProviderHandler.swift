@@ -20,7 +20,9 @@ class GoogleIdentityProviderHandler: NSObject, IdentityProviderHandler, GIDSignI
     }
     
     func signIn(call: CAPPluginCall) -> Void {
-        GIDSignIn.sharedInstance().signIn()
+        DispatchQueue.main.async {
+            GIDSignIn.sharedInstance().signIn()
+        }
     }
     
     func signOut() -> Void {
