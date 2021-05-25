@@ -39,14 +39,6 @@ public class GoogleIdentityProviderHandler implements IdentityProviderHandler {
         mGoogleSignInClient.signOut();
     }
 
-    public boolean isAuthenticated() {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(plugin.getContext());
-        if (account == null) {
-            return false;
-        }
-        return true;
-    }
-
     public int getRequestCode() {
         return RC_SIGN_IN;
     }

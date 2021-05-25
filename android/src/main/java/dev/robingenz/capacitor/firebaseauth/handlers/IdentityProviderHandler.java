@@ -9,7 +9,6 @@ public interface IdentityProviderHandler {
     String TAG = "IdentityProviderHandler";
     void signIn(PluginCall call);
     void signOut();
-    boolean isAuthenticated();
     int getRequestCode();
     void handleOnActivityResult(int requestCode, int resultCode, Intent data);
 }
