@@ -8,10 +8,9 @@ class GoogleIdentityProviderHandler: NSObject, IdentityProviderHandler, GIDSignI
     var plugin: FirebaseAuthentication? = nil
     
     init(plugin: FirebaseAuthentication) {
+        super.init()
         self.plugin = plugin
-    }
-    
-    func initialize() -> Void {
+        
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().presentingViewController = self.plugin?.bridge.viewController

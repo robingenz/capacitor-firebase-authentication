@@ -62,6 +62,7 @@ public class MainActivity extends BridgeActivity {
 The further installation steps depend on the selected authentication method:
 
 - [Google Sign-In](https://github.com/robingenz/capacitor-firebase-authentication/blob/main/docs/setup-google.md)
+- [Apple Sign-In](https://github.com/robingenz/capacitor-firebase-authentication/blob/main/docs/setup-apple.md)
 
 ## Configuration
 

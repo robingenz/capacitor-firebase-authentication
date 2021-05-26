@@ -18,6 +18,7 @@
 		7C2A8EDA265AAB73002E625B /* GoogleIdentityProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8ED9265AAB73002E625B /* GoogleIdentityProviderHandler.swift */; };
 		7C2A8EDC265AAB8B002E625B /* IdentityProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8EDB265AAB8B002E625B /* IdentityProviderHandler.swift */; };
 		7C2A8EE0265AAF61002E625B /* IdentityProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8EDF265AAF61002E625B /* IdentityProvider.swift */; };
+		7C3D038A265E0F4B00952779 /* AppleIdentityProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3D0389265E0F4B00952779 /* AppleIdentityProviderHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		7C2A8ED9265AAB73002E625B /* GoogleIdentityProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleIdentityProviderHandler.swift; sourceTree = "<group>"; };
 		7C2A8EDB265AAB8B002E625B /* IdentityProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityProviderHandler.swift; sourceTree = "<group>"; };
 		7C2A8EDF265AAF61002E625B /* IdentityProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityProvider.swift; sourceTree = "<group>"; };
+		7C3D0389265E0F4B00952779 /* AppleIdentityProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIdentityProviderHandler.swift; sourceTree = "<group>"; };
 		91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.release.xcconfig"; sourceTree = "<group>"; };
 		96ED1B6440D6672E406C8D19 /* Pods-PluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F65BB2953ECE002E1EF3E424 /* Pods-PluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				7C2A8ED9265AAB73002E625B /* GoogleIdentityProviderHandler.swift */,
 				7C2A8EDB265AAB8B002E625B /* IdentityProviderHandler.swift */,
+				7C3D0389265E0F4B00952779 /* AppleIdentityProviderHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 			files = (
 				50E1A94820377CB70090CE1A /* Plugin.swift in Sources */,
 				7C2A8EE0265AAF61002E625B /* IdentityProvider.swift in Sources */,
+				7C3D038A265E0F4B00952779 /* AppleIdentityProviderHandler.swift in Sources */,
 				7C2A8EDA265AAB73002E625B /* GoogleIdentityProviderHandler.swift in Sources */,
 				50ADFFA82020EE4F00D50D53 /* Plugin.m in Sources */,
 				7C2A8EDC265AAB8B002E625B /* IdentityProviderHandler.swift in Sources */,

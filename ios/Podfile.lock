@@ -63,8 +63,8 @@ PODS:
 DEPENDENCIES:
   - "Capacitor (from `../node_modules/@capacitor/ios`)"
   - "CapacitorCordova (from `../node_modules/@capacitor/ios`)"
-  - Firebase/Auth
-  - GoogleSignIn
+  - Firebase/Auth (= 7.11.0)
+  - GoogleSignIn (= 5.0.2)
 
 SPEC REPOS:
   trunk:
@@ -103,6 +103,6 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
 
-PODFILE CHECKSUM: 63fb5953afc5b761cdee2fe7ed5413f98c13550a
+PODFILE CHECKSUM: 3f44f533d0e90d8f08628f487632dc3bc72c4d34
 
 COCOAPODS: 1.10.1

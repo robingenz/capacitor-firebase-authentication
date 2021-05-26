@@ -17,3 +17,7 @@
       You find this value in your `GoogleService-Info.plist` configuration file.
       Look for the `REVERSED_CLIENT_ID` key and paste the value of that key into the **URL Schemes** box on the configuration page.
       Leave the other fields blank.
+
+## Web
+
+🚧 Currently not supported.
