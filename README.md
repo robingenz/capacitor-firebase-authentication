@@ -78,7 +78,21 @@ A working example can be found here: [robingenz/capacitor-plugin-demo](https://g
 import { Plugins } from '@capacitor/core';
 const { FirebaseAuthentication } = Plugins;
 
-// WIP
+const signInWithGoogle = async () => {
+  const result = await FirebaseAuthentication.signIn({
+    provider: SignInProvider.Google,
+  });
+};
+
+const signInWithApple = async () => {
+  const result = await FirebaseAuthentication.signIn({
+    provider: SignInProvider.Apple,
+  });
+};
+
+const signOut = async () => {
+  const result = await FirebaseAuthentication.signOut();
+};
 ```
 
 ## API
