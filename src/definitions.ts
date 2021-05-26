@@ -25,6 +25,7 @@ export interface SignInOptions {
 
 export enum SignInProvider {
   Google = 'google',
+  Apple = 'apple',
 }
 
 export interface SignInResult {

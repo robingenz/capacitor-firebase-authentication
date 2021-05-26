@@ -9,6 +9,7 @@ import FirebaseAuth
  */
 @objc(FirebaseAuthentication)
 public class FirebaseAuthentication: CAPPlugin {
+    public let errorDeviceUnsupported = "Device is not supported. At least iOS 13 is required."
     public let errorProviderMissing = "provider must be provided."
     public let errorProviderNotSupported = "provider is not supported."
     var identiyProviderHandlers = [IdentityProvider : IdentityProviderHandler]()
@@ -19,9 +20,7 @@ public class FirebaseAuthentication: CAPPlugin {
             FirebaseApp.configure()
         }
         identiyProviderHandlers[IdentityProvider.Google] = GoogleIdentityProviderHandler(plugin: self)
-        for handler in self.identiyProviderHandlers.values {
-            handler.initialize()
-        }
+        identiyProviderHandlers[IdentityProvider.Apple] = AppleIdentityProviderHandler(plugin: self)
     }
 
     @objc func signIn(_ call: CAPPluginCall) {
@@ -96,6 +95,8 @@ public class FirebaseAuthentication: CAPPlugin {
     
     private func parseProvider(_ provider: String) -> IdentityProvider {
         switch provider {
+        case "apple":
+            return IdentityProvider.Apple
         case "google":
             return IdentityProvider.Google
         default:
