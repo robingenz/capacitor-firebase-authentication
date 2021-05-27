@@ -6,7 +6,7 @@ See [Before you begin](https://firebase.google.com/docs/auth/android/microsoft-o
 
 ## iOS
 
-🚧 Currently not supported.
+See [Before you begin](https://firebase.google.com/docs/auth/ios/microsoft-oauth#before_you_begin) and follow the instructions to configure sign-in with Microsoft correctly.
 
 ## Web
 
