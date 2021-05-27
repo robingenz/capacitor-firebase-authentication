@@ -24,6 +24,7 @@ import java.util.HashMap;
 
 import dev.robingenz.capacitor.firebaseauth.handlers.GoogleIdentityProviderHandler;
 import dev.robingenz.capacitor.firebaseauth.handlers.IdentityProviderHandler;
+import dev.robingenz.capacitor.firebaseauth.handlers.MicrosoftIdentityProviderHandler;
 import dev.robingenz.capacitor.firebaseauth.util.IdentityProvider;
 
 @NativePlugin(
@@ -40,6 +41,7 @@ public class FirebaseAuthentication extends Plugin {
     public void load() {
         mAuth = FirebaseAuth.getInstance();
         identityProviderHandlers.put(IdentityProvider.GOOGLE, new GoogleIdentityProviderHandler(this));
+        identityProviderHandlers.put(IdentityProvider.MICROSOFT, new MicrosoftIdentityProviderHandler(this));
     }
 
     @PluginMethod()
@@ -119,7 +121,7 @@ public class FirebaseAuthentication extends Plugin {
         });
     }
 
-    public void handleFailedSignIn(PluginCall call, ApiException exception) {
+    public void handleFailedSignIn(PluginCall call, Exception exception) {
         call.reject(exception.getLocalizedMessage());
     }
 
@@ -127,6 +129,8 @@ public class FirebaseAuthentication extends Plugin {
         switch (provider) {
             case "google":
                 return IdentityProvider.GOOGLE;
+            case "microsoft":
+                return IdentityProvider.MICROSOFT;
             default:
                 return IdentityProvider.UNKNOWN;
         }
