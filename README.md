@@ -61,8 +61,9 @@ public class MainActivity extends BridgeActivity {
 
 The further installation steps depend on the selected authentication method:
 
-- [Google Sign-In](docs/setup-google.md)
 - [Apple Sign-In](docs/setup-apple.md)
+- [Google Sign-In](docs/setup-google.md)
+- [Microsoft Sign-In](docs/setup-microsoft.md)
 
 ## Configuration
 
