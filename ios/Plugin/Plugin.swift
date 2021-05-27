@@ -19,8 +19,9 @@ public class FirebaseAuthentication: CAPPlugin {
         if (FirebaseApp.app() == nil) {
             FirebaseApp.configure()
         }
-        identiyProviderHandlers[IdentityProvider.Google] = GoogleIdentityProviderHandler(plugin: self)
         identiyProviderHandlers[IdentityProvider.Apple] = AppleIdentityProviderHandler(plugin: self)
+        identiyProviderHandlers[IdentityProvider.Google] = GoogleIdentityProviderHandler(plugin: self)
+        identiyProviderHandlers[IdentityProvider.Microsoft] = MicrosoftIdentityProviderHandler(plugin: self)
     }
 
     @objc func signIn(_ call: CAPPluginCall) {
@@ -99,6 +100,8 @@ public class FirebaseAuthentication: CAPPlugin {
             return IdentityProvider.Apple
         case "google":
             return IdentityProvider.Google
+        case "microsoft":
+            return IdentityProvider.Microsoft
         default:
             return IdentityProvider.Unknown
         }
