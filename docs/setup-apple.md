@@ -1,4 +1,4 @@
-# Set up authentication with Apple Sign-In
+# Set up authentication using Apple Sign-In
 
 ## Android
 
@@ -6,7 +6,7 @@
 
 ## iOS
 
-See [Before you begin](https://firebase.google.com/docs/auth/ios/apple#join-the-apple-developer-program) and follow the instructions to configure and enable Sign In with Apple correctly.
+See [Before you begin](https://firebase.google.com/docs/auth/ios/apple#before-you-begin) and follow the instructions to configure and enable sign-in with Apple correctly.
 
 ## Web
 

@@ -1,8 +1,8 @@
-# Set up authentication with Google Sign-In
+# Set up authentication using Google Sign-In
 
 ## Android
 
-1. Specify your app's SHA-1 fingerprint from the [Settings page](<(https://console.firebase.google.com/project/_/settings/general/)>) of the Firebase console.
+1. Specify your app's SHA-1 fingerprint from the [Settings page](https://console.firebase.google.com/project/_/settings/general/) of the Firebase console.
    Refer to [Authenticating Your Client](https://developers.google.com/android/guides/client-auth) for details on how to get your app's SHA-1 fingerprint.
 1. Enable Google Sign-In in the Firebase console:
    1. Open the **Auth** section in the [Firebase console](https://console.firebase.google.com/).
