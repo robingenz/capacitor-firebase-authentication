@@ -34,11 +34,11 @@ public class FirebaseAuthentication extends Plugin {
     public static final String ERROR_PROVIDER_MISSING = "provider must be provided.";
     public static final String ERROR_PROVIDER_NOT_SUPPORTED = "provider is not supported.";
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
-    private FirebaseAuth mAuth;
+    private FirebaseAuth firebaseAuthInstance;
     HashMap<IdentityProvider, IdentityProviderHandler> identityProviderHandlers = new HashMap();
 
     public void load() {
-        mAuth = FirebaseAuth.getInstance();
+        firebaseAuthInstance = FirebaseAuth.getInstance();
         identityProviderHandlers.put(IdentityProvider.GOOGLE, new GoogleIdentityProviderHandler(this));
         identityProviderHandlers.put(IdentityProvider.MICROSOFT, new MicrosoftIdentityProviderHandler(this));
     }
@@ -57,7 +57,7 @@ public class FirebaseAuthentication extends Plugin {
             return;
         }
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        FirebaseUser currentUser = firebaseAuthInstance.getCurrentUser();
         if (currentUser != null) {
             Log.d(TAG, "User already signed in.");
             JSObject signInResult = createSignInResultFromFirebaseUser(currentUser);
@@ -97,13 +97,13 @@ public class FirebaseAuthentication extends Plugin {
     }
 
     public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential) {
-        mAuth.signInWithCredential(credential)
+        firebaseAuthInstance.signInWithCredential(credential)
                 .addOnCompleteListener(this.getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential succeeded.");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseUser user = firebaseAuthInstance.getCurrentUser();
                             JSObject signInResult = createSignInResultFromFirebaseUser(user);
                             call.resolve(signInResult);
                         } else {
@@ -122,6 +122,10 @@ public class FirebaseAuthentication extends Plugin {
 
     public void handleFailedSignIn(PluginCall call, Exception exception) {
         call.reject(exception.getLocalizedMessage());
+    }
+
+    public FirebaseAuth getFirebaseAuthInstance() {
+        return firebaseAuthInstance;
     }
 
     private IdentityProvider parseProvider(String provider) {

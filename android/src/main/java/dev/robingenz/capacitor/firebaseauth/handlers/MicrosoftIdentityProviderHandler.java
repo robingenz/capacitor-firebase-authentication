@@ -26,17 +26,15 @@ import dev.robingenz.capacitor.firebaseauth.capacitorfirebaseauthentication.R;
 public class MicrosoftIdentityProviderHandler implements IdentityProviderHandler {
     public static final int RC_SIGN_IN = 101;
     private FirebaseAuthentication plugin;
-    private FirebaseAuth mAuth;
     private OAuthProvider.Builder provider;
 
     public MicrosoftIdentityProviderHandler(FirebaseAuthentication plugin) {
         this.plugin = plugin;
-        mAuth = FirebaseAuth.getInstance();
         provider = OAuthProvider.newBuilder("microsoft.com");
     }
 
     public void signIn(PluginCall call) {
-        Task<AuthResult> pendingResultTask = mAuth.getPendingAuthResult();
+        Task<AuthResult> pendingResultTask = plugin.getFirebaseAuthInstance().getPendingAuthResult();
         if (pendingResultTask == null) {
             startActivityForSignIn(call);
         } else {
@@ -57,7 +55,7 @@ public class MicrosoftIdentityProviderHandler implements IdentityProviderHandler
     }
 
     private void startActivityForSignIn(final PluginCall call) {
-        mAuth.startActivityForSignInWithProvider(plugin.getActivity(), provider.build())
+        plugin.getFirebaseAuthInstance().startActivityForSignInWithProvider(plugin.getActivity(), provider.build())
             .addOnSuccessListener(
                 new OnSuccessListener<AuthResult>() {
                     @Override
