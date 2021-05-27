@@ -1,4 +1,7 @@
 import Foundation
+import Capacitor
+import FirebaseCore
+import FirebaseAuth
 
 class MicrosoftIdentityProviderHandler: NSObject, IdentityProviderHandler {
     var plugin: FirebaseAuthentication? = nil
