@@ -14,8 +14,6 @@ class GoogleIdentityProviderHandler: NSObject, IdentityProviderHandler, GIDSignI
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
         GIDSignIn.sharedInstance().presentingViewController = self.plugin?.bridge.viewController
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleUrlOpen(notification:)), name: Notification.Name(CAPNotifications.URLOpen.name()), object: nil)
     }
     
     func signIn(call: CAPPluginCall) -> Void {
@@ -38,15 +36,5 @@ class GoogleIdentityProviderHandler: NSObject, IdentityProviderHandler, GIDSignI
         }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
         self.plugin?.handleSuccessfulSignIn(credential: credential)
-    }
-    
-    @objc func handleUrlOpen(notification: Notification) -> Void {
-        guard let object = notification.object as? [String:Any?] else {
-            return
-        }
-        guard let url = object["url"] as? URL else {
-            return
-        }
-        GIDSignIn.sharedInstance().handle(url)
     }
 }
