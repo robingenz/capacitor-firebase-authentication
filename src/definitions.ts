@@ -30,8 +30,20 @@ export enum SignInProvider {
 }
 
 export interface SignInResult {
+  /**
+   * Firebase Auth ID Token.
+   */
   idToken: string;
+  /**
+   * Firebase user ID.
+   */
   uid: string;
+  /**
+   * Email address of the user.
+   */
   email: string;
+  /**
+   * Display name of the user.
+   */
   displayName: string;
 }
