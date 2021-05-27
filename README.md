@@ -99,6 +99,12 @@ const signInWithApple = async () => {
   });
 };
 
+const signInWithMicrosoft = async () => {
+  const result = await FirebaseAuthentication.signIn({
+    provider: SignInProvider.Microsoft,
+  });
+};
+
 const signOut = async () => {
   const result = await FirebaseAuthentication.signOut();
 };

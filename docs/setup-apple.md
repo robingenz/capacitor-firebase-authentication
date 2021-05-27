@@ -6,7 +6,7 @@
 
 ## iOS
 
-See [Before you begin](https://firebase.google.com/docs/auth/ios/apple#before-you-begin) and follow the instructions to configure and enable sign-in with Apple correctly.
+1. See [Before you begin](https://firebase.google.com/docs/auth/ios/apple#before-you-begin) and follow the instructions to configure and enable sign-in with Apple correctly.
 
 ## Web
 
