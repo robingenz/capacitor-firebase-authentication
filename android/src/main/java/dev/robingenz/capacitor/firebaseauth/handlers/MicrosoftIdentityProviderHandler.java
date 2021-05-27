@@ -40,7 +40,7 @@ public class MicrosoftIdentityProviderHandler implements IdentityProviderHandler
         if (pendingResultTask == null) {
             startActivityForSignIn(call);
         } else {
-            finishActivityForSignIn(pendingResultTask, call);
+            finishActivityForSignIn(call, pendingResultTask);
         }
     }
 
@@ -75,7 +75,7 @@ public class MicrosoftIdentityProviderHandler implements IdentityProviderHandler
                 });
     }
 
-    private void finishActivityForSignIn(Task<AuthResult> pendingResultTask, final PluginCall call) {
+    private void finishActivityForSignIn(final PluginCall call, Task<AuthResult> pendingResultTask) {
         pendingResultTask
             .addOnSuccessListener(
                 new OnSuccessListener<AuthResult>() {
