@@ -1,4 +1,4 @@
-package dev.robingenz.capacitor.firebaseauth.util;
+package dev.robingenz.capacitor.firebaseauth.utils;
 
 public enum IdentityProvider {
     GOOGLE,

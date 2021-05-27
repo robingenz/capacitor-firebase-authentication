@@ -10,7 +10,6 @@ import com.getcapacitor.NativePlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -25,10 +24,10 @@ import java.util.HashMap;
 import dev.robingenz.capacitor.firebaseauth.handlers.GoogleIdentityProviderHandler;
 import dev.robingenz.capacitor.firebaseauth.handlers.IdentityProviderHandler;
 import dev.robingenz.capacitor.firebaseauth.handlers.MicrosoftIdentityProviderHandler;
-import dev.robingenz.capacitor.firebaseauth.util.IdentityProvider;
+import dev.robingenz.capacitor.firebaseauth.utils.IdentityProvider;
 
 @NativePlugin(
-        requestCodes={GoogleIdentityProviderHandler.RC_SIGN_IN}
+    requestCodes={GoogleIdentityProviderHandler.RC_SIGN_IN}
 )
 public class FirebaseAuthentication extends Plugin {
     public static final String TAG = "FirebaseAuthentication";
@@ -61,7 +60,7 @@ public class FirebaseAuthentication extends Plugin {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             Log.d(TAG, "User already signed in.");
-            JSObject signInResult = createSignInResultFrom(currentUser);
+            JSObject signInResult = createSignInResultFromFirebaseUser(currentUser);
             call.resolve(signInResult);
             return;
         }
@@ -105,7 +104,7 @@ public class FirebaseAuthentication extends Plugin {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential succeeded.");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            JSObject signInResult = createSignInResultFrom(user);
+                            JSObject signInResult = createSignInResultFromFirebaseUser(user);
                             call.resolve(signInResult);
                         } else {
                             Log.w(TAG, "signInWithCredential failed.", task.getException());
@@ -136,7 +135,7 @@ public class FirebaseAuthentication extends Plugin {
         }
     }
 
-    private JSObject createSignInResultFrom(FirebaseUser user) {
+    private JSObject createSignInResultFromFirebaseUser(FirebaseUser user) {
         GetTokenResult tokenResult = user.getIdToken(false).getResult();
         JSObject result = new JSObject();
         result.put("idToken", tokenResult.getToken());
