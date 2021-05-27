@@ -59,6 +59,14 @@ public class MainActivity extends BridgeActivity {
 }
 ```
 
+On **iOS**, verify that this function is included in your app's `AppDelegate.swift`:
+
+```swift
+func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+  return CAPBridge.handleOpenUrl(url, options)
+}
+```
+
 The further installation steps depend on the selected authentication method:
 
 - [Apple Sign-In](docs/setup-apple.md)
