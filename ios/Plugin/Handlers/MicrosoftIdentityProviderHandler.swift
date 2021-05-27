@@ -15,6 +15,16 @@ class MicrosoftIdentityProviderHandler: NSObject, IdentityProviderHandler {
     }
     
     func signIn(call: CAPPluginCall) -> Void {
+        DispatchQueue.main.async {
+            self.startSignInFlow()
+        }
+    }
+    
+    func signOut() -> Void {
+        // Not needed.
+    }
+
+    private func startSignInFlow() -> Void {
         self.provider?.getCredentialWith(nil) { credential, error in
             if let error = error {
                 self.plugin?.handleFailedSignIn(error: error)
@@ -24,9 +34,5 @@ class MicrosoftIdentityProviderHandler: NSObject, IdentityProviderHandler {
                 self.plugin?.handleSuccessfulSignIn(credential: credential)
             }
         }
-    }
-    
-    func signOut() -> Void {
-        // Not needed.
     }
 }
