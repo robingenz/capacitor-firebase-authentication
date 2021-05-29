@@ -10,53 +10,38 @@ import FirebaseAuth
 @objc(FirebaseAuthentication)
 public class FirebaseAuthentication: CAPPlugin {
     public let errorDeviceUnsupported = "Device is not supported. At least iOS 13 is required."
-    public let errorProviderMissing = "provider must be provided."
-    public let errorProviderNotSupported = "provider is not supported."
-    var identiyProviderHandlers = [IdentityProvider : IdentityProviderHandler]()
+    var authProviderHandlers = [AuthProvider : AuthProviderHandler]()
     var savedCall: CAPPluginCall? = nil
     
     public override func load() {
         if (FirebaseApp.app() == nil) {
             FirebaseApp.configure()
         }
-        identiyProviderHandlers[IdentityProvider.Apple] = AppleIdentityProviderHandler(plugin: self)
-        identiyProviderHandlers[IdentityProvider.Google] = GoogleIdentityProviderHandler(plugin: self)
-        identiyProviderHandlers[IdentityProvider.Microsoft] = MicrosoftIdentityProviderHandler(plugin: self)
+        authProviderHandlers[AuthProvider.Apple] = AppleAuthProviderHandler(plugin: self)
+        authProviderHandlers[AuthProvider.Google] = GoogleAuthProviderHandler(plugin: self)
+        authProviderHandlers[AuthProvider.Microsoft] = MicrosoftAuthProviderHandler(plugin: self)
     }
 
-    @objc func signIn(_ call: CAPPluginCall) {
-        guard let provider = call.getString("provider") else {
-            call.reject(errorProviderMissing)
-            return
-        }
-        
-        let parsedProvider = self.parseProvider(provider)
-        if parsedProvider == IdentityProvider.Unknown {
-            call.reject(errorProviderNotSupported)
-            return
-        }
-        
-        if let user = Auth.auth().currentUser {
-            self.createSignInResultFrom(user: user, completion: { signInResult, error in
-                if let error = error {
-                    call.reject(error.localizedDescription)
-                    return
-                }
-                call.resolve(signInResult as PluginResultData)
-            })
-            return;
-        }
-        
+    @objc func signInWithApple(_ call: CAPPluginCall) {
         self.savedCall = call
-        
-        identiyProviderHandlers[parsedProvider]?.signIn(call: call)
+        identiyProviderHandlers[AuthProvider.Apple]?.signIn(call: call)
+    }
+    
+    @objc func signInWithGoogle(_ call: CAPPluginCall) {
+        self.savedCall = call
+        identiyProviderHandlers[AuthProvider.Google]?.signIn(call: call)
+    }
+    
+    @objc func signInWithMicrosoft(_ call: CAPPluginCall) {
+        self.savedCall = call
+        identiyProviderHandlers[AuthProvider.Microsoft]?.signIn(call: call)
     }
 
     @objc func signOut(_ call: CAPPluginCall) {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
-            for handler in self.identiyProviderHandlers.values {
+            for handler in self.authProviderHandlers.values {
                 handler.signOut()
             }
             call.success()
@@ -92,19 +77,6 @@ public class FirebaseAuthentication: CAPPlugin {
             return
         }
         savedCall.reject(error.localizedDescription)
-    }
-    
-    private func parseProvider(_ provider: String) -> IdentityProvider {
-        switch provider {
-        case "apple":
-            return IdentityProvider.Apple
-        case "google":
-            return IdentityProvider.Google
-        case "microsoft":
-            return IdentityProvider.Microsoft
-        default:
-            return IdentityProvider.Unknown
-        }
     }
     
     private func createSignInResultFrom(user: User, completion: @escaping ([String:Any?], Error?) -> Void) -> Void {

@@ -15,11 +15,11 @@
 		50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFFA52020D75100D50D53 /* Capacitor.framework */; };
 		50ADFFA82020EE4F00D50D53 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ADFFA72020EE4F00D50D53 /* Plugin.m */; };
 		50E1A94820377CB70090CE1A /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E1A94720377CB70090CE1A /* Plugin.swift */; };
-		7C2A8EDA265AAB73002E625B /* GoogleIdentityProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8ED9265AAB73002E625B /* GoogleIdentityProviderHandler.swift */; };
-		7C2A8EDC265AAB8B002E625B /* IdentityProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8EDB265AAB8B002E625B /* IdentityProviderHandler.swift */; };
-		7C2A8EE0265AAF61002E625B /* IdentityProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8EDF265AAF61002E625B /* IdentityProvider.swift */; };
-		7C3D038A265E0F4B00952779 /* AppleIdentityProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3D0389265E0F4B00952779 /* AppleIdentityProviderHandler.swift */; };
-		7C50A0E5265F91C400B3C963 /* MicrosoftIdentityProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C50A0E4265F91C400B3C963 /* MicrosoftIdentityProviderHandler.swift */; };
+		7C2A8EDA265AAB73002E625B /* GoogleAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8ED9265AAB73002E625B /* GoogleAuthProviderHandler.swift */; };
+		7C2A8EDC265AAB8B002E625B /* AuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8EDB265AAB8B002E625B /* AuthProviderHandler.swift */; };
+		7C2A8EE0265AAF61002E625B /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2A8EDF265AAF61002E625B /* AuthProvider.swift */; };
+		7C3D038A265E0F4B00952779 /* AppleAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3D0389265E0F4B00952779 /* AppleAuthProviderHandler.swift */; };
+		7C50A0E5265F91C400B3C963 /* MicrosoftAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C50A0E4265F91C400B3C963 /* MicrosoftAuthProviderHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,11 +44,11 @@
 		50ADFFA72020EE4F00D50D53 /* Plugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Plugin.m; sourceTree = "<group>"; };
 		50E1A94720377CB70090CE1A /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
 		5E23F77F099397094342571A /* Pods-Plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.debug.xcconfig"; sourceTree = "<group>"; };
-		7C2A8ED9265AAB73002E625B /* GoogleIdentityProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleIdentityProviderHandler.swift; sourceTree = "<group>"; };
-		7C2A8EDB265AAB8B002E625B /* IdentityProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityProviderHandler.swift; sourceTree = "<group>"; };
-		7C2A8EDF265AAF61002E625B /* IdentityProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityProvider.swift; sourceTree = "<group>"; };
-		7C3D0389265E0F4B00952779 /* AppleIdentityProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleIdentityProviderHandler.swift; sourceTree = "<group>"; };
-		7C50A0E4265F91C400B3C963 /* MicrosoftIdentityProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftIdentityProviderHandler.swift; sourceTree = "<group>"; };
+		7C2A8ED9265AAB73002E625B /* GoogleAuthProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthProviderHandler.swift; sourceTree = "<group>"; };
+		7C2A8EDB265AAB8B002E625B /* AuthProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviderHandler.swift; sourceTree = "<group>"; };
+		7C2A8EDF265AAF61002E625B /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		7C3D0389265E0F4B00952779 /* AppleAuthProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthProviderHandler.swift; sourceTree = "<group>"; };
+		7C50A0E4265F91C400B3C963 /* MicrosoftAuthProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftAuthProviderHandler.swift; sourceTree = "<group>"; };
 		91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.release.xcconfig"; sourceTree = "<group>"; };
 		96ED1B6440D6672E406C8D19 /* Pods-PluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F65BB2953ECE002E1EF3E424 /* Pods-PluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -122,10 +122,10 @@
 		7C2A8ED8265AAB55002E625B /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				7C2A8ED9265AAB73002E625B /* GoogleIdentityProviderHandler.swift */,
-				7C2A8EDB265AAB8B002E625B /* IdentityProviderHandler.swift */,
-				7C3D0389265E0F4B00952779 /* AppleIdentityProviderHandler.swift */,
-				7C50A0E4265F91C400B3C963 /* MicrosoftIdentityProviderHandler.swift */,
+				7C2A8ED9265AAB73002E625B /* GoogleAuthProviderHandler.swift */,
+				7C2A8EDB265AAB8B002E625B /* AuthProviderHandler.swift */,
+				7C3D0389265E0F4B00952779 /* AppleAuthProviderHandler.swift */,
+				7C50A0E4265F91C400B3C963 /* MicrosoftAuthProviderHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -133,7 +133,7 @@
 		7C2A8EDE265AAF48002E625B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7C2A8EDF265AAF61002E625B /* IdentityProvider.swift */,
+				7C2A8EDF265AAF61002E625B /* AuthProvider.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -392,12 +392,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				50E1A94820377CB70090CE1A /* Plugin.swift in Sources */,
-				7C2A8EE0265AAF61002E625B /* IdentityProvider.swift in Sources */,
-				7C3D038A265E0F4B00952779 /* AppleIdentityProviderHandler.swift in Sources */,
-				7C2A8EDA265AAB73002E625B /* GoogleIdentityProviderHandler.swift in Sources */,
+				7C2A8EE0265AAF61002E625B /* AuthProvider.swift in Sources */,
+				7C3D038A265E0F4B00952779 /* AppleAuthProviderHandler.swift in Sources */,
+				7C2A8EDA265AAB73002E625B /* GoogleAuthProviderHandler.swift in Sources */,
 				50ADFFA82020EE4F00D50D53 /* Plugin.m in Sources */,
-				7C50A0E5265F91C400B3C963 /* MicrosoftIdentityProviderHandler.swift in Sources */,
-				7C2A8EDC265AAB8B002E625B /* IdentityProviderHandler.swift in Sources */,
+				7C50A0E5265F91C400B3C963 /* MicrosoftAuthProviderHandler.swift in Sources */,
+				7C2A8EDC265AAB8B002E625B /* AuthProviderHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

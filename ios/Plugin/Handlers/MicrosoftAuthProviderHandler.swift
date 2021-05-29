@@ -3,7 +3,7 @@ import Capacitor
 import FirebaseCore
 import FirebaseAuth
 
-class MicrosoftIdentityProviderHandler: NSObject, IdentityProviderHandler {
+class MicrosoftAuthProviderHandler: NSObject, AuthProviderHandler {
     var plugin: FirebaseAuthentication? = nil
     var provider: OAuthProvider? = nil
     

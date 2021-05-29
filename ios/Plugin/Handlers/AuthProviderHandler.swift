@@ -1,7 +1,7 @@
 import Foundation
 import Capacitor
 
-protocol IdentityProviderHandler {
+protocol AuthProviderHandler {
     func signIn(call: CAPPluginCall) -> Void
     func signOut() -> Void
 }

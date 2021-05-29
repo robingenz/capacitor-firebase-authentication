@@ -1,6 +1,5 @@
-enum IdentityProvider {
+enum AuthProvider {
     case Apple
     case Google
     case Microsoft
-    case Unknown
 }
