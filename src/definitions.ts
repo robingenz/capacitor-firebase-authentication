@@ -6,27 +6,29 @@ declare module '@capacitor/core' {
 
 export interface FirebaseAuthenticationPlugin {
   /**
-   * Starts the sign-in flow.
+   * Starts the Apple sign-in flow.
+   *
+   * Only available for iOS.
+   */
+  signInWithApple(): Promise<SignInResult>;
+  /**
+   * Starts the Google sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signIn(options: SignInOptions): Promise<SignInResult>;
+  signInWithGoogle(): Promise<SignInResult>;
+  /**
+   * Starts the Microsoft sign-in flow.
+   *
+   * Only available for Android and iOS.
+   */
+  signInWithMicrosoft(): Promise<SignInResult>;
   /**
    * Starts the sign-out flow.
    *
    * Only available for Android and iOS.
    */
   signOut(): Promise<void>;
-}
-
-export interface SignInOptions {
-  provider: SignInProvider;
-}
-
-export enum SignInProvider {
-  Apple = 'apple',
-  Google = 'google',
-  Microsoft = 'microsoft',
 }
 
 export interface SignInResult {

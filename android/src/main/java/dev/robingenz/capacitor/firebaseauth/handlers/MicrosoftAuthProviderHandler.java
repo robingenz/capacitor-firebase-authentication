@@ -1,34 +1,25 @@
 package dev.robingenz.capacitor.firebaseauth.handlers;
 
 import android.content.Intent;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.getcapacitor.PluginCall;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.OAuthProvider;
 
 import dev.robingenz.capacitor.firebaseauth.FirebaseAuthentication;
-import dev.robingenz.capacitor.firebaseauth.capacitorfirebaseauthentication.R;
 
-public class MicrosoftIdentityProviderHandler implements IdentityProviderHandler {
+public class MicrosoftAuthProviderHandler implements AuthProviderHandler {
     public static final int RC_SIGN_IN = 101;
     private FirebaseAuthentication plugin;
     private OAuthProvider.Builder provider;
 
-    public MicrosoftIdentityProviderHandler(FirebaseAuthentication plugin) {
+    public MicrosoftAuthProviderHandler(FirebaseAuthentication plugin) {
         this.plugin = plugin;
         provider = OAuthProvider.newBuilder("microsoft.com");
     }

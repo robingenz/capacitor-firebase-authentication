@@ -1,14 +1,8 @@
 import { registerWebPlugin, WebPlugin } from '@capacitor/core';
-import {
-  FirebaseAuthenticationPlugin,
-  SignInOptions,
-  SignInResult,
-} from './definitions';
+import { FirebaseAuthenticationPlugin, SignInResult } from './definitions';
 
-export class FirebaseAuthenticationWeb
-  extends WebPlugin
-  implements FirebaseAuthenticationPlugin
-{
+export class FirebaseAuthenticationWeb extends WebPlugin
+  implements FirebaseAuthenticationPlugin {
   constructor() {
     super({
       name: 'FirebaseAuthentication',
@@ -16,7 +10,15 @@ export class FirebaseAuthenticationWeb
     });
   }
 
-  public async signIn(_options: SignInOptions): Promise<SignInResult> {
+  public async signInWithApple(): Promise<SignInResult> {
+    throw new Error('Not implemented on web.');
+  }
+
+  public async signInWithGoogle(): Promise<SignInResult> {
+    throw new Error('Not implemented on web.');
+  }
+
+  public async signInWithMicrosoft(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }
 

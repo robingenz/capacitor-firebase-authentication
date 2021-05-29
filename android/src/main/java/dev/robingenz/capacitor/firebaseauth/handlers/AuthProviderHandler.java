@@ -5,8 +5,8 @@ import android.content.Intent;
 
 import com.getcapacitor.PluginCall;
 
-public interface IdentityProviderHandler {
-    String TAG = "IdentityProviderHandler";
+public interface AuthProviderHandler {
+    String TAG = "AuthProviderHandler";
     void signIn(PluginCall call);
     void signOut();
     int getRequestCode();
