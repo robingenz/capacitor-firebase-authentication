@@ -33,12 +33,12 @@ public class FirebaseAuthentication extends Plugin {
     public static final String TAG = "FirebaseAuthentication";
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
     private FirebaseAuth firebaseAuthInstance;
-    HashMap<AuthProvider, AuthProviderHandler> identityProviderHandlers = new HashMap();
+    HashMap<AuthProvider, AuthProviderHandler> authProviderHandlers = new HashMap();
 
     public void load() {
         firebaseAuthInstance = FirebaseAuth.getInstance();
-        identityProviderHandlers.put(AuthProvider.GOOGLE, new GoogleAuthProviderHandler(this));
-        identityProviderHandlers.put(AuthProvider.MICROSOFT, new MicrosoftAuthProviderHandler(this));
+        authProviderHandlers.put(AuthProvider.GOOGLE, new GoogleAuthProviderHandler(this));
+        authProviderHandlers.put(AuthProvider.MICROSOFT, new MicrosoftAuthProviderHandler(this));
     }
 
     @PluginMethod()
@@ -48,19 +48,19 @@ public class FirebaseAuthentication extends Plugin {
 
     @PluginMethod()
     public void signInWithGoogle(PluginCall call) {
-        identityProviderHandlers.get(AuthProvider.GOOGLE).signIn(call);
+        authProviderHandlers.get(AuthProvider.GOOGLE).signIn(call);
     }
 
     @PluginMethod()
     public void signInWithMicrosoft(PluginCall call) {
-        identityProviderHandlers.get(AuthProvider.MICROSOFT).signIn(call);
+        authProviderHandlers.get(AuthProvider.MICROSOFT).signIn(call);
     }
 
     @PluginMethod()
     public void signOut(PluginCall call) {
         FirebaseAuth.getInstance().signOut();
-        for (AuthProvider provider : identityProviderHandlers.keySet()) {
-            AuthProviderHandler handler = identityProviderHandlers.get(provider);
+        for (AuthProvider provider : authProviderHandlers.keySet()) {
+            AuthProviderHandler handler = authProviderHandlers.get(provider);
             handler.signOut();
         }
         call.resolve();
@@ -75,8 +75,8 @@ public class FirebaseAuthentication extends Plugin {
     @Override
     public void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
         super.handleOnActivityResult(requestCode, resultCode, data);
-        for (AuthProvider provider : identityProviderHandlers.keySet()) {
-            AuthProviderHandler handler = identityProviderHandlers.get(provider);
+        for (AuthProvider provider : authProviderHandlers.keySet()) {
+            AuthProviderHandler handler = authProviderHandlers.get(provider);
             if (handler.getRequestCode() == requestCode) {
                 handler.handleOnActivityResult(requestCode, resultCode, data);
                 break;
