@@ -6,10 +6,6 @@ import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
-import com.getcapacitor.PluginMethod;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -18,7 +14,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
-import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.AuthProviderHandler;
+
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.MicrosoftAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.utils.AuthProvider;
@@ -30,29 +26,26 @@ public class FirebaseAuthentication {
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
     private FirebaseAuthenticationPlugin plugin;
     private FirebaseAuth firebaseAuthInstance;
-    HashMap<AuthProvider, AuthProviderHandler> authProviderHandlers = new HashMap();
+    private GoogleAuthProviderHandler googleAuthProviderHandler;
+    private MicrosoftAuthProviderHandler microsoftAuthProviderHandler;
 
     public FirebaseAuthentication(FirebaseAuthenticationPlugin plugin) {
         this.plugin = plugin;
         firebaseAuthInstance = FirebaseAuth.getInstance();
-        authProviderHandlers.put(AuthProvider.GOOGLE, new GoogleAuthProviderHandler(this));
-        authProviderHandlers.put(AuthProvider.MICROSOFT, new MicrosoftAuthProviderHandler(this));
+        googleAuthProviderHandler = new GoogleAuthProviderHandler(this);
+        microsoftAuthProviderHandler = new MicrosoftAuthProviderHandler(this);
     }
 
     public void signInWithGoogle(PluginCall call) {
-        authProviderHandlers.get(AuthProvider.GOOGLE).signIn(call);
+        googleAuthProviderHandler.signIn(call);
     }
 
     public void signInWithMicrosoft(PluginCall call) {
-        authProviderHandlers.get(AuthProvider.MICROSOFT).signIn(call);
+        microsoftAuthProviderHandler.signIn(call);
     }
 
     public void signOut(PluginCall call) {
         FirebaseAuth.getInstance().signOut();
-        for (AuthProvider provider : authProviderHandlers.keySet()) {
-            AuthProviderHandler handler = authProviderHandlers.get(provider);
-            handler.signOut();
-        }
         call.resolve();
     }
 

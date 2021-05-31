@@ -1,6 +1,5 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
-import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
 import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -11,7 +10,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.OAuthProvider;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 
-public class MicrosoftAuthProviderHandler implements AuthProviderHandler {
+public class MicrosoftAuthProviderHandler {
 
     private FirebaseAuthentication pluginImplementation;
     private OAuthProvider.Builder provider;
@@ -28,14 +27,6 @@ public class MicrosoftAuthProviderHandler implements AuthProviderHandler {
         } else {
             finishActivityForSignIn(call, pendingResultTask);
         }
-    }
-
-    public void signOut() {
-        // Not needed.
-    }
-
-    public void handleOnActivityResult(PluginCall call, ActivityResult result) {
-        // Not needed.
     }
 
     private void startActivityForSignIn(final PluginCall call) {
