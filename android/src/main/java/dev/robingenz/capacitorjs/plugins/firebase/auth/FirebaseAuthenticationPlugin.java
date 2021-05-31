@@ -1,10 +1,13 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth;
 
 import com.getcapacitor.JSObject;
+import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
+import com.getcapacitor.annotation.CapacitorPlugin;
 
-public class FirebaseAuthentication {
+@CapacitorPlugin(name = "FirebaseAuthentication")
+public class FirebaseAuthenticationPlugin extends Plugin {
     public static final String TAG = "FirebaseAuthentication";
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
     private FirebaseAuthentication implementation = new FirebaseAuthentication();

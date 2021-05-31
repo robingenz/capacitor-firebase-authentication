@@ -1,8 +1,5 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
-
-import android.content.Intent;
-
 import com.getcapacitor.PluginCall;
 
 public interface AuthProviderHandler {
