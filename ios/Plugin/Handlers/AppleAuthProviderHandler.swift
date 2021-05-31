@@ -5,7 +5,7 @@ import FirebaseAuth
 import AuthenticationServices
 import CryptoKit
 
-class AppleIdentityProviderHandler: NSObject, IdentityProviderHandler {
+class AppleAuthProviderHandler: NSObject, AuthProviderHandler {
     var plugin: FirebaseAuthentication? = nil
     fileprivate var currentNonce: String?
     
@@ -28,7 +28,7 @@ class AppleIdentityProviderHandler: NSObject, IdentityProviderHandler {
 
 // Source: https://firebase.google.com/docs/auth/ios/apple
 @available(iOS 13.0, *)
-extension AppleIdentityProviderHandler: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+extension AppleAuthProviderHandler: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return (self.plugin?.bridge.getWebView()?.window)!;
     }

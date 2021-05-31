@@ -1,7 +1,6 @@
 package dev.robingenz.capacitor.firebaseauth.utils;
 
-public enum IdentityProvider {
+public enum AuthProvider {
     GOOGLE,
-    MICROSOFT,
-    UNKNOWN
+    MICROSOFT
 }

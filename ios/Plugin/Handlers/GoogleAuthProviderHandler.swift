@@ -4,7 +4,7 @@ import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
 
-class GoogleIdentityProviderHandler: NSObject, IdentityProviderHandler, GIDSignInDelegate {
+class GoogleAuthProviderHandler: NSObject, AuthProviderHandler, GIDSignInDelegate {
     var plugin: FirebaseAuthentication? = nil
     
     init(plugin: FirebaseAuthentication) {

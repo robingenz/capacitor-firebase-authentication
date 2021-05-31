@@ -88,21 +88,15 @@ import { Plugins } from '@capacitor/core';
 const { FirebaseAuthentication } = Plugins;
 
 const signInWithGoogle = async () => {
-  const result = await FirebaseAuthentication.signIn({
-    provider: SignInProvider.Google,
-  });
+  const result = await FirebaseAuthentication.signInWithGoogle();
 };
 
 const signInWithApple = async () => {
-  const result = await FirebaseAuthentication.signIn({
-    provider: SignInProvider.Apple,
-  });
+  const result = await FirebaseAuthentication.signInWithApple();
 };
 
 const signInWithMicrosoft = async () => {
-  const result = await FirebaseAuthentication.signIn({
-    provider: SignInProvider.Microsoft,
-  });
+  const result = await FirebaseAuthentication.signInWithMicrosoft();
 };
 
 const signOut = async () => {

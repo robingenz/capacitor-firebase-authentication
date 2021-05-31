@@ -16,12 +16,12 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import dev.robingenz.capacitor.firebaseauth.FirebaseAuthentication;
 import dev.robingenz.capacitor.firebaseauth.capacitorfirebaseauthentication.R;
 
-public class GoogleIdentityProviderHandler implements IdentityProviderHandler {
+public class GoogleAuthProviderHandler implements AuthProviderHandler {
     public static final int RC_SIGN_IN = 100;
     private FirebaseAuthentication plugin;
     private GoogleSignInClient mGoogleSignInClient;
 
-    public GoogleIdentityProviderHandler(FirebaseAuthentication plugin) {
+    public GoogleAuthProviderHandler(FirebaseAuthentication plugin) {
         this.plugin = plugin;
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(plugin.getContext().getString(R.string.default_web_client_id))
