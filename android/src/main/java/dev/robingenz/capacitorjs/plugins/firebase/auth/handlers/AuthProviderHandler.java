@@ -1,7 +1,6 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
 import androidx.activity.result.ActivityResult;
-
 import com.getcapacitor.PluginCall;
 
 public interface AuthProviderHandler {

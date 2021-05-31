@@ -2,8 +2,9 @@ import { WebPlugin } from '@capacitor/core';
 
 import type { FirebaseAuthenticationPlugin, SignInResult } from './definitions';
 
-export class FirebaseAuthenticationWeb extends WebPlugin implements FirebaseAuthenticationPlugin {
- 
+export class FirebaseAuthenticationWeb
+  extends WebPlugin
+  implements FirebaseAuthenticationPlugin {
   public async signInWithApple(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }
