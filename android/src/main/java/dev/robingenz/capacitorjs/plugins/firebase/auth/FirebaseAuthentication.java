@@ -17,8 +17,6 @@ import com.google.firebase.auth.GetTokenResult;
 
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.MicrosoftAuthProviderHandler;
-import dev.robingenz.capacitorjs.plugins.firebase.auth.utils.AuthProvider;
-import java.util.HashMap;
 
 public class FirebaseAuthentication {
 
