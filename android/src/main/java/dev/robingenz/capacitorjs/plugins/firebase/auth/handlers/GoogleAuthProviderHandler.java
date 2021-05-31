@@ -1,4 +1,4 @@
-package dev.robingenz.capacitor.firebaseauth.handlers;
+package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
 import android.content.Intent;
 import android.util.Log;
@@ -13,8 +13,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import dev.robingenz.capacitor.firebaseauth.FirebaseAuthentication;
-import dev.robingenz.capacitor.firebaseauth.capacitorfirebaseauthentication.R;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.capacitorfirebaseauthentication.R;
 
 public class GoogleAuthProviderHandler implements AuthProviderHandler {
     public static final int RC_SIGN_IN = 100;

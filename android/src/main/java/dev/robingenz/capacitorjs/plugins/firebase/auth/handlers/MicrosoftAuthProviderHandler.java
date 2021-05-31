@@ -1,4 +1,4 @@
-package dev.robingenz.capacitor.firebaseauth.handlers;
+package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
 import android.content.Intent;
 
@@ -12,7 +12,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.OAuthProvider;
 
-import dev.robingenz.capacitor.firebaseauth.FirebaseAuthentication;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 
 public class MicrosoftAuthProviderHandler implements AuthProviderHandler {
     public static final int RC_SIGN_IN = 101;
