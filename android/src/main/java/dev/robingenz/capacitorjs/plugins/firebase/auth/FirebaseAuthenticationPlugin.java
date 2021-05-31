@@ -1,10 +1,32 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth;
 
+import android.content.Intent;
+import android.util.Log;
+
+import androidx.activity.result.ActivityResult;
+import androidx.annotation.NonNull;
+
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.PluginMethod;
+import com.getcapacitor.annotation.ActivityCallback;
 import com.getcapacitor.annotation.CapacitorPlugin;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
+
+import java.util.HashMap;
+
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.AuthProviderHandler;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.MicrosoftAuthProviderHandler;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.utils.AuthProvider;
 
 @CapacitorPlugin(name = "FirebaseAuthentication")
 public class FirebaseAuthenticationPlugin extends Plugin {
@@ -46,21 +68,13 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     }
 
     @Override
-    public void startActivityForResult(PluginCall call, Intent intent, int resultCode) {
-        saveCall(call);
-        super.startActivityForResult(call, intent, resultCode);
+    public void startActivityForResult(PluginCall call, Intent intent, String callbackName) {
+        super.startActivityForResult(call, intent, callbackName);
     }
 
-    @Override
-    public void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
-        super.handleOnActivityResult(requestCode, resultCode, data);
-        for (AuthProvider provider : authProviderHandlers.keySet()) {
-            AuthProviderHandler handler = authProviderHandlers.get(provider);
-            if (handler.getRequestCode() == requestCode) {
-                handler.handleOnActivityResult(requestCode, resultCode, data);
-                break;
-            }
-        }
+    @ActivityCallback
+    private void handleGoogleAuthProviderActivityResult(PluginCall call, ActivityResult result) {
+        authProviderHandlers.get(AuthProvider.GOOGLE).handleOnActivityResult(call, result);
     }
 
     public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential) {

@@ -1,11 +1,23 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
+import androidx.activity.result.ActivityResult;
+import androidx.annotation.NonNull;
+
+import com.getcapacitor.PluginCall;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.OAuthProvider;
+
+import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthenticationPlugin;
+
 public class MicrosoftAuthProviderHandler implements AuthProviderHandler {
-    public static final int RC_SIGN_IN = 101;
-    private FirebaseAuthentication plugin;
+    private FirebaseAuthenticationPlugin plugin;
     private OAuthProvider.Builder provider;
 
-    public MicrosoftAuthProviderHandler(FirebaseAuthentication plugin) {
+    public MicrosoftAuthProviderHandler(FirebaseAuthenticationPlugin plugin) {
         this.plugin = plugin;
         provider = OAuthProvider.newBuilder("microsoft.com");
     }
@@ -23,11 +35,7 @@ public class MicrosoftAuthProviderHandler implements AuthProviderHandler {
         // Not needed.
     }
 
-    public int getRequestCode() {
-        return RC_SIGN_IN;
-    }
-
-    public void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
+    public void handleOnActivityResult(PluginCall call, ActivityResult result) {
         // Not needed.
     }
 
