@@ -1,4 +1,4 @@
-package dev.robingenz.capacitor.firebaseauth;
+package dev.robingenz.capacitorjs.plugins.firebase.auth;
 
 import android.content.Intent;
 import android.util.Log;
@@ -21,10 +21,10 @@ import com.google.firebase.auth.GetTokenResult;
 
 import java.util.HashMap;
 
-import dev.robingenz.capacitor.firebaseauth.handlers.GoogleIdentityProviderHandler;
-import dev.robingenz.capacitor.firebaseauth.handlers.IdentityProviderHandler;
-import dev.robingenz.capacitor.firebaseauth.handlers.MicrosoftIdentityProviderHandler;
-import dev.robingenz.capacitor.firebaseauth.utils.IdentityProvider;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleIdentityProviderHandler;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.IdentityProviderHandler;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.MicrosoftIdentityProviderHandler;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.utils.IdentityProvider;
 
 @NativePlugin(
     requestCodes={GoogleIdentityProviderHandler.RC_SIGN_IN}

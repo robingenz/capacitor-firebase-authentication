@@ -1,4 +1,4 @@
-package dev.robingenz.capacitor.firebaseauth.handlers;
+package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
 
 import android.content.Intent;
