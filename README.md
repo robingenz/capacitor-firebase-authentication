@@ -35,7 +35,7 @@ Add Firebase to your project if you haven't already ([Android](https://firebase.
 On **Android**, register the plugin in your main activity:
 
 ```java
-import dev.robingenz.capacitor.firebaseauth.FirebaseAuthentication;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 
 public class MainActivity extends BridgeActivity {
 
