@@ -7,12 +7,25 @@ import Capacitor
  */
 @objc(FirebaseAuthenticationPlugin)
 public class FirebaseAuthenticationPlugin: CAPPlugin {
-    private let implementation = FirebaseAuthentication()
+    private var implementation: FirebaseAuthentication? = nil
+    
+    override public func load() {
+        self.implementation = FirebaseAuthentication(plugin: self)
+    }
 
-    @objc func echo(_ call: CAPPluginCall) {
-        let value = call.getString("value") ?? ""
-        call.resolve([
-            "value": implementation.echo(value)
-        ])
+    @objc func signInWithApple(_ call: CAPPluginCall) {
+        implementation?.signInWithApple(call)
+    }
+    
+    @objc func signInWithGoogle(_ call: CAPPluginCall) {
+        implementation?.signInWithGoogle(call)
+    }
+    
+    @objc func signInWithMicrosoft(_ call: CAPPluginCall) {
+        implementation?.signInWithMicrosoft(call)
+    }
+    
+    @objc func signOut(_ call: CAPPluginCall) {
+        implementation?.signOut(call)
     }
 }
