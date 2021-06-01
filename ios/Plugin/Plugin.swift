@@ -24,17 +24,17 @@ public class FirebaseAuthentication: CAPPlugin {
 
     @objc func signInWithApple(_ call: CAPPluginCall) {
         self.savedCall = call
-        identiyProviderHandlers[AuthProvider.Apple]?.signIn(call: call)
+        authProviderHandlers[AuthProvider.Apple]?.signIn(call: call)
     }
     
     @objc func signInWithGoogle(_ call: CAPPluginCall) {
         self.savedCall = call
-        identiyProviderHandlers[AuthProvider.Google]?.signIn(call: call)
+        authProviderHandlers[AuthProvider.Google]?.signIn(call: call)
     }
     
     @objc func signInWithMicrosoft(_ call: CAPPluginCall) {
         self.savedCall = call
-        identiyProviderHandlers[AuthProvider.Microsoft]?.signIn(call: call)
+        authProviderHandlers[AuthProvider.Microsoft]?.signIn(call: call)
     }
 
     @objc func signOut(_ call: CAPPluginCall) {
