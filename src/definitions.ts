@@ -1,9 +1,3 @@
-declare module '@capacitor/core' {
-  interface PluginRegistry {
-    FirebaseAuthentication: FirebaseAuthenticationPlugin;
-  }
-}
-
 export interface FirebaseAuthenticationPlugin {
   /**
    * Starts the Apple sign-in flow.

@@ -3,48 +3,44 @@ import Capacitor
 import FirebaseCore
 import FirebaseAuth
 
-/**
- * Please read the Capacitor iOS Plugin Development Guide
- * here: https://capacitorjs.com/docs/plugins/ios
- */
-@objc(FirebaseAuthentication)
-public class FirebaseAuthentication: CAPPlugin {
+@objc public class FirebaseAuthentication: NSObject {
     public let errorDeviceUnsupported = "Device is not supported. At least iOS 13 is required."
-    var authProviderHandlers = [AuthProvider : AuthProviderHandler]()
-    var savedCall: CAPPluginCall? = nil
+    private let plugin: FirebaseAuthenticationPlugin
+    private var appleAuthProviderHandler: AppleAuthProviderHandler? = nil
+    private var googleAuthProviderHandler: GoogleAuthProviderHandler? = nil
+    private var microsoftAuthProviderHandler: MicrosoftAuthProviderHandler? = nil
+    private var savedCall: CAPPluginCall? = nil
     
-    public override func load() {
+    init(plugin: FirebaseAuthenticationPlugin) {
+        self.plugin = plugin
+        super.init()
         if (FirebaseApp.app() == nil) {
             FirebaseApp.configure()
         }
-        authProviderHandlers[AuthProvider.Apple] = AppleAuthProviderHandler(plugin: self)
-        authProviderHandlers[AuthProvider.Google] = GoogleAuthProviderHandler(plugin: self)
-        authProviderHandlers[AuthProvider.Microsoft] = MicrosoftAuthProviderHandler(plugin: self)
+        self.appleAuthProviderHandler = AppleAuthProviderHandler(self)
+        self.googleAuthProviderHandler = GoogleAuthProviderHandler(self)
+        self.microsoftAuthProviderHandler = MicrosoftAuthProviderHandler(self)
     }
 
     @objc func signInWithApple(_ call: CAPPluginCall) {
         self.savedCall = call
-        authProviderHandlers[AuthProvider.Apple]?.signIn(call: call)
+        self.appleAuthProviderHandler?.signIn(call: call)
     }
     
     @objc func signInWithGoogle(_ call: CAPPluginCall) {
         self.savedCall = call
-        authProviderHandlers[AuthProvider.Google]?.signIn(call: call)
+        self.googleAuthProviderHandler?.signIn(call: call)
     }
     
     @objc func signInWithMicrosoft(_ call: CAPPluginCall) {
         self.savedCall = call
-        authProviderHandlers[AuthProvider.Microsoft]?.signIn(call: call)
+        self.microsoftAuthProviderHandler?.signIn(call: call)
     }
 
     @objc func signOut(_ call: CAPPluginCall) {
-        let firebaseAuth = Auth.auth()
         do {
-            try firebaseAuth.signOut()
-            for handler in self.authProviderHandlers.values {
-                handler.signOut()
-            }
-            call.success()
+            try Auth.auth().signOut()
+            call.resolve()
         } catch let signOutError as NSError {
             call.reject("Error signing out: \(signOutError)")
         }
@@ -67,7 +63,7 @@ public class FirebaseAuthentication: CAPPlugin {
                     savedCall.reject(error.localizedDescription)
                     return;
                 }
-                savedCall.resolve(signInResult as PluginResultData)
+                savedCall.resolve(signInResult as PluginCallResultData)
             })
         }
     }
@@ -77,6 +73,10 @@ public class FirebaseAuthentication: CAPPlugin {
             return
         }
         savedCall.reject(error.localizedDescription)
+    }
+    
+    func getPlugin() -> FirebaseAuthenticationPlugin {
+        return self.plugin
     }
     
     private func createSignInResultFrom(user: User, completion: @escaping ([String:Any?], Error?) -> Void) -> Void {

@@ -32,38 +32,11 @@ npx cap sync
 
 Add Firebase to your project if you haven't already ([Android](https://firebase.google.com/docs/android/setup) / [iOS](https://firebase.google.com/docs/ios/setup)).
 
-On **Android**, register the plugin in your main activity:
-
-```java
-import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
-
-public class MainActivity extends BridgeActivity {
-
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-
-    // Initializes the Bridge
-    this.init(
-        savedInstanceState,
-        new ArrayList<Class<? extends Plugin>>() {
-
-          {
-            // Additional plugins you've installed go here
-            // Ex: add(TotallyAwesomePlugin.class);
-            add(FirebaseAuthentication.class);
-          }
-        }
-      );
-  }
-}
-```
-
 On **iOS**, verify that this function is included in your app's `AppDelegate.swift`:
 
 ```swift
 func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-  return CAPBridge.handleOpenUrl(url, options)
+  return ApplicationDelegateProxy.shared.application(app, open: url, options: options)
 }
 ```
 
@@ -100,17 +73,97 @@ const signInWithMicrosoft = async () => {
 };
 
 const signOut = async () => {
-  const result = await FirebaseAuthentication.signOut();
+  await FirebaseAuthentication.signOut();
 };
 ```
 
 ## API
 
 <docgen-index>
+
+* [`signInWithApple()`](#signinwithapple)
+* [`signInWithGoogle()`](#signinwithgoogle)
+* [`signInWithMicrosoft()`](#signinwithmicrosoft)
+* [`signOut()`](#signout)
+* [Interfaces](#interfaces)
+
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### signInWithApple()
+
+```typescript
+signInWithApple() => any
+```
+
+Starts the Apple sign-in flow.
+
+Only available for iOS.
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
+### signInWithGoogle()
+
+```typescript
+signInWithGoogle() => any
+```
+
+Starts the Google sign-in flow.
+
+Only available for Android and iOS.
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
+### signInWithMicrosoft()
+
+```typescript
+signInWithMicrosoft() => any
+```
+
+Starts the Microsoft sign-in flow.
+
+Only available for Android and iOS.
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
+### signOut()
+
+```typescript
+signOut() => any
+```
+
+Starts the sign-out flow.
+
+Only available for Android and iOS.
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
+### Interfaces
+
+
+#### SignInResult
+
+| Prop              | Type                | Description                |
+| ----------------- | ------------------- | -------------------------- |
+| **`idToken`**     | <code>string</code> | Firebase Auth ID Token.    |
+| **`uid`**         | <code>string</code> | Firebase user ID.          |
+| **`email`**       | <code>string</code> | Email address of the user. |
+| **`displayName`** | <code>string</code> | Display name of the user.  |
+
 </docgen-api>
 
 ## Changelog

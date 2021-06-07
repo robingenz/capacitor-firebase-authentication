@@ -1,9 +1,6 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
-import android.content.Intent;
-
 import androidx.annotation.NonNull;
-
 import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -11,21 +8,20 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.OAuthProvider;
-
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 
-public class MicrosoftAuthProviderHandler implements AuthProviderHandler {
-    public static final int RC_SIGN_IN = 101;
-    private FirebaseAuthentication plugin;
+public class MicrosoftAuthProviderHandler {
+
+    private FirebaseAuthentication pluginImplementation;
     private OAuthProvider.Builder provider;
 
-    public MicrosoftAuthProviderHandler(FirebaseAuthentication plugin) {
-        this.plugin = plugin;
+    public MicrosoftAuthProviderHandler(FirebaseAuthentication pluginImplementation) {
+        this.pluginImplementation = pluginImplementation;
         provider = OAuthProvider.newBuilder("microsoft.com");
     }
 
     public void signIn(PluginCall call) {
-        Task<AuthResult> pendingResultTask = plugin.getFirebaseAuthInstance().getPendingAuthResult();
+        Task<AuthResult> pendingResultTask = pluginImplementation.getFirebaseAuthInstance().getPendingAuthResult();
         if (pendingResultTask == null) {
             startActivityForSignIn(call);
         } else {
@@ -33,35 +29,27 @@ public class MicrosoftAuthProviderHandler implements AuthProviderHandler {
         }
     }
 
-    public void signOut() {
-        // Not needed.
-    }
-
-    public int getRequestCode() {
-        return RC_SIGN_IN;
-    }
-
-    public void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
-        // Not needed.
-    }
-
     private void startActivityForSignIn(final PluginCall call) {
-        plugin.getFirebaseAuthInstance().startActivityForSignInWithProvider(plugin.getActivity(), provider.build())
+        pluginImplementation
+            .getFirebaseAuthInstance()
+            .startActivityForSignInWithProvider(pluginImplementation.getPlugin().getActivity(), provider.build())
             .addOnSuccessListener(
                 new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         AuthCredential credential = authResult.getCredential();
-                        plugin.handleSuccessfulSignIn(call, credential);
+                        pluginImplementation.handleSuccessfulSignIn(call, credential);
                     }
-                })
+                }
+            )
             .addOnFailureListener(
                 new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        plugin.handleFailedSignIn(call, exception);
+                        pluginImplementation.handleFailedSignIn(call, exception);
                     }
-                });
+                }
+            );
     }
 
     private void finishActivityForSignIn(final PluginCall call, Task<AuthResult> pendingResultTask) {
@@ -71,15 +59,17 @@ public class MicrosoftAuthProviderHandler implements AuthProviderHandler {
                     @Override
                     public void onSuccess(AuthResult authResult) {
                         AuthCredential credential = authResult.getCredential();
-                        plugin.handleSuccessfulSignIn(call, credential);
+                        pluginImplementation.handleSuccessfulSignIn(call, credential);
                     }
-                })
+                }
+            )
             .addOnFailureListener(
                 new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        plugin.handleFailedSignIn(call, exception);
+                        pluginImplementation.handleFailedSignIn(call, exception);
                     }
-                });
+                }
+            );
     }
 }

@@ -5,24 +5,20 @@ import FirebaseAuth
 import AuthenticationServices
 import CryptoKit
 
-class AppleAuthProviderHandler: NSObject, AuthProviderHandler {
-    var plugin: FirebaseAuthentication? = nil
+class AppleAuthProviderHandler: NSObject {
+    var pluginImplementation: FirebaseAuthentication
     fileprivate var currentNonce: String?
     
-    init(plugin: FirebaseAuthentication) {
-        self.plugin = plugin
+    init(_ pluginImplementation: FirebaseAuthentication) {
+        self.pluginImplementation = pluginImplementation
     }
     
     func signIn(call: CAPPluginCall) -> Void {
         if #available(iOS 13, *) {
             self.startSignInWithAppleFlow()
         } else {
-            call.reject(self.plugin!.errorDeviceUnsupported)
+            call.reject(self.pluginImplementation.errorDeviceUnsupported)
         }
-    }
-    
-    func signOut() -> Void {
-        // Not needed.
     }
 }
 
@@ -30,7 +26,7 @@ class AppleAuthProviderHandler: NSObject, AuthProviderHandler {
 @available(iOS 13.0, *)
 extension AppleAuthProviderHandler: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
-        return (self.plugin?.bridge.getWebView()?.window)!;
+        return (self.pluginImplementation.getPlugin().bridge?.webView?.window)!;
     }
     
     // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
@@ -108,10 +104,10 @@ extension AppleAuthProviderHandler: ASAuthorizationControllerDelegate, ASAuthori
             return
         }
         let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
-        self.plugin?.handleSuccessfulSignIn(credential: credential)
+        self.pluginImplementation.handleSuccessfulSignIn(credential: credential)
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        self.plugin?.handleFailedSignIn(error: error)
+        self.pluginImplementation.handleFailedSignIn(error: error)
     }
 }
