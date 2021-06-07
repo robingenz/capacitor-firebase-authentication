@@ -32,38 +32,11 @@ npx cap sync
 
 Add Firebase to your project if you haven't already ([Android](https://firebase.google.com/docs/android/setup) / [iOS](https://firebase.google.com/docs/ios/setup)).
 
-On **Android**, register the plugin in your main activity:
-
-```java
-import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
-
-public class MainActivity extends BridgeActivity {
-
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-
-    // Initializes the Bridge
-    this.init(
-        savedInstanceState,
-        new ArrayList<Class<? extends Plugin>>() {
-
-          {
-            // Additional plugins you've installed go here
-            // Ex: add(TotallyAwesomePlugin.class);
-            add(FirebaseAuthentication.class);
-          }
-        }
-      );
-  }
-}
-```
-
 On **iOS**, verify that this function is included in your app's `AppDelegate.swift`:
 
 ```swift
 func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-  return CAPBridge.handleOpenUrl(url, options)
+  return ApplicationDelegateProxy.shared.application(app, open: url, options: options)
 }
 ```
 
@@ -100,7 +73,7 @@ const signInWithMicrosoft = async () => {
 };
 
 const signOut = async () => {
-  const result = await FirebaseAuthentication.signOut();
+  await FirebaseAuthentication.signOut();
 };
 ```
 
