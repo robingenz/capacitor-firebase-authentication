@@ -107,10 +107,90 @@ const signOut = async () => {
 ## API
 
 <docgen-index>
+
+* [`signInWithApple()`](#signinwithapple)
+* [`signInWithGoogle()`](#signinwithgoogle)
+* [`signInWithMicrosoft()`](#signinwithmicrosoft)
+* [`signOut()`](#signout)
+* [Interfaces](#interfaces)
+
 </docgen-index>
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### signInWithApple()
+
+```typescript
+signInWithApple() => any
+```
+
+Starts the Apple sign-in flow.
+
+Only available for iOS.
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
+### signInWithGoogle()
+
+```typescript
+signInWithGoogle() => any
+```
+
+Starts the Google sign-in flow.
+
+Only available for Android and iOS.
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
+### signInWithMicrosoft()
+
+```typescript
+signInWithMicrosoft() => any
+```
+
+Starts the Microsoft sign-in flow.
+
+Only available for Android and iOS.
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
+### signOut()
+
+```typescript
+signOut() => any
+```
+
+Starts the sign-out flow.
+
+Only available for Android and iOS.
+
+**Returns:** <code>any</code>
+
+--------------------
+
+
+### Interfaces
+
+
+#### SignInResult
+
+| Prop              | Type                | Description                |
+| ----------------- | ------------------- | -------------------------- |
+| **`idToken`**     | <code>string</code> | Firebase Auth ID Token.    |
+| **`uid`**         | <code>string</code> | Firebase user ID.          |
+| **`email`**       | <code>string</code> | Email address of the user. |
+| **`displayName`** | <code>string</code> | Display name of the user.  |
+
 </docgen-api>
 
 ## Changelog
