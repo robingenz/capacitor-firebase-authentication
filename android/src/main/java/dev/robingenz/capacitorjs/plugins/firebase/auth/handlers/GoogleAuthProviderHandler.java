@@ -33,6 +33,10 @@ public class GoogleAuthProviderHandler {
         pluginImplementation.startActivityForResult(call, signInIntent, "handleGoogleAuthProviderActivityResult");
     }
 
+    public void signOut() {
+        mGoogleSignInClient.signOut();
+    }
+
     public void handleOnActivityResult(PluginCall call, ActivityResult result) {
         Intent data = result.getData();
         Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);

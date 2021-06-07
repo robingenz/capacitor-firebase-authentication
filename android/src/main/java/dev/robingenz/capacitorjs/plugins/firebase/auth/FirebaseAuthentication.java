@@ -43,6 +43,7 @@ public class FirebaseAuthentication {
 
     public void signOut(PluginCall call) {
         FirebaseAuth.getInstance().signOut();
+        googleAuthProviderHandler.signOut();
         call.resolve();
     }
 
@@ -50,7 +51,9 @@ public class FirebaseAuthentication {
         plugin.startActivityForResult(call, intent, callbackName);
     }
 
-    public void handleGoogleAuthProviderActivityResult(PluginCall call, ActivityResult result) {}
+    public void handleGoogleAuthProviderActivityResult(PluginCall call, ActivityResult result) {
+        googleAuthProviderHandler.handleOnActivityResult(call, result);
+    }
 
     public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential) {
         firebaseAuthInstance
