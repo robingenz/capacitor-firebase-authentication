@@ -33,6 +33,10 @@ public class FirebaseAuthentication {
         microsoftAuthProviderHandler = new MicrosoftAuthProviderHandler(this);
     }
 
+    public FirebaseUser getCurrentUser() {
+        return firebaseAuthInstance.getCurrentUser();
+    }
+
     public void signInWithGoogle(PluginCall call) {
         googleAuthProviderHandler.signIn(call);
     }
@@ -65,9 +69,7 @@ public class FirebaseAuthentication {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential succeeded.");
-                            FirebaseUser user = firebaseAuthInstance.getCurrentUser();
-                            JSObject signInResult = createSignInResultFromFirebaseUser(user);
-                            call.resolve(signInResult);
+                            call.resolve();
                         } else {
                             Log.w(TAG, "signInWithCredential failed.", task.getException());
                             call.reject(ERROR_SIGN_IN_FAILED);
@@ -97,15 +99,5 @@ public class FirebaseAuthentication {
 
     public FirebaseAuthenticationPlugin getPlugin() {
         return plugin;
-    }
-
-    private JSObject createSignInResultFromFirebaseUser(FirebaseUser user) {
-        GetTokenResult tokenResult = user.getIdToken(false).getResult();
-        JSObject result = new JSObject();
-        result.put("idToken", tokenResult.getToken());
-        result.put("uid", user.getUid());
-        result.put("email", user.getEmail());
-        result.put("displayName", user.getDisplayName());
-        return result;
     }
 }
