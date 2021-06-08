@@ -52,7 +52,7 @@ No configuration required for this plugin.
 
 <!-- ## Demo
 
-A working example can be found here: [robingenz/capacitor-plugin-demo](https://github.com/robingenz/capacitor-plugin-demo) -->
+A working example can be found here: [robingenz/capacitor-firebase-authentication-demo](https://github.com/robingenz/capacitor-firebase-authentication-demo) -->
 
 ## Usage
 
