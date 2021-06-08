@@ -13,6 +13,23 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         self.implementation = FirebaseAuthentication(plugin: self)
     }
 
+    @objc func getCurrentUser(_ call: CAPPluginCall) {
+        var user = implementation?.getCurrentUser()
+        var result = self.createGetCurrentUserResultFromFirebaseUser(user)
+        return result
+    }
+
+    @objc func getIdToken(_ call: CAPPluginCall) {
+        var user = implementation?.getCurrentUser()
+        self.createGetIdTokenResultFromFirebaseUser(user, completion: { result, error in
+            if let error = error {
+                call.reject(error.localizedDescription)
+                return;
+            }
+            call.resolve(result)
+        })
+    }
+
     @objc func signInWithApple(_ call: CAPPluginCall) {
         implementation?.signInWithApple(call)
     }
@@ -27,5 +44,39 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
     
     @objc func signOut(_ call: CAPPluginCall) {
         implementation?.signOut(call)
+    }
+    
+    private func createGetCurrentUserResultFromFirebaseUser(_ user: User) -> ) -> JSObject {
+        let result = JSObject()
+        if (user == nil) {
+            result["user"] = nil
+            return result
+        }
+        let userResult = [
+            "displayName": user.displayName ?? "",
+            "email": user.email ?? "",
+            "emailVerified": user.emailVerified ?? "",
+            "isAnonymous": user.isAnonymous ?? "",
+            "phoneNumber": user.phoneNumber ?? "",
+            "photoUrl": user.photoUrl ?? "",
+            "providerId": user.providerId ?? "",
+            "tenantId": user.tenantId ?? "",
+            "uid": user.uid,
+        ]
+        result["user"] = userResult
+        return result
+    }
+    
+    private func createGetIdTokenResultFromFirebaseUser(_ user: User, completion: @escaping (JSObject, Error?) -> Void) -> Void {
+        user.getIDTokenResult(forcingRefresh: false, completion: { result, error in
+            if let error = error {
+                completion([:], error);
+                return
+            }
+            let result = [
+                "token": result?.token ?? ""
+            ]
+            completion(result, nil)
+        })
     }
 }

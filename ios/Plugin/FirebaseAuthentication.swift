@@ -52,19 +52,10 @@ import FirebaseAuth
                 self.handleFailedSignIn(error: error)
                 return
             }
-            guard let user = authDataResult?.user else {
-                return
-            }
             guard let savedCall = self.savedCall else {
                 return
             }
-            self.createSignInResultFrom(user: user, completion: { signInResult, error in
-                if let error = error {
-                    savedCall.reject(error.localizedDescription)
-                    return;
-                }
-                savedCall.resolve(signInResult as PluginCallResultData)
-            })
+            savedCall.resolve()
         }
     }
     
@@ -77,21 +68,5 @@ import FirebaseAuth
     
     func getPlugin() -> FirebaseAuthenticationPlugin {
         return self.plugin
-    }
-    
-    private func createSignInResultFrom(user: User, completion: @escaping ([String:Any?], Error?) -> Void) -> Void {
-        user.getIDTokenResult(forcingRefresh: false, completion: { result, error in
-            if let error = error {
-                completion([:], error);
-                return
-            }
-            let result = [
-                "idToken": result?.token ?? "",
-                "uid": user.uid,
-                "email": user.email ?? "",
-                "displayName": user.displayName ?? ""
-            ] as [String : Any]
-            completion(result, nil)
-        })
     }
 }
