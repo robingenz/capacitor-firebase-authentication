@@ -95,14 +95,14 @@ const signOut = async () => {
 ### signInWithApple()
 
 ```typescript
-signInWithApple() => any
+signInWithApple() => Promise<SignInResult>
 ```
 
 Starts the Apple sign-in flow.
 
 Only available for iOS.
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -110,14 +110,14 @@ Only available for iOS.
 ### signInWithGoogle()
 
 ```typescript
-signInWithGoogle() => any
+signInWithGoogle() => Promise<SignInResult>
 ```
 
 Starts the Google sign-in flow.
 
 Only available for Android and iOS.
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -125,14 +125,14 @@ Only available for Android and iOS.
 ### signInWithMicrosoft()
 
 ```typescript
-signInWithMicrosoft() => any
+signInWithMicrosoft() => Promise<SignInResult>
 ```
 
 Starts the Microsoft sign-in flow.
 
 Only available for Android and iOS.
 
-**Returns:** <code>any</code>
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -140,14 +140,12 @@ Only available for Android and iOS.
 ### signOut()
 
 ```typescript
-signOut() => any
+signOut() => Promise<void>
 ```
 
 Starts the sign-out flow.
 
 Only available for Android and iOS.
-
-**Returns:** <code>any</code>
 
 --------------------
 
