@@ -216,16 +216,16 @@ Only available for Android and iOS.
 
 #### GetIdTokenResult
 
-| Prop        | Type                | Description                                   |
-| ----------- | ------------------- | --------------------------------------------- |
-| **`token`** | <code>string</code> | Force refresh regardless of token expiration. |
+| Prop        | Type                |
+| ----------- | ------------------- |
+| **`token`** | <code>string</code> |
 
 
 #### GetIdTokenOptions
 
-| Prop               | Type                 |
-| ------------------ | -------------------- |
-| **`forceRefresh`** | <code>boolean</code> |
+| Prop               | Type                 | Description                                   |
+| ------------------ | -------------------- | --------------------------------------------- |
+| **`forceRefresh`** | <code>boolean</code> | Force refresh regardless of token expiration. |
 
 </docgen-api>
 
