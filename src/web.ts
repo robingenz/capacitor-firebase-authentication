@@ -13,9 +13,11 @@ export class FirebaseAuthenticationWeb
   public getCurrentUser(): Promise<GetCurrentUserResult> {
     throw new Error('Not implemented on web.');
   }
-  public getIdToken(options?: GetIdTokenOptions): Promise<GetIdTokenResult> {
+
+  public getIdToken(_options?: GetIdTokenOptions): Promise<GetIdTokenResult> {
     throw new Error('Not implemented on web.');
   }
+
   public async signInWithApple(): Promise<void> {
     throw new Error('Not implemented on web.');
   }
