@@ -45,13 +45,13 @@ export interface GetCurrentUserResult {
 }
 
 export interface GetIdTokenOptions {
+  /**
+   * Force refresh regardless of token expiration.
+   */
   forceRefresh: boolean;
 }
 
 export interface GetIdTokenResult {
-  /**
-   * Force refresh regardless of token expiration.
-   */
   token: string;
 }
 
