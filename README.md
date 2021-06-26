@@ -59,6 +59,16 @@ A working example can be found here: [robingenz/capacitor-firebase-authenticatio
 ```typescript
 import { FirebaseAuthentication } from '@robingenz/capacitor-firebase-authentication';
 
+const getCurrentUser = async () => {
+  const result = await FirebaseAuthentication.getCurrentUser();
+  return result.user;
+};
+
+const getIdToken = async () => {
+  const result = await FirebaseAuthentication.getIdToken();
+  return result.token;
+};
+
 const signInWithGoogle = async () => {
   await FirebaseAuthentication.signInWithGoogle();
 };
@@ -69,16 +79,6 @@ const signInWithApple = async () => {
 
 const signInWithMicrosoft = async () => {
   await FirebaseAuthentication.signInWithMicrosoft();
-};
-
-const getCurrentUser = async () => {
-  const result = await FirebaseAuthentication.getCurrentUser();
-  return result.user;
-};
-
-const getIdToken = async () => {
-  const result = await FirebaseAuthentication.getIdToken();
-  return result.token;
 };
 
 const signOut = async () => {
