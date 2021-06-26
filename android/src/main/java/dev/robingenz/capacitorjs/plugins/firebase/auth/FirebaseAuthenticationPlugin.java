@@ -38,7 +38,7 @@ public class FirebaseAuthenticationPlugin extends Plugin {
 
     @PluginMethod
     public void signInWithApple(PluginCall call) {
-        call.reject("Not implemented on Android.");
+        implementation.signInWithApple(call);
     }
 
     @PluginMethod
