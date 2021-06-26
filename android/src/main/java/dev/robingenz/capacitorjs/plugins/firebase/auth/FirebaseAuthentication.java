@@ -14,7 +14,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
-
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.AppleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.MicrosoftAuthProviderHandler;

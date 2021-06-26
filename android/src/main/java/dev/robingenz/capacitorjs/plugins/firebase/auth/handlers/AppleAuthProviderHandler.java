@@ -1,7 +1,6 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
 import androidx.annotation.NonNull;
-
 import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -9,7 +8,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.OAuthProvider;
-
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 
 public class AppleAuthProviderHandler {
