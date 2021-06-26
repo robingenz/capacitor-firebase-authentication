@@ -1,13 +1,13 @@
 export interface FirebaseAuthenticationPlugin {
   /**
    * Fetches the currently signed-in user.
-   * 
+   *
    * Only available for Android and iOS.
    */
   getCurrentUser(): Promise<GetCurrentUserResult>;
   /**
    * Fetches the Firebase Auth ID Token for the currently signed-in user.
-   * 
+   *
    * Only available for Android and iOS.
    */
   getIdToken(options?: GetIdTokenOptions): Promise<GetIdTokenResult>;
@@ -45,7 +45,7 @@ export interface GetCurrentUserResult {
 }
 
 export interface GetIdTokenOptions {
-  forceRefresh:  boolean
+  forceRefresh: boolean;
 }
 
 export interface GetIdTokenResult {

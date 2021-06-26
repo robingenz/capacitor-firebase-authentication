@@ -2,7 +2,6 @@ package dev.robingenz.capacitorjs.plugins.firebase.auth;
 
 import android.content.Intent;
 import androidx.activity.result.ActivityResult;
-
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
