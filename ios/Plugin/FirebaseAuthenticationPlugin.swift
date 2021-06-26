@@ -1,5 +1,7 @@
 import Foundation
 import Capacitor
+import FirebaseCore
+import FirebaseAuth
 
 /**
  * Please read the Capacitor iOS Plugin Development Guide
@@ -14,13 +16,13 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
     }
 
     @objc func getCurrentUser(_ call: CAPPluginCall) {
-        var user = implementation?.getCurrentUser()
-        var result = self.createGetCurrentUserResultFromFirebaseUser(user)
-        return result
+        let user = implementation?.getCurrentUser()
+        let result = self.createGetCurrentUserResultFromFirebaseUser(user)
+        call.resolve(result)
     }
 
     @objc func getIdToken(_ call: CAPPluginCall) {
-        var user = implementation?.getCurrentUser()
+        let user = implementation?.getCurrentUser()
         self.createGetIdTokenResultFromFirebaseUser(user, completion: { result, error in
             if let error = error {
                 call.reject(error.localizedDescription)
@@ -46,29 +48,28 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         implementation?.signOut(call)
     }
     
-    private func createGetCurrentUserResultFromFirebaseUser(_ user: User) -> ) -> JSObject {
-        let result = JSObject()
+    private func createGetCurrentUserResultFromFirebaseUser(_ user: User?) -> JSObject {
+        var result = JSObject()
         if (user == nil) {
             result["user"] = nil
             return result
         }
-        let userResult = [
-            "displayName": user.displayName ?? "",
-            "email": user.email ?? "",
-            "emailVerified": user.emailVerified ?? "",
-            "isAnonymous": user.isAnonymous ?? "",
-            "phoneNumber": user.phoneNumber ?? "",
-            "photoUrl": user.photoUrl ?? "",
-            "providerId": user.providerId ?? "",
-            "tenantId": user.tenantId ?? "",
-            "uid": user.uid,
-        ]
+        var userResult = JSObject()
+        userResult["displayName"] = user?.displayName
+        userResult["email"] = user?.email
+        userResult["emailVerified"] = user?.isEmailVerified
+        userResult["isAnonymous"] = user?.isAnonymous
+        userResult["phoneNumber"] = user?.phoneNumber
+        userResult["photoUrl"] = user?.photoURL?.absoluteString
+        userResult["providerId"] = user?.providerID
+        userResult["tenantId"] = user?.tenantID
+        userResult["uid"] = user?.uid
         result["user"] = userResult
         return result
     }
     
-    private func createGetIdTokenResultFromFirebaseUser(_ user: User, completion: @escaping (JSObject, Error?) -> Void) -> Void {
-        user.getIDTokenResult(forcingRefresh: false, completion: { result, error in
+    private func createGetIdTokenResultFromFirebaseUser(_ user: User?, completion: @escaping (JSObject, Error?) -> Void) -> Void {
+        user?.getIDTokenResult(forcingRefresh: false, completion: { result, error in
             if let error = error {
                 completion([:], error);
                 return

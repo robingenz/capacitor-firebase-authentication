@@ -21,6 +21,10 @@ import FirebaseAuth
         self.googleAuthProviderHandler = GoogleAuthProviderHandler(self)
         self.microsoftAuthProviderHandler = MicrosoftAuthProviderHandler(self)
     }
+    
+    @objc func getCurrentUser() -> User? {
+        return Auth.auth().currentUser;
+    }
 
     @objc func signInWithApple(_ call: CAPPluginCall) {
         self.savedCall = call
