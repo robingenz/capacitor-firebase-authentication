@@ -2,7 +2,7 @@
 
 ## Android
 
-🚧 Currently not supported. 
+1. See [Before you begin](https://firebase.google.com/docs/auth/android/apple#before-you-begin) and follow the instructions to configure sign-in with Apple correctly.
 
 ## iOS
 

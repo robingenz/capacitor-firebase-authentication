@@ -14,6 +14,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.AppleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.MicrosoftAuthProviderHandler;
 
@@ -23,18 +24,24 @@ public class FirebaseAuthentication {
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
     private FirebaseAuthenticationPlugin plugin;
     private FirebaseAuth firebaseAuthInstance;
+    private AppleAuthProviderHandler appleAuthProviderHandler;
     private GoogleAuthProviderHandler googleAuthProviderHandler;
     private MicrosoftAuthProviderHandler microsoftAuthProviderHandler;
 
     public FirebaseAuthentication(FirebaseAuthenticationPlugin plugin) {
         this.plugin = plugin;
         firebaseAuthInstance = FirebaseAuth.getInstance();
+        appleAuthProviderHandler = new AppleAuthProviderHandler(this);
         googleAuthProviderHandler = new GoogleAuthProviderHandler(this);
         microsoftAuthProviderHandler = new MicrosoftAuthProviderHandler(this);
     }
 
     public FirebaseUser getCurrentUser() {
         return firebaseAuthInstance.getCurrentUser();
+    }
+
+    public void signInWithApple(PluginCall call) {
+        appleAuthProviderHandler.signIn(call);
     }
 
     public void signInWithGoogle(PluginCall call) {

@@ -14,7 +14,7 @@ export interface FirebaseAuthenticationPlugin {
   /**
    * Starts the Apple sign-in flow.
    *
-   * Only available for iOS.
+   * Only available for Android and iOS.
    */
   signInWithApple(): Promise<void>;
   /**
