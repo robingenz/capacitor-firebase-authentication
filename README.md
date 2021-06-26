@@ -57,19 +57,28 @@ A working example can be found here: [robingenz/capacitor-firebase-authenticatio
 ## Usage
 
 ```typescript
-import { Plugins } from '@capacitor/core';
-const { FirebaseAuthentication } = Plugins;
+import { FirebaseAuthentication } from '@robingenz/capacitor-firebase-authentication';
+
+const getCurrentUser = async () => {
+  const result = await FirebaseAuthentication.getCurrentUser();
+  return result.user;
+};
+
+const getIdToken = async () => {
+  const result = await FirebaseAuthentication.getIdToken();
+  return result.token;
+};
 
 const signInWithGoogle = async () => {
-  const result = await FirebaseAuthentication.signInWithGoogle();
+  await FirebaseAuthentication.signInWithGoogle();
 };
 
 const signInWithApple = async () => {
-  const result = await FirebaseAuthentication.signInWithApple();
+  await FirebaseAuthentication.signInWithApple();
 };
 
 const signInWithMicrosoft = async () => {
-  const result = await FirebaseAuthentication.signInWithMicrosoft();
+  await FirebaseAuthentication.signInWithMicrosoft();
 };
 
 const signOut = async () => {
@@ -81,6 +90,8 @@ const signOut = async () => {
 
 <docgen-index>
 
+* [`getCurrentUser()`](#getcurrentuser)
+* [`getIdToken(...)`](#getidtoken)
 * [`signInWithApple()`](#signinwithapple)
 * [`signInWithGoogle()`](#signinwithgoogle)
 * [`signInWithMicrosoft()`](#signinwithmicrosoft)
@@ -92,17 +103,49 @@ const signOut = async () => {
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
 
+### getCurrentUser()
+
+```typescript
+getCurrentUser() => Promise<GetCurrentUserResult>
+```
+
+Fetches the currently signed-in user.
+
+Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#getcurrentuserresult">GetCurrentUserResult</a>&gt;</code>
+
+--------------------
+
+
+### getIdToken(...)
+
+```typescript
+getIdToken(options?: GetIdTokenOptions | undefined) => Promise<GetIdTokenResult>
+```
+
+Fetches the Firebase Auth ID Token for the currently signed-in user.
+
+Only available for Android and iOS.
+
+| Param         | Type                                                            |
+| ------------- | --------------------------------------------------------------- |
+| **`options`** | <code><a href="#getidtokenoptions">GetIdTokenOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#getidtokenresult">GetIdTokenResult</a>&gt;</code>
+
+--------------------
+
+
 ### signInWithApple()
 
 ```typescript
-signInWithApple() => Promise<SignInResult>
+signInWithApple() => Promise<void>
 ```
 
 Starts the Apple sign-in flow.
 
 Only available for iOS.
-
-**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -110,14 +153,12 @@ Only available for iOS.
 ### signInWithGoogle()
 
 ```typescript
-signInWithGoogle() => Promise<SignInResult>
+signInWithGoogle() => Promise<void>
 ```
 
 Starts the Google sign-in flow.
 
 Only available for Android and iOS.
-
-**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -125,14 +166,12 @@ Only available for Android and iOS.
 ### signInWithMicrosoft()
 
 ```typescript
-signInWithMicrosoft() => Promise<SignInResult>
+signInWithMicrosoft() => Promise<void>
 ```
 
 Starts the Microsoft sign-in flow.
 
 Only available for Android and iOS.
-
-**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -153,14 +192,40 @@ Only available for Android and iOS.
 ### Interfaces
 
 
-#### SignInResult
+#### GetCurrentUserResult
 
-| Prop              | Type                | Description                |
-| ----------------- | ------------------- | -------------------------- |
-| **`idToken`**     | <code>string</code> | Firebase Auth ID Token.    |
-| **`uid`**         | <code>string</code> | Firebase user ID.          |
-| **`email`**       | <code>string</code> | Email address of the user. |
-| **`displayName`** | <code>string</code> | Display name of the user.  |
+| Prop       | Type                                          | Description                                               |
+| ---------- | --------------------------------------------- | --------------------------------------------------------- |
+| **`user`** | <code><a href="#user">User</a> \| null</code> | The currently signed-in user, or null if there isn't any. |
+
+
+#### User
+
+| Prop                | Type                        |
+| ------------------- | --------------------------- |
+| **`displayName`**   | <code>string \| null</code> |
+| **`email`**         | <code>string \| null</code> |
+| **`emailVerified`** | <code>boolean</code>        |
+| **`isAnonymous`**   | <code>boolean</code>        |
+| **`phoneNumber`**   | <code>string \| null</code> |
+| **`photoUrl`**      | <code>string \| null</code> |
+| **`providerId`**    | <code>string</code>         |
+| **`tenantId`**      | <code>string \| null</code> |
+| **`uid`**           | <code>string</code>         |
+
+
+#### GetIdTokenResult
+
+| Prop        | Type                |
+| ----------- | ------------------- |
+| **`token`** | <code>string</code> |
+
+
+#### GetIdTokenOptions
+
+| Prop               | Type                 | Description                                   |
+| ------------------ | -------------------- | --------------------------------------------- |
+| **`forceRefresh`** | <code>boolean</code> | Force refresh regardless of token expiration. |
 
 </docgen-api>
 
