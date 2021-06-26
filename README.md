@@ -90,13 +90,13 @@ const signOut = async () => {
 
 <docgen-index>
 
-- [`getCurrentUser()`](#getcurrentuser)
-- [`getIdToken(...)`](#getidtoken)
-- [`signInWithApple()`](#signinwithapple)
-- [`signInWithGoogle()`](#signinwithgoogle)
-- [`signInWithMicrosoft()`](#signinwithmicrosoft)
-- [`signOut()`](#signout)
-- [Interfaces](#interfaces)
+* [`getCurrentUser()`](#getcurrentuser)
+* [`getIdToken(...)`](#getidtoken)
+* [`signInWithApple()`](#signinwithapple)
+* [`signInWithGoogle()`](#signinwithgoogle)
+* [`signInWithMicrosoft()`](#signinwithmicrosoft)
+* [`signOut()`](#signout)
+* [Interfaces](#interfaces)
 
 </docgen-index>
 
@@ -115,7 +115,8 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#getcurrentuserresult">GetCurrentUserResult</a>&gt;</code>
 
----
+--------------------
+
 
 ### getIdToken(...)
 
@@ -133,7 +134,8 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#getidtokenresult">GetIdTokenResult</a>&gt;</code>
 
----
+--------------------
+
 
 ### signInWithApple()
 
@@ -145,7 +147,8 @@ Starts the Apple sign-in flow.
 
 Only available for iOS.
 
----
+--------------------
+
 
 ### signInWithGoogle()
 
@@ -157,7 +160,8 @@ Starts the Google sign-in flow.
 
 Only available for Android and iOS.
 
----
+--------------------
+
 
 ### signInWithMicrosoft()
 
@@ -169,7 +173,8 @@ Starts the Microsoft sign-in flow.
 
 Only available for Android and iOS.
 
----
+--------------------
+
 
 ### signOut()
 
@@ -181,15 +186,18 @@ Starts the sign-out flow.
 
 Only available for Android and iOS.
 
----
+--------------------
+
 
 ### Interfaces
+
 
 #### GetCurrentUserResult
 
 | Prop       | Type                                          | Description                                               |
 | ---------- | --------------------------------------------- | --------------------------------------------------------- |
 | **`user`** | <code><a href="#user">User</a> \| null</code> | The currently signed-in user, or null if there isn't any. |
+
 
 #### User
 
@@ -205,11 +213,13 @@ Only available for Android and iOS.
 | **`tenantId`**      | <code>string \| null</code> |
 | **`uid`**           | <code>string</code>         |
 
+
 #### GetIdTokenResult
 
 | Prop        | Type                | Description                                   |
 | ----------- | ------------------- | --------------------------------------------- |
 | **`token`** | <code>string</code> | Force refresh regardless of token expiration. |
+
 
 #### GetIdTokenOptions
 
