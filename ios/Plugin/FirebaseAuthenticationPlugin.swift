@@ -22,8 +22,9 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
     }
 
     @objc func getIdToken(_ call: CAPPluginCall) {
+        let forceRefresh = call.getBool("forceRefresh", false)
         let user = implementation?.getCurrentUser()
-        self.createGetIdTokenResultFromFirebaseUser(user, completion: { result, error in
+        self.createGetIdTokenResultFromFirebaseUser(user, forceRefresh: forceRefresh, completion: { result, error in
             if let error = error {
                 call.reject(error.localizedDescription)
                 return;
@@ -68,8 +69,8 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         return result
     }
     
-    private func createGetIdTokenResultFromFirebaseUser(_ user: User?, completion: @escaping (JSObject, Error?) -> Void) -> Void {
-        user?.getIDTokenResult(forcingRefresh: false, completion: { result, error in
+    private func createGetIdTokenResultFromFirebaseUser(_ user: User?, forceRefresh: Bool, completion: @escaping (JSObject, Error?) -> Void) -> Void {
+        user?.getIDTokenResult(forcingRefresh: forceRefresh, completion: { result, error in
             if let error = error {
                 completion([:], error);
                 return

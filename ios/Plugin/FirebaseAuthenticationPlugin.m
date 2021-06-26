@@ -8,4 +8,6 @@ CAP_PLUGIN(FirebaseAuthenticationPlugin, "FirebaseAuthentication",
            CAP_PLUGIN_METHOD(signInWithGoogle, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signInWithMicrosoft, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signOut, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getCurrentUser, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getIdToken, CAPPluginReturnPromise);
 )
