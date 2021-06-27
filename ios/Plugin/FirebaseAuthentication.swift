@@ -8,7 +8,7 @@ import FirebaseAuth
     private let plugin: FirebaseAuthenticationPlugin
     private var appleAuthProviderHandler: AppleAuthProviderHandler? = nil
     private var googleAuthProviderHandler: GoogleAuthProviderHandler? = nil
-    private var microsoftAuthProviderHandler: MicrosoftAuthProviderHandler? = nil
+    private var oAuthProviderHandler: OAuthProviderHandler? = nil
     private var savedCall: CAPPluginCall? = nil
     
     init(plugin: FirebaseAuthenticationPlugin) {
@@ -19,7 +19,7 @@ import FirebaseAuth
         }
         self.appleAuthProviderHandler = AppleAuthProviderHandler(self)
         self.googleAuthProviderHandler = GoogleAuthProviderHandler(self)
-        self.microsoftAuthProviderHandler = MicrosoftAuthProviderHandler(self)
+        self.oAuthProviderHandler = OAuthProviderHandler(self)
     }
     
     @objc func getCurrentUser() -> User? {
@@ -38,7 +38,7 @@ import FirebaseAuth
     
     @objc func signInWithMicrosoft(_ call: CAPPluginCall) {
         self.savedCall = call
-        self.microsoftAuthProviderHandler?.signIn(call: call)
+        self.oAuthProviderHandler?.signIn(call: call, providerId: "microsoft.com")
     }
 
     @objc func signOut(_ call: CAPPluginCall) {

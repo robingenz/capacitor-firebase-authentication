@@ -16,9 +16,10 @@
 		50ADFFA42020D75100D50D53 /* Capacitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50ADFFA52020D75100D50D53 /* Capacitor.framework */; };
 		50ADFFA82020EE4F00D50D53 /* FirebaseAuthenticationPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ADFFA72020EE4F00D50D53 /* FirebaseAuthenticationPlugin.m */; };
 		50E1A94820377CB70090CE1A /* FirebaseAuthenticationPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E1A94720377CB70090CE1A /* FirebaseAuthenticationPlugin.swift */; };
-		7C8E530626656FC200FF4B87 /* AppleAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E530526656FC200FF4B87 /* AppleAuthProviderHandler.swift */; };
 		7C8E530826656FD100FF4B87 /* GoogleAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E530726656FD100FF4B87 /* GoogleAuthProviderHandler.swift */; };
-		7C8E530C266570E600FF4B87 /* MicrosoftAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C8E530B266570E600FF4B87 /* MicrosoftAuthProviderHandler.swift */; };
+		7CD588F02688B4EF002BDF65 /* FirebaseAuthenticationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD588EF2688B4EF002BDF65 /* FirebaseAuthenticationHelper.swift */; };
+		7CD588F22688B5A4002BDF65 /* OAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD588F12688B5A4002BDF65 /* OAuthProviderHandler.swift */; };
+		7CD588F42688B6A7002BDF65 /* AppleAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD588F32688B6A7002BDF65 /* AppleAuthProviderHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,9 +45,10 @@
 		50ADFFA72020EE4F00D50D53 /* FirebaseAuthenticationPlugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirebaseAuthenticationPlugin.m; sourceTree = "<group>"; };
 		50E1A94720377CB70090CE1A /* FirebaseAuthenticationPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationPlugin.swift; sourceTree = "<group>"; };
 		5E23F77F099397094342571A /* Pods-Plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.debug.xcconfig"; sourceTree = "<group>"; };
-		7C8E530526656FC200FF4B87 /* AppleAuthProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleAuthProviderHandler.swift; sourceTree = "<group>"; };
 		7C8E530726656FD100FF4B87 /* GoogleAuthProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthProviderHandler.swift; sourceTree = "<group>"; };
-		7C8E530B266570E600FF4B87 /* MicrosoftAuthProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrosoftAuthProviderHandler.swift; sourceTree = "<group>"; };
+		7CD588EF2688B4EF002BDF65 /* FirebaseAuthenticationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationHelper.swift; sourceTree = "<group>"; };
+		7CD588F12688B5A4002BDF65 /* OAuthProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthProviderHandler.swift; sourceTree = "<group>"; };
+		7CD588F32688B6A7002BDF65 /* AppleAuthProviderHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleAuthProviderHandler.swift; sourceTree = "<group>"; };
 		91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.release.xcconfig"; sourceTree = "<group>"; };
 		96ED1B6440D6672E406C8D19 /* Pods-PluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F65BB2953ECE002E1EF3E424 /* Pods-PluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				7C8E530426656F2000FF4B87 /* Handlers */,
 				50E1A94720377CB70090CE1A /* FirebaseAuthenticationPlugin.swift */,
 				2F98D68124C9AAE400613A4C /* FirebaseAuthentication.swift */,
+				7CD588EF2688B4EF002BDF65 /* FirebaseAuthenticationHelper.swift */,
 				50ADFF8B201F53D600D50D53 /* FirebaseAuthenticationPlugin.h */,
 				50ADFFA72020EE4F00D50D53 /* FirebaseAuthenticationPlugin.m */,
 				50ADFF8C201F53D600D50D53 /* Info.plist */,
@@ -120,9 +123,9 @@
 		7C8E530426656F2000FF4B87 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
-				7C8E530526656FC200FF4B87 /* AppleAuthProviderHandler.swift */,
 				7C8E530726656FD100FF4B87 /* GoogleAuthProviderHandler.swift */,
-				7C8E530B266570E600FF4B87 /* MicrosoftAuthProviderHandler.swift */,
+				7CD588F32688B6A7002BDF65 /* AppleAuthProviderHandler.swift */,
+				7CD588F12688B5A4002BDF65 /* OAuthProviderHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -382,11 +385,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C8E530826656FD100FF4B87 /* GoogleAuthProviderHandler.swift in Sources */,
+				7CD588F02688B4EF002BDF65 /* FirebaseAuthenticationHelper.swift in Sources */,
 				50E1A94820377CB70090CE1A /* FirebaseAuthenticationPlugin.swift in Sources */,
-				7C8E530C266570E600FF4B87 /* MicrosoftAuthProviderHandler.swift in Sources */,
+				7CD588F42688B6A7002BDF65 /* AppleAuthProviderHandler.swift in Sources */,
 				2F98D68224C9AAE500613A4C /* FirebaseAuthentication.swift in Sources */,
-				7C8E530626656FC200FF4B87 /* AppleAuthProviderHandler.swift in Sources */,
 				50ADFFA82020EE4F00D50D53 /* FirebaseAuthenticationPlugin.m in Sources */,
+				7CD588F22688B5A4002BDF65 /* OAuthProviderHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
