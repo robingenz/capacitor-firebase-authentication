@@ -39,12 +39,24 @@ public class FirebaseAuthentication {
         oAuthProviderHandler.signIn(call, "apple.com");
     }
 
+    public void signInWithGithub(PluginCall call) {
+        oAuthProviderHandler.signIn(call, "github.com");
+    }
+
     public void signInWithGoogle(PluginCall call) {
         googleAuthProviderHandler.signIn(call);
     }
 
     public void signInWithMicrosoft(PluginCall call) {
         oAuthProviderHandler.signIn(call, "microsoft.com");
+    }
+
+    public void signInWithTwitter(PluginCall call) {
+        oAuthProviderHandler.signIn(call, "twitter.com");
+    }
+
+    public void signInWithYahoo(PluginCall call) {
+        oAuthProviderHandler.signIn(call, "yahoo.com");
     }
 
     public void signOut(PluginCall call) {

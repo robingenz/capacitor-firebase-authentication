@@ -37,12 +37,24 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         implementation?.signInWithApple(call)
     }
     
+    @objc func signInWithGithub(_ call: CAPPluginCall) {
+        implementation?.signInWithGithub(call)
+    }
+    
     @objc func signInWithGoogle(_ call: CAPPluginCall) {
         implementation?.signInWithGoogle(call)
     }
     
     @objc func signInWithMicrosoft(_ call: CAPPluginCall) {
         implementation?.signInWithMicrosoft(call)
+    }
+
+    @objc func signInWithTwitter(_ call: CAPPluginCall) {
+        implementation?.signInWithTwitter(call)
+    }
+
+    @objc func signInWithYahoo(_ call: CAPPluginCall) {
+        implementation?.signInWithYahoo(call)
     }
     
     @objc func signOut(_ call: CAPPluginCall) {

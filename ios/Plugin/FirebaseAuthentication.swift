@@ -31,6 +31,11 @@ import FirebaseAuth
         self.appleAuthProviderHandler?.signIn(call: call)
     }
     
+    @objc func signInWithGithub(_ call: CAPPluginCall) {
+        self.savedCall = call
+        self.oAuthProviderHandler?.signIn(call: call, providerId: "github.com")
+    }
+    
     @objc func signInWithGoogle(_ call: CAPPluginCall) {
         self.savedCall = call
         self.googleAuthProviderHandler?.signIn(call: call)
@@ -39,6 +44,16 @@ import FirebaseAuth
     @objc func signInWithMicrosoft(_ call: CAPPluginCall) {
         self.savedCall = call
         self.oAuthProviderHandler?.signIn(call: call, providerId: "microsoft.com")
+    }
+    
+    @objc func signInWithTwitter(_ call: CAPPluginCall) {
+        self.savedCall = call
+        self.oAuthProviderHandler?.signIn(call: call, providerId: "twitter.com")
+    }
+    
+    @objc func signInWithYahoo(_ call: CAPPluginCall) {
+        self.savedCall = call
+        self.oAuthProviderHandler?.signIn(call: call, providerId: "yahoo.com")
     }
 
     @objc func signOut(_ call: CAPPluginCall) {

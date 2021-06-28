@@ -18,6 +18,12 @@ export interface FirebaseAuthenticationPlugin {
    */
   signInWithApple(): Promise<void>;
   /**
+   * Starts the GitHub sign-in flow.
+   *
+   * Only available for Android and iOS.
+   */
+  signInWithGithub(): Promise<void>;
+  /**
    * Starts the Google sign-in flow.
    *
    * Only available for Android and iOS.
@@ -29,6 +35,18 @@ export interface FirebaseAuthenticationPlugin {
    * Only available for Android and iOS.
    */
   signInWithMicrosoft(): Promise<void>;
+  /**
+   * Starts the Twitter sign-in flow.
+   *
+   * Only available for Android and iOS.
+   */
+  signInWithTwitter(): Promise<void>;
+  /**
+   * Starts the Yahoo sign-in flow.
+   *
+   * Only available for Android and iOS.
+   */
+  signInWithYahoo(): Promise<void>;
   /**
    * Starts the sign-out flow.
    *
