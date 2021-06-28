@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.util.Log;
 import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
-import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -13,10 +12,8 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GetTokenResult;
-import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.AppleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
-import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.MicrosoftAuthProviderHandler;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.OAuthProviderHandler;
 
 public class FirebaseAuthentication {
 
@@ -24,16 +21,14 @@ public class FirebaseAuthentication {
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
     private FirebaseAuthenticationPlugin plugin;
     private FirebaseAuth firebaseAuthInstance;
-    private AppleAuthProviderHandler appleAuthProviderHandler;
     private GoogleAuthProviderHandler googleAuthProviderHandler;
-    private MicrosoftAuthProviderHandler microsoftAuthProviderHandler;
+    private OAuthProviderHandler oAuthProviderHandler;
 
     public FirebaseAuthentication(FirebaseAuthenticationPlugin plugin) {
         this.plugin = plugin;
         firebaseAuthInstance = FirebaseAuth.getInstance();
-        appleAuthProviderHandler = new AppleAuthProviderHandler(this);
         googleAuthProviderHandler = new GoogleAuthProviderHandler(this);
-        microsoftAuthProviderHandler = new MicrosoftAuthProviderHandler(this);
+        oAuthProviderHandler = new OAuthProviderHandler(this);
     }
 
     public FirebaseUser getCurrentUser() {
@@ -41,7 +36,7 @@ public class FirebaseAuthentication {
     }
 
     public void signInWithApple(PluginCall call) {
-        appleAuthProviderHandler.signIn(call);
+        oAuthProviderHandler.signIn(call, "apple.com");
     }
 
     public void signInWithGoogle(PluginCall call) {
@@ -49,7 +44,7 @@ public class FirebaseAuthentication {
     }
 
     public void signInWithMicrosoft(PluginCall call) {
-        microsoftAuthProviderHandler.signIn(call);
+        oAuthProviderHandler.signIn(call, "microsoft.com");
     }
 
     public void signOut(PluginCall call) {

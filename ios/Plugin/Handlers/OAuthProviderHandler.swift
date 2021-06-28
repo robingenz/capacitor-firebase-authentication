@@ -3,23 +3,22 @@ import Capacitor
 import FirebaseCore
 import FirebaseAuth
 
-class MicrosoftAuthProviderHandler: NSObject {
+class OAuthProviderHandler: NSObject {
     var pluginImplementation: FirebaseAuthentication
-    var provider: OAuthProvider
     
     init(_ pluginImplementation: FirebaseAuthentication) {
         self.pluginImplementation = pluginImplementation
-        self.provider = OAuthProvider(providerID: "microsoft.com")
     }
     
-    func signIn(call: CAPPluginCall) -> Void {
+    func signIn(call: CAPPluginCall, providerId: String) -> Void {
+        let provider = OAuthProvider(providerID: providerId)
         DispatchQueue.main.async {
-            self.startSignInFlow()
+            self.startSignInFlow(provider: provider)
         }
     }
 
-    private func startSignInFlow() -> Void {
-        self.provider.getCredentialWith(nil) { credential, error in
+    private func startSignInFlow(provider: OAuthProvider) -> Void {
+        provider.getCredentialWith(nil) { credential, error in
             if let error = error {
                 self.pluginImplementation.handleFailedSignIn(error: error)
                 return
