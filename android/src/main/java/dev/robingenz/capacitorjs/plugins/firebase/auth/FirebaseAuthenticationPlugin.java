@@ -41,6 +41,11 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void signInWithGithub(PluginCall call) {
+        implementation.signInWithGithub(call);
+    }
+
+    @PluginMethod
     public void signInWithGoogle(PluginCall call) {
         implementation.signInWithGoogle(call);
     }
@@ -48,6 +53,16 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     @PluginMethod
     public void signInWithMicrosoft(PluginCall call) {
         implementation.signInWithMicrosoft(call);
+    }
+
+    @PluginMethod
+    public void signInWithTwitter(PluginCall call) {
+        implementation.signInWithTwitter(call);
+    }
+
+    @PluginMethod
+    public void signInWithYahoo(PluginCall call) {
+        implementation.signInWithYahoo(call);
     }
 
     @PluginMethod

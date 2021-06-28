@@ -22,11 +22,23 @@ export class FirebaseAuthenticationWeb
     throw new Error('Not implemented on web.');
   }
 
+  public async signInWithGithub(): Promise<void> {
+    throw new Error('Not implemented on web.');
+  }
+
   public async signInWithGoogle(): Promise<void> {
     throw new Error('Not implemented on web.');
   }
 
   public async signInWithMicrosoft(): Promise<void> {
+    throw new Error('Not implemented on web.');
+  }
+
+  public async signInWithTwitter(): Promise<void> {
+    throw new Error('Not implemented on web.');
+  }
+
+  public async signInWithYahoo(): Promise<void> {
     throw new Error('Not implemented on web.');
   }
 

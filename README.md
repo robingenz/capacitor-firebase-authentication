@@ -43,16 +43,15 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
 The further installation steps depend on the selected authentication method:
 
 - [Apple Sign-In](docs/setup-apple.md)
+- [GitHub Sign-In](docs/setup-github.md)
 - [Google Sign-In](docs/setup-google.md)
 - [Microsoft Sign-In](docs/setup-microsoft.md)
+- [Twitter Sign-In](docs/setup-twitter.md)
+- [Yahoo Sign-In](docs/setup-yahoo.md)
 
 ## Configuration
 
 No configuration required for this plugin.
-
-<!-- ## Demo
-
-A working example can be found here: [robingenz/capacitor-firebase-authentication-demo](https://github.com/robingenz/capacitor-firebase-authentication-demo) -->
 
 ## Usage
 
@@ -69,16 +68,28 @@ const getIdToken = async () => {
   return result.token;
 };
 
-const signInWithGoogle = async () => {
-  await FirebaseAuthentication.signInWithGoogle();
-};
-
 const signInWithApple = async () => {
   await FirebaseAuthentication.signInWithApple();
 };
 
+const signInWithGithub = async () => {
+  await FirebaseAuthentication.signInWithGithub();
+};
+
+const signInWithGoogle = async () => {
+  await FirebaseAuthentication.signInWithGoogle();
+};
+
 const signInWithMicrosoft = async () => {
   await FirebaseAuthentication.signInWithMicrosoft();
+};
+
+const signInWithTwitter = async () => {
+  await FirebaseAuthentication.signInWithTwitter();
+};
+
+const signInWithYahoo = async () => {
+  await FirebaseAuthentication.signInWithYahoo();
 };
 
 const signOut = async () => {
@@ -93,8 +104,11 @@ const signOut = async () => {
 * [`getCurrentUser()`](#getcurrentuser)
 * [`getIdToken(...)`](#getidtoken)
 * [`signInWithApple()`](#signinwithapple)
+* [`signInWithGithub()`](#signinwithgithub)
 * [`signInWithGoogle()`](#signinwithgoogle)
 * [`signInWithMicrosoft()`](#signinwithmicrosoft)
+* [`signInWithTwitter()`](#signinwithtwitter)
+* [`signInWithYahoo()`](#signinwithyahoo)
 * [`signOut()`](#signout)
 * [Interfaces](#interfaces)
 
@@ -150,6 +164,19 @@ Only available for Android and iOS.
 --------------------
 
 
+### signInWithGithub()
+
+```typescript
+signInWithGithub() => Promise<void>
+```
+
+Starts the GitHub sign-in flow.
+
+Only available for Android and iOS.
+
+--------------------
+
+
 ### signInWithGoogle()
 
 ```typescript
@@ -170,6 +197,32 @@ signInWithMicrosoft() => Promise<void>
 ```
 
 Starts the Microsoft sign-in flow.
+
+Only available for Android and iOS.
+
+--------------------
+
+
+### signInWithTwitter()
+
+```typescript
+signInWithTwitter() => Promise<void>
+```
+
+Starts the Twitter sign-in flow.
+
+Only available for Android and iOS.
+
+--------------------
+
+
+### signInWithYahoo()
+
+```typescript
+signInWithYahoo() => Promise<void>
+```
+
+Starts the Yahoo sign-in flow.
 
 Only available for Android and iOS.
 
