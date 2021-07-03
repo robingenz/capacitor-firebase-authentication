@@ -22,9 +22,7 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     @PluginMethod
     public void getCurrentUser(PluginCall call) {
         FirebaseUser user = implementation.getCurrentUser();
-        JSObject userResult = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user);
-        JSObject result = new JSObject();
-        result.put("user", userResult);
+        JSObject result = FirebaseAuthenticationHelper.createGetCurrentUserResultFromFirebaseUser(user);
         call.resolve(result);
     }
 

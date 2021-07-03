@@ -6,20 +6,23 @@ import com.google.firebase.auth.GetTokenResult;
 
 public class FirebaseAuthenticationHelper {
 
-    public static JSObject createUserResultFromFirebaseUser(FirebaseUser user) {
-        if (user == null) {
-            return null;
-        }
+    public static JSObject createGetCurrentUserResultFromFirebaseUser(FirebaseUser user) {
         JSObject result = new JSObject();
-        result.put("displayName", user.getDisplayName());
-        result.put("email", user.getEmail());
-        result.put("emailVerified", user.isEmailVerified());
-        result.put("isAnonymous", user.isAnonymous());
-        result.put("phoneNumber", user.getPhoneNumber());
-        result.put("photoUrl", user.getPhotoUrl());
-        result.put("providerId", user.getProviderId());
-        result.put("tenantId", user.getTenantId());
-        result.put("uid", user.getUid());
+        if (user == null) {
+            result.put("user", null);
+            return result;
+        }
+        JSObject userResult = new JSObject();
+        userResult.put("displayName", user.getDisplayName());
+        userResult.put("email", user.getEmail());
+        userResult.put("emailVerified", user.isEmailVerified());
+        userResult.put("isAnonymous", user.isAnonymous());
+        userResult.put("phoneNumber", user.getPhoneNumber());
+        userResult.put("photoUrl", user.getPhotoUrl());
+        userResult.put("providerId", user.getProviderId());
+        userResult.put("tenantId", user.getTenantId());
+        userResult.put("uid", user.getUid());
+        result.put("user", userResult);
         return result;
     }
 
