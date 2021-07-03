@@ -16,37 +16,37 @@ export interface FirebaseAuthenticationPlugin {
    *
    * Only available for Android and iOS.
    */
-  signInWithApple(): Promise<void>;
+  signInWithApple(): Promise<SignInResult>;
   /**
    * Starts the GitHub sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signInWithGithub(): Promise<void>;
+  signInWithGithub(): Promise<SignInResult>;
   /**
    * Starts the Google sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signInWithGoogle(): Promise<void>;
+  signInWithGoogle(): Promise<SignInResult>;
   /**
    * Starts the Microsoft sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signInWithMicrosoft(): Promise<void>;
+  signInWithMicrosoft(): Promise<SignInResult>;
   /**
    * Starts the Twitter sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signInWithTwitter(): Promise<void>;
+  signInWithTwitter(): Promise<SignInResult>;
   /**
    * Starts the Yahoo sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signInWithYahoo(): Promise<void>;
+  signInWithYahoo(): Promise<SignInResult>;
   /**
    * Starts the sign-out flow.
    *
@@ -70,7 +70,17 @@ export interface GetIdTokenOptions {
 }
 
 export interface GetIdTokenResult {
+  /**
+   * The Firebase Auth ID token JWT string.
+   */
   token: string;
+}
+
+export interface SignInResult {
+  /**
+   * The currently signed-in user, or null if there isn't any.
+   */
+  user: User | null;
 }
 
 export interface User {
