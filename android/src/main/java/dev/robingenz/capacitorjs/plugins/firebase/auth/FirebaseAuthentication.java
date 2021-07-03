@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.util.Log;
 import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
+
+import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -83,7 +85,11 @@ public class FirebaseAuthentication {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential succeeded.");
-                            call.resolve();
+                            FirebaseUser user = firebaseAuthInstance.getCurrentUser();
+                            JSObject userResult = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user);
+                            JSObject result = new JSObject();
+                            result.put("user", userResult);
+                            call.resolve(result);
                         } else {
                             Log.w(TAG, "signInWithCredential failed.", task.getException());
                             call.reject(ERROR_SIGN_IN_FAILED);
