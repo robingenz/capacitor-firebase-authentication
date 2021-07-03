@@ -9,8 +9,8 @@ import FirebaseAuth
  */
 @objc(FirebaseAuthenticationPlugin)
 public class FirebaseAuthenticationPlugin: CAPPlugin {
-    private var implementation: FirebaseAuthentication? = nil
-    
+    private var implementation: FirebaseAuthentication?
+
     override public func load() {
         self.implementation = FirebaseAuthentication(plugin: self)
     }
@@ -29,7 +29,7 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         FirebaseAuthenticationHelper.createGetIdTokenResultFromFirebaseUser(user, forceRefresh: forceRefresh, completion: { result, error in
             if let error = error {
                 call.reject(error.localizedDescription)
-                return;
+                return
             }
             call.resolve(result)
         })
@@ -38,15 +38,15 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
     @objc func signInWithApple(_ call: CAPPluginCall) {
         implementation?.signInWithApple(call)
     }
-    
+
     @objc func signInWithGithub(_ call: CAPPluginCall) {
         implementation?.signInWithGithub(call)
     }
-    
+
     @objc func signInWithGoogle(_ call: CAPPluginCall) {
         implementation?.signInWithGoogle(call)
     }
-    
+
     @objc func signInWithMicrosoft(_ call: CAPPluginCall) {
         implementation?.signInWithMicrosoft(call)
     }
@@ -58,7 +58,7 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
     @objc func signInWithYahoo(_ call: CAPPluginCall) {
         implementation?.signInWithYahoo(call)
     }
-    
+
     @objc func signOut(_ call: CAPPluginCall) {
         implementation?.signOut(call)
     }

@@ -5,19 +5,19 @@ import FirebaseAuth
 
 class OAuthProviderHandler: NSObject {
     var pluginImplementation: FirebaseAuthentication
-    
+
     init(_ pluginImplementation: FirebaseAuthentication) {
         self.pluginImplementation = pluginImplementation
     }
-    
-    func signIn(call: CAPPluginCall, providerId: String) -> Void {
+
+    func signIn(call: CAPPluginCall, providerId: String) {
         let provider = OAuthProvider(providerID: providerId)
         DispatchQueue.main.async {
             self.startSignInFlow(provider: provider)
         }
     }
 
-    private func startSignInFlow(provider: OAuthProvider) -> Void {
+    private func startSignInFlow(provider: OAuthProvider) {
         provider.getCredentialWith(nil) { credential, error in
             if let error = error {
                 self.pluginImplementation.handleFailedSignIn(error: error)

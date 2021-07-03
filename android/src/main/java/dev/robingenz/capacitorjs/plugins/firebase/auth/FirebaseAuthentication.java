@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.util.Log;
 import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
-
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.OnCompleteListener;
