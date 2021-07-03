@@ -84,7 +84,7 @@ public class FirebaseAuthentication {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential succeeded.");
-                            FirebaseUser user = firebaseAuthInstance.getCurrentUser();
+                            FirebaseUser user = getCurrentUser();
                             JSObject userResult = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user);
                             JSObject result = new JSObject();
                             result.put("user", userResult);
