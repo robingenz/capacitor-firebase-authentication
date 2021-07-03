@@ -4,23 +4,20 @@ import FirebaseCore
 import FirebaseAuth
 
 public class FirebaseAuthenticationHelper {
-    public static func createGetCurrentUserResultFromFirebaseUser(_ user: User?) -> JSObject {
-        var result = JSObject()
+    public static func createUserResultFromFirebaseUser(_ user: User?) -> JSObject? {
         if (user == nil) {
-            result["user"] = nil
-            return result
+            return nil
         }
-        var userResult = JSObject()
-        userResult["displayName"] = user?.displayName
-        userResult["email"] = user?.email
-        userResult["emailVerified"] = user?.isEmailVerified
-        userResult["isAnonymous"] = user?.isAnonymous
-        userResult["phoneNumber"] = user?.phoneNumber
-        userResult["photoUrl"] = user?.photoURL?.absoluteString
-        userResult["providerId"] = user?.providerID
-        userResult["tenantId"] = user?.tenantID
-        userResult["uid"] = user?.uid
-        result["user"] = userResult
+        var result = JSObject()
+        result["displayName"] = user?.displayName
+        result["email"] = user?.email
+        result["emailVerified"] = user?.isEmailVerified
+        result["isAnonymous"] = user?.isAnonymous
+        result["phoneNumber"] = user?.phoneNumber
+        result["photoUrl"] = user?.photoURL?.absoluteString
+        result["providerId"] = user?.providerID
+        result["tenantId"] = user?.tenantID
+        result["uid"] = user?.uid
         return result
     }
     

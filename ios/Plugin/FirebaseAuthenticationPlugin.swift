@@ -17,7 +17,9 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
 
     @objc func getCurrentUser(_ call: CAPPluginCall) {
         let user = implementation?.getCurrentUser()
-        let result = FirebaseAuthenticationHelper.createGetCurrentUserResultFromFirebaseUser(user)
+        let userResult = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user)
+        var result = JSObject()
+        result["user"] = userResult
         call.resolve(result)
     }
 
