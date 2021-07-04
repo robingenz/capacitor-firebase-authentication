@@ -68,6 +68,10 @@ const getIdToken = async () => {
   return result.token;
 };
 
+const setLanguageCode = async () => {
+  await FirebaseAuthentication.setLanguageCode({ languageCode: 'en-US' });
+};
+
 const signInWithApple = async () => {
   await FirebaseAuthentication.signInWithApple();
 };
@@ -94,6 +98,10 @@ const signInWithYahoo = async () => {
 
 const signOut = async () => {
   await FirebaseAuthentication.signOut();
+};
+
+const useAppLanguage = async () => {
+  await FirebaseAuthentication.useAppLanguage();
 };
 ```
 
