@@ -5,6 +5,7 @@ import type {
   GetCurrentUserResult,
   GetIdTokenOptions,
   GetIdTokenResult,
+  SignInResult,
 } from './definitions';
 
 export class FirebaseAuthenticationWeb
@@ -18,27 +19,27 @@ export class FirebaseAuthenticationWeb
     throw new Error('Not implemented on web.');
   }
 
-  public async signInWithApple(): Promise<void> {
+  public async signInWithApple(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }
 
-  public async signInWithGithub(): Promise<void> {
+  public async signInWithGithub(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }
 
-  public async signInWithGoogle(): Promise<void> {
+  public async signInWithGoogle(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }
 
-  public async signInWithMicrosoft(): Promise<void> {
+  public async signInWithMicrosoft(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }
 
-  public async signInWithTwitter(): Promise<void> {
+  public async signInWithTwitter(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }
 
-  public async signInWithYahoo(): Promise<void> {
+  public async signInWithYahoo(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }
 
