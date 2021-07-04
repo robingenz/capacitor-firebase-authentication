@@ -34,10 +34,10 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
             call.resolve(result)
         })
     }
-    
+
     @objc func setLanguageCode(_ call: CAPPluginCall) {
         let languageCode = call.getString("languageCode", "")
-        
+
         implementation?.setLanguageCode(languageCode)
         call.resolve()
     }
@@ -69,7 +69,7 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
     @objc func signOut(_ call: CAPPluginCall) {
         implementation?.signOut(call)
     }
-    
+
     @objc func useAppLanguage(_ call: CAPPluginCall) {
         implementation?.useAppLanguage()
         call.resolve()

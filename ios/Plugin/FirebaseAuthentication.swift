@@ -25,7 +25,7 @@ import FirebaseAuth
     @objc func getCurrentUser() -> User? {
         return Auth.auth().currentUser
     }
-    
+
     @objc func setLanguageCode(_ languageCode: String) {
         Auth.auth().languageCode = languageCode
     }
@@ -68,7 +68,7 @@ import FirebaseAuth
             call.reject("Error signing out: \(signOutError)")
         }
     }
-    
+
     @objc func useAppLanguage() {
         Auth.auth().useAppLanguage()
     }
