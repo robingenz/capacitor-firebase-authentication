@@ -154,12 +154,14 @@ Only available for Android and iOS.
 ### signInWithApple()
 
 ```typescript
-signInWithApple() => Promise<void>
+signInWithApple() => Promise<SignInResult>
 ```
 
 Starts the Apple sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -167,12 +169,14 @@ Only available for Android and iOS.
 ### signInWithGithub()
 
 ```typescript
-signInWithGithub() => Promise<void>
+signInWithGithub() => Promise<SignInResult>
 ```
 
 Starts the GitHub sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -180,12 +184,14 @@ Only available for Android and iOS.
 ### signInWithGoogle()
 
 ```typescript
-signInWithGoogle() => Promise<void>
+signInWithGoogle() => Promise<SignInResult>
 ```
 
 Starts the Google sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -193,12 +199,14 @@ Only available for Android and iOS.
 ### signInWithMicrosoft()
 
 ```typescript
-signInWithMicrosoft() => Promise<void>
+signInWithMicrosoft() => Promise<SignInResult>
 ```
 
 Starts the Microsoft sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -206,12 +214,14 @@ Only available for Android and iOS.
 ### signInWithTwitter()
 
 ```typescript
-signInWithTwitter() => Promise<void>
+signInWithTwitter() => Promise<SignInResult>
 ```
 
 Starts the Twitter sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -219,12 +229,14 @@ Only available for Android and iOS.
 ### signInWithYahoo()
 
 ```typescript
-signInWithYahoo() => Promise<void>
+signInWithYahoo() => Promise<SignInResult>
 ```
 
 Starts the Yahoo sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -269,9 +281,9 @@ Only available for Android and iOS.
 
 #### GetIdTokenResult
 
-| Prop        | Type                |
-| ----------- | ------------------- |
-| **`token`** | <code>string</code> |
+| Prop        | Type                | Description                            |
+| ----------- | ------------------- | -------------------------------------- |
+| **`token`** | <code>string</code> | The Firebase Auth ID token JWT string. |
 
 
 #### GetIdTokenOptions
@@ -279,6 +291,13 @@ Only available for Android and iOS.
 | Prop               | Type                 | Description                                   |
 | ------------------ | -------------------- | --------------------------------------------- |
 | **`forceRefresh`** | <code>boolean</code> | Force refresh regardless of token expiration. |
+
+
+#### SignInResult
+
+| Prop       | Type                                          | Description                                               |
+| ---------- | --------------------------------------------- | --------------------------------------------------------- |
+| **`user`** | <code><a href="#user">User</a> \| null</code> | The currently signed-in user, or null if there isn't any. |
 
 </docgen-api>
 
