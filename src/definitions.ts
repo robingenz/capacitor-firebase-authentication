@@ -12,6 +12,10 @@ export interface FirebaseAuthenticationPlugin {
    */
   getIdToken(options?: GetIdTokenOptions): Promise<GetIdTokenResult>;
   /**
+   * Sets the user-facing language code for auth operations.
+   */
+  setLanguageCode(options: SetLanguageCodeOptions): Promise<void>;
+  /**
    * Starts the Apple sign-in flow.
    *
    * Only available for Android and iOS.
@@ -53,6 +57,10 @@ export interface FirebaseAuthenticationPlugin {
    * Only available for Android and iOS.
    */
   signOut(): Promise<void>;
+  /**
+   * Sets the user-facing language code to be the default app language.
+   */
+  useAppLanguage(): Promise<void>;
 }
 
 export interface GetCurrentUserResult {
@@ -74,6 +82,15 @@ export interface GetIdTokenResult {
    * The Firebase Auth ID token JWT string.
    */
   token: string;
+}
+
+export interface SetLanguageCodeOptions {
+  /**
+   * BCP 47 language code.
+   *
+   * Example: `en-US`.
+   */
+  languageCode: string;
 }
 
 export interface SignInResult {

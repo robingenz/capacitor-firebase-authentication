@@ -1,10 +1,10 @@
 import { WebPlugin } from '@capacitor/core';
-
 import type {
   FirebaseAuthenticationPlugin,
   GetCurrentUserResult,
   GetIdTokenOptions,
   GetIdTokenResult,
+  SetLanguageCodeOptions,
   SignInResult,
 } from './definitions';
 
@@ -16,6 +16,10 @@ export class FirebaseAuthenticationWeb
   }
 
   public getIdToken(_options?: GetIdTokenOptions): Promise<GetIdTokenResult> {
+    throw new Error('Not implemented on web.');
+  }
+
+  public setLanguageCode(_options?: SetLanguageCodeOptions): Promise<void> {
     throw new Error('Not implemented on web.');
   }
 
@@ -44,6 +48,10 @@ export class FirebaseAuthenticationWeb
   }
 
   public async signOut(): Promise<void> {
+    throw new Error('Not implemented on web.');
+  }
+
+  public useAppLanguage(): Promise<void> {
     throw new Error('Not implemented on web.');
   }
 }
