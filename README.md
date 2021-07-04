@@ -103,6 +103,7 @@ const signOut = async () => {
 
 * [`getCurrentUser()`](#getcurrentuser)
 * [`getIdToken(...)`](#getidtoken)
+* [`setLanguageCode(...)`](#setlanguagecode)
 * [`signInWithApple()`](#signinwithapple)
 * [`signInWithGithub()`](#signinwithgithub)
 * [`signInWithGoogle()`](#signinwithgoogle)
@@ -110,6 +111,7 @@ const signOut = async () => {
 * [`signInWithTwitter()`](#signinwithtwitter)
 * [`signInWithYahoo()`](#signinwithyahoo)
 * [`signOut()`](#signout)
+* [`useAppLanguage()`](#useapplanguage)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -147,6 +149,21 @@ Only available for Android and iOS.
 | **`options`** | <code><a href="#getidtokenoptions">GetIdTokenOptions</a></code> |
 
 **Returns:** <code>Promise&lt;<a href="#getidtokenresult">GetIdTokenResult</a>&gt;</code>
+
+--------------------
+
+
+### setLanguageCode(...)
+
+```typescript
+setLanguageCode(options: SetLanguageCodeOptions) => Promise<void>
+```
+
+Sets the user-facing language code for auth operations.
+
+| Param         | Type                                                                      |
+| ------------- | ------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#setlanguagecodeoptions">SetLanguageCodeOptions</a></code> |
 
 --------------------
 
@@ -254,6 +271,17 @@ Only available for Android and iOS.
 --------------------
 
 
+### useAppLanguage()
+
+```typescript
+useAppLanguage() => Promise<void>
+```
+
+Sets the user-facing language code to be the default app language.
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -291,6 +319,13 @@ Only available for Android and iOS.
 | Prop               | Type                 | Description                                   |
 | ------------------ | -------------------- | --------------------------------------------- |
 | **`forceRefresh`** | <code>boolean</code> | Force refresh regardless of token expiration. |
+
+
+#### SetLanguageCodeOptions
+
+| Prop               | Type                | Description                             |
+| ------------------ | ------------------- | --------------------------------------- |
+| **`languageCode`** | <code>string</code> | BCP 47 language code. Example: `en-US`. |
 
 
 #### SignInResult

@@ -26,6 +26,10 @@ import FirebaseAuth
         return Auth.auth().currentUser
     }
 
+    @objc func setLanguageCode(_ languageCode: String) {
+        Auth.auth().languageCode = languageCode
+    }
+
     @objc func signInWithApple(_ call: CAPPluginCall) {
         self.savedCall = call
         self.appleAuthProviderHandler?.signIn(call: call)
@@ -63,6 +67,10 @@ import FirebaseAuth
         } catch let signOutError as NSError {
             call.reject("Error signing out: \(signOutError)")
         }
+    }
+
+    @objc func useAppLanguage() {
+        Auth.auth().useAppLanguage()
     }
 
     func handleSuccessfulSignIn(credential: AuthCredential) {

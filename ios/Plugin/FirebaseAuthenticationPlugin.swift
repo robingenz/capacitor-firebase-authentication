@@ -35,6 +35,13 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         })
     }
 
+    @objc func setLanguageCode(_ call: CAPPluginCall) {
+        let languageCode = call.getString("languageCode", "")
+
+        implementation?.setLanguageCode(languageCode)
+        call.resolve()
+    }
+
     @objc func signInWithApple(_ call: CAPPluginCall) {
         implementation?.signInWithApple(call)
     }
@@ -61,5 +68,10 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
 
     @objc func signOut(_ call: CAPPluginCall) {
         implementation?.signOut(call)
+    }
+
+    @objc func useAppLanguage(_ call: CAPPluginCall) {
+        implementation?.useAppLanguage()
+        call.resolve()
     }
 }

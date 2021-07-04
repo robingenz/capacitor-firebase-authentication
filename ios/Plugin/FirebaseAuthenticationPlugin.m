@@ -6,6 +6,7 @@
 CAP_PLUGIN(FirebaseAuthenticationPlugin, "FirebaseAuthentication",
            CAP_PLUGIN_METHOD(getCurrentUser, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getIdToken, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setLanguageCode, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signInWithApple, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signInWithGithub, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signInWithGoogle, CAPPluginReturnPromise);
@@ -13,4 +14,5 @@ CAP_PLUGIN(FirebaseAuthenticationPlugin, "FirebaseAuthentication",
            CAP_PLUGIN_METHOD(signInWithTwitter, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signInWithYahoo, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signOut, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(useAppLanguage, CAPPluginReturnPromise);
 )

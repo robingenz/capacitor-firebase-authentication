@@ -38,6 +38,14 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void setLanguageCode(PluginCall call) {
+        String languageCode = call.getString("languageCode", "");
+
+        implementation.setLanguageCode(languageCode);
+        call.resolve();
+    }
+
+    @PluginMethod
     public void signInWithApple(PluginCall call) {
         implementation.signInWithApple(call);
     }
@@ -70,6 +78,12 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     @PluginMethod
     public void signOut(PluginCall call) {
         implementation.signOut(call);
+    }
+
+    @PluginMethod
+    public void useAppLanguage(PluginCall call) {
+        implementation.useAppLanguage();
+        call.resolve();
     }
 
     @Override

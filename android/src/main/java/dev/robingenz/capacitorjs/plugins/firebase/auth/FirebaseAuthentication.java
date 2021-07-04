@@ -36,6 +36,10 @@ public class FirebaseAuthentication {
         return firebaseAuthInstance.getCurrentUser();
     }
 
+    public void setLanguageCode(String languageCode) {
+        firebaseAuthInstance.setLanguageCode(languageCode);
+    }
+
     public void signInWithApple(PluginCall call) {
         oAuthProviderHandler.signIn(call, "apple.com");
     }
@@ -64,6 +68,10 @@ public class FirebaseAuthentication {
         FirebaseAuth.getInstance().signOut();
         googleAuthProviderHandler.signOut();
         call.resolve();
+    }
+
+    public void useAppLanguage() {
+        firebaseAuthInstance.useAppLanguage();
     }
 
     public void startActivityForResult(PluginCall call, Intent intent, String callbackName) {
