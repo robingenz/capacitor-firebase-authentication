@@ -103,6 +103,7 @@ const signOut = async () => {
 
 * [`getCurrentUser()`](#getcurrentuser)
 * [`getIdToken(...)`](#getidtoken)
+* [`setLanguageCode(...)`](#setlanguagecode)
 * [`signInWithApple()`](#signinwithapple)
 * [`signInWithGithub()`](#signinwithgithub)
 * [`signInWithGoogle()`](#signinwithgoogle)
@@ -110,6 +111,7 @@ const signOut = async () => {
 * [`signInWithTwitter()`](#signinwithtwitter)
 * [`signInWithYahoo()`](#signinwithyahoo)
 * [`signOut()`](#signout)
+* [`useAppLanguage()`](#useapplanguage)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -151,15 +153,32 @@ Only available for Android and iOS.
 --------------------
 
 
+### setLanguageCode(...)
+
+```typescript
+setLanguageCode(options: SetLanguageCodeOptions) => Promise<void>
+```
+
+Sets the user-facing language code for auth operations.
+
+| Param         | Type                                                                      |
+| ------------- | ------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#setlanguagecodeoptions">SetLanguageCodeOptions</a></code> |
+
+--------------------
+
+
 ### signInWithApple()
 
 ```typescript
-signInWithApple() => Promise<void>
+signInWithApple() => Promise<SignInResult>
 ```
 
 Starts the Apple sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -167,12 +186,14 @@ Only available for Android and iOS.
 ### signInWithGithub()
 
 ```typescript
-signInWithGithub() => Promise<void>
+signInWithGithub() => Promise<SignInResult>
 ```
 
 Starts the GitHub sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -180,12 +201,14 @@ Only available for Android and iOS.
 ### signInWithGoogle()
 
 ```typescript
-signInWithGoogle() => Promise<void>
+signInWithGoogle() => Promise<SignInResult>
 ```
 
 Starts the Google sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -193,12 +216,14 @@ Only available for Android and iOS.
 ### signInWithMicrosoft()
 
 ```typescript
-signInWithMicrosoft() => Promise<void>
+signInWithMicrosoft() => Promise<SignInResult>
 ```
 
 Starts the Microsoft sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -206,12 +231,14 @@ Only available for Android and iOS.
 ### signInWithTwitter()
 
 ```typescript
-signInWithTwitter() => Promise<void>
+signInWithTwitter() => Promise<SignInResult>
 ```
 
 Starts the Twitter sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -219,12 +246,14 @@ Only available for Android and iOS.
 ### signInWithYahoo()
 
 ```typescript
-signInWithYahoo() => Promise<void>
+signInWithYahoo() => Promise<SignInResult>
 ```
 
 Starts the Yahoo sign-in flow.
 
 Only available for Android and iOS.
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
@@ -238,6 +267,17 @@ signOut() => Promise<void>
 Starts the sign-out flow.
 
 Only available for Android and iOS.
+
+--------------------
+
+
+### useAppLanguage()
+
+```typescript
+useAppLanguage() => Promise<void>
+```
+
+Sets the user-facing language code to be the default app language.
 
 --------------------
 
@@ -269,9 +309,9 @@ Only available for Android and iOS.
 
 #### GetIdTokenResult
 
-| Prop        | Type                |
-| ----------- | ------------------- |
-| **`token`** | <code>string</code> |
+| Prop        | Type                | Description                            |
+| ----------- | ------------------- | -------------------------------------- |
+| **`token`** | <code>string</code> | The Firebase Auth ID token JWT string. |
 
 
 #### GetIdTokenOptions
@@ -279,6 +319,20 @@ Only available for Android and iOS.
 | Prop               | Type                 | Description                                   |
 | ------------------ | -------------------- | --------------------------------------------- |
 | **`forceRefresh`** | <code>boolean</code> | Force refresh regardless of token expiration. |
+
+
+#### SetLanguageCodeOptions
+
+| Prop               | Type                | Description                             |
+| ------------------ | ------------------- | --------------------------------------- |
+| **`languageCode`** | <code>string</code> | BCP 47 language code. Example: `en-US`. |
+
+
+#### SignInResult
+
+| Prop       | Type                                          | Description                                               |
+| ---------- | --------------------------------------------- | --------------------------------------------------------- |
+| **`user`** | <code><a href="#user">User</a> \| null</code> | The currently signed-in user, or null if there isn't any. |
 
 </docgen-api>
 
