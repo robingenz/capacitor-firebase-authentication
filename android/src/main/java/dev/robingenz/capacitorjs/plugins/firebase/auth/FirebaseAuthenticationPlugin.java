@@ -32,8 +32,9 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     public void getIdToken(PluginCall call) {
         Boolean forceRefresh = call.getBoolean("forceRefresh", false);
 
-        FirebaseUser user = implementation.getCurrentUser();
-        JSObject result = FirebaseAuthenticationHelper.createGetIdTokenResultFromFirebaseUser(user, forceRefresh);
+        String token = implementation.getIdToken(forceRefresh);
+        JSObject result = new JSObject();
+        result.put("token", token);
         call.resolve(result);
     }
 
