@@ -22,11 +22,4 @@ public class FirebaseAuthenticationHelper {
         result.put("uid", user.getUid());
         return result;
     }
-
-    public static JSObject createGetIdTokenResultFromFirebaseUser(FirebaseUser user, Boolean forceRefresh) {
-        GetTokenResult tokenResult = user.getIdToken(forceRefresh).getResult();
-        JSObject result = new JSObject();
-        result.put("token", tokenResult.getToken());
-        return result;
-    }
 }

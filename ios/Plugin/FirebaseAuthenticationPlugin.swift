@@ -25,12 +25,14 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
 
     @objc func getIdToken(_ call: CAPPluginCall) {
         let forceRefresh = call.getBool("forceRefresh", false)
-        let user = implementation?.getCurrentUser()
-        FirebaseAuthenticationHelper.createGetIdTokenResultFromFirebaseUser(user, forceRefresh: forceRefresh, completion: { result, error in
+
+        implementation?.getIdToken(forceRefresh, completion: { token, error in
             if let error = error {
                 call.reject(error.localizedDescription)
                 return
             }
+            var result = JSObject()
+            result["token"] = token
             call.resolve(result)
         })
     }

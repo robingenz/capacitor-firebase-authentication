@@ -26,6 +26,17 @@ import FirebaseAuth
         return Auth.auth().currentUser
     }
 
+    @objc func getIdToken(_ forceRefresh: Bool, completion: @escaping (String?, Error?) -> Void) {
+        let user = self.getCurrentUser()
+        user?.getIDTokenResult(forcingRefresh: forceRefresh, completion: { result, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+            completion(result?.token, nil)
+        })
+    }
+
     @objc func setLanguageCode(_ languageCode: String) {
         Auth.auth().languageCode = languageCode
     }

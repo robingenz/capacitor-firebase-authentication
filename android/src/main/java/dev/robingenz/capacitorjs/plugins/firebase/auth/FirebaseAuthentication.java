@@ -13,6 +13,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.OAuthProviderHandler;
 
@@ -34,6 +35,12 @@ public class FirebaseAuthentication {
 
     public FirebaseUser getCurrentUser() {
         return firebaseAuthInstance.getCurrentUser();
+    }
+
+    public String getIdToken(Boolean forceRefresh) {
+        FirebaseUser user = getCurrentUser();
+        GetTokenResult tokenResult = user.getIdToken(forceRefresh).getResult();
+        return tokenResult.getToken();
     }
 
     public void setLanguageCode(String languageCode) {
