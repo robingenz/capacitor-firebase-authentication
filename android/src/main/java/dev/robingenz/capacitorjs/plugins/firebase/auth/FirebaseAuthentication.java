@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
+import com.getcapacitor.PluginMethod;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -36,6 +37,10 @@ public class FirebaseAuthentication {
         return firebaseAuthInstance.getCurrentUser();
     }
 
+    public void setLanguageCode(String languageCode) {
+        firebaseAuthInstance.setLanguageCode(languageCode);
+    }
+
     public void signInWithApple(PluginCall call) {
         oAuthProviderHandler.signIn(call, "apple.com");
     }
@@ -64,6 +69,10 @@ public class FirebaseAuthentication {
         FirebaseAuth.getInstance().signOut();
         googleAuthProviderHandler.signOut();
         call.resolve();
+    }
+
+    public void useAppLanguage() {
+        firebaseAuthInstance.useAppLanguage();
     }
 
     public void startActivityForResult(PluginCall call, Intent intent, String callbackName) {
