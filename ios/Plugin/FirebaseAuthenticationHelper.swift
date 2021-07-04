@@ -20,17 +20,4 @@ public class FirebaseAuthenticationHelper {
         result["uid"] = user?.uid
         return result
     }
-
-    public static func createGetIdTokenResultFromFirebaseUser(_ user: User?, forceRefresh: Bool, completion: @escaping (JSObject, Error?) -> Void) {
-        user?.getIDTokenResult(forcingRefresh: forceRefresh, completion: { result, error in
-            if let error = error {
-                completion([:], error)
-                return
-            }
-            let result = [
-                "token": result?.token ?? ""
-            ]
-            completion(result, nil)
-        })
-    }
 }
