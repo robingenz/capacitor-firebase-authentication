@@ -6,7 +6,6 @@ import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
-import com.getcapacitor.PluginMethod;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
