@@ -37,10 +37,22 @@ public class FirebaseAuthentication {
         return firebaseAuthInstance.getCurrentUser();
     }
 
-    public String getIdToken(Boolean forceRefresh) {
+    public void getIdToken(Boolean forceRefresh, final GetIdTokenResultCallback resultCallback) {
         FirebaseUser user = getCurrentUser();
-        GetTokenResult tokenResult = user.getIdToken(forceRefresh).getResult();
-        return tokenResult.getToken();
+        Task<GetTokenResult> tokenResultTask = user.getIdToken(forceRefresh);
+        tokenResultTask.addOnCompleteListener(
+            new OnCompleteListener<GetTokenResult>() {
+                public void onComplete(@NonNull Task<GetTokenResult> task) {
+                    if (task.isSuccessful()) {
+                        String token = task.getResult().getToken();
+                        resultCallback.success(token);
+                    } else {
+                        String message = task.getException().getLocalizedMessage();
+                        resultCallback.error(message);
+                    }
+                }
+            }
+        );
     }
 
     public void setLanguageCode(String languageCode) {

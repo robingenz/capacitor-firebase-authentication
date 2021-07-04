@@ -32,10 +32,22 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     public void getIdToken(PluginCall call) {
         Boolean forceRefresh = call.getBoolean("forceRefresh", false);
 
-        String token = implementation.getIdToken(forceRefresh);
-        JSObject result = new JSObject();
-        result.put("token", token);
-        call.resolve(result);
+        implementation.getIdToken(
+            forceRefresh,
+            new GetIdTokenResultCallback() {
+                @Override
+                public void success(String token) {
+                    JSObject result = new JSObject();
+                    result.put("token", token);
+                    call.resolve(result);
+                }
+
+                @Override
+                public void error(String message) {
+                    call.reject(message);
+                }
+            }
+        );
     }
 
     @PluginMethod
