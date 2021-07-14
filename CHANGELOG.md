@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.2](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.1...v0.3.2) (2021-07-14)
+
+
+### Bug Fixes
+
+* cannot call value of non-function type 'GIDSignIn' ([#40](https://github.com/robingenz/capacitor-firebase-authentication/issues/40)) ([b9b6cfc](https://github.com/robingenz/capacitor-firebase-authentication/commit/b9b6cfc34db2abe9c5aa94a96df1baf3e6c86643))
+
 ### [0.3.1](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.0...v0.3.1) (2021-07-05)
 
 
