@@ -346,20 +346,20 @@ Sets the user-facing language code to be the default app language.
 
 ## FAQ
 
-1. **What does this plugin do?**
+1. **What does this plugin do?**  
 This plugin enables the use of Firebase Authentication in a Capacitor app.
 It uses the native Firebase SDK for [Java](https://firebase.google.com/docs/reference/android) (Android) and [Swift](https://firebase.google.com/docs/reference/swift) (iOS). 
 Accordingly, the plugin signs the user in at the native layer of the app.
 The [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) is not required, but can be used.
-1. **Which platforms are supported?**
+1. **Which platforms are supported?**  
 Currently, only Android and iOS are supported. 
-It is planned to support web soon as well (see #20).
+It is planned to support web soon as well (see [#20](https://github.com/robingenz/capacitor-firebase-authentication/issues/20)).
 In the meantime, the [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) can be used.
-1. **Does this plugin sign the user in on both the native and web layers of Firebase? (#41)**
+1. **Does this plugin sign the user in on both the native and web layers of Firebase? ([#41](https://github.com/robingenz/capacitor-firebase-authentication/issues/41))**  
 This plugin only signs the user in to the native layer.
-Currently, it also supports only Android and iOS (see #20 for web support).
+Currently, it also supports only Android and iOS (see [#20](https://github.com/robingenz/capacitor-firebase-authentication/issues/20) for web support).
 If you also want to use the [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) in your app, you need to ensure that the user is also authenticated at the web layer.
-See #41 for more information on this.
+See [#41](https://github.com/robingenz/capacitor-firebase-authentication/issues/41) for more information on this.
 
 ## Changelog
 
