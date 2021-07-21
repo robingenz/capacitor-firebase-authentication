@@ -17,6 +17,12 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
+## About
+
+This plugin is an implementation of Firebase Auth using the native Firebase SDK for Java (Android) and Swift (iOS). When using this plugin the user will be authenticated into the native layer. This means that you can use other native plugins that require authenticated firebase users.
+
+If you also want to use the Firebase JS SDK in your app, you will need to make sure that the web layer also gets authenticated. This is not yet built into this plugin by default. See [#41](https://github.com/robingenz/capacitor-firebase-authentication/issues/41) for more information on this.
+
 ## Maintainers
 
 | Maintainer | GitHub                                    | Social                                        |
