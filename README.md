@@ -347,7 +347,7 @@ Sets the user-facing language code to be the default app language.
 ## FAQ
 
 1. **What does this plugin do?**  
-This plugin enables the use of Firebase Authentication in a Capacitor app.
+This plugin enables the use of [Firebase Authentication](https://firebase.google.com/docs/auth) in a Capacitor app.
 It uses the native Firebase SDK for [Java](https://firebase.google.com/docs/reference/android) (Android) and [Swift](https://firebase.google.com/docs/reference/swift) (iOS). 
 Accordingly, the plugin signs the user in at the native layer of the app.
 The [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) is not required, but can be used.
