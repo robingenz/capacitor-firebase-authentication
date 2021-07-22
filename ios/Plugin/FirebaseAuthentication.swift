@@ -84,20 +84,28 @@ import FirebaseAuth
         Auth.auth().useAppLanguage()
     }
 
-    func handleSuccessfulSignIn(credential: AuthCredential) {
+    func handleSuccessfulSignIn(credential: AuthCredential, rawNonce: String? = nil) {
+        let skipNativeLogin = true
+        var result = JSObject()
+        
+        result["credential"] = FirebaseAuthenticationHelper.createCredentialResultFromFirebaseCredential(credential)
+        result["rawNonce"] = rawNonce
+        
+        if (skipNativeLogin) {
+            savedCall?.resolve(result)
+            return
+        }
+        
         Auth.auth().signIn(with: credential) { (_, error) in
             if let error = error {
                 self.handleFailedSignIn(error: error)
                 return
             }
-            guard let savedCall = self.savedCall else {
-                return
-            }
+
             let user = self.getCurrentUser()
-            let userResult = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user)
-            var result = JSObject()
-            result["user"] = userResult
-            savedCall.resolve(result)
+            result["user"] = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user)
+
+            self.savedCall?.resolve(result)
         }
     }
 

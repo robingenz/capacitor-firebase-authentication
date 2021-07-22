@@ -92,6 +92,7 @@ extension AppleAuthProviderHandler: ASAuthorizationControllerDelegate, ASAuthori
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
             return
         }
+        
         guard let nonce = currentNonce else {
             fatalError("Invalid state: A login callback was received, but no login request was sent.")
         }
@@ -104,7 +105,8 @@ extension AppleAuthProviderHandler: ASAuthorizationControllerDelegate, ASAuthori
             return
         }
         let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
-        self.pluginImplementation.handleSuccessfulSignIn(credential: credential)
+    
+        self.pluginImplementation.handleSuccessfulSignIn(credential: credential, rawNonce: nonce)
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
