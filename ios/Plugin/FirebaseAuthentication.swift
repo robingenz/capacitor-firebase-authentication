@@ -84,12 +84,13 @@ import FirebaseAuth
         Auth.auth().useAppLanguage()
     }
 
-    func handleSuccessfulSignIn(credential: AuthCredential, rawNonce: String? = nil) {
+    func handleSuccessfulSignIn(credential: AuthCredential, idToken: String? = nil, rawNonce: String? = nil, accessToken: String? = nil) {
         let skipNativeLogin = true
         var result = JSObject()
         
-        result["credential"] = FirebaseAuthenticationHelper.createCredentialResultFromFirebaseCredential(credential)
+        result["idToken"] = idToken
         result["rawNonce"] = rawNonce
+        result["accessToken"] = accessToken
         
         if (skipNativeLogin) {
             savedCall?.resolve(result)

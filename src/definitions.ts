@@ -98,8 +98,9 @@ export interface SignInResult {
    * The currently signed-in user, or null if there isn't any.
    */
   user: User | null;
-  credential: AuthCredential | OAuthCredential | null;
+  idToken: string | null;
   rawNonce: string | null;
+  accessToken: string | null;
 }
 
 export interface User {
@@ -112,14 +113,4 @@ export interface User {
   providerId: string;
   tenantId: string | null;
   uid: string;
-}
-
-export interface AuthCredential {
-  provider: string | null;
-}
-
-export interface OAuthCredential {
-  accessToken: string | null;
-  idToken: string | null;
-  providerId: string | null;
 }
