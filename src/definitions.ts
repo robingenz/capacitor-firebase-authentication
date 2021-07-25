@@ -122,11 +122,6 @@ export interface AuthCredential {
    * For example, 'google.com'.
    */
   providerId: string;
-  /**
-   * The authentication sign in method for the credential.
-   * For example, 'password'.
-   */
-  signInMethod: string;
 }
 
 export interface OAuthCredential extends AuthCredential {
