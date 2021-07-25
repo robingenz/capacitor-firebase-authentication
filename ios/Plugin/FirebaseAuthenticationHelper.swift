@@ -12,7 +12,7 @@ public class FirebaseAuthenticationHelper {
         result["credential"] = credentialResult
         return result
     }
-    
+
     public static func createUserResultFromFirebaseUser(_ user: User?) -> JSObject? {
         if user == nil {
             return nil
@@ -29,22 +29,22 @@ public class FirebaseAuthenticationHelper {
         result["uid"] = user?.uid
         return result
     }
-    
+
     public static func createCredentialResultFromAuthCredential(_ credential: AuthCredential) -> JSObject? {
         var result = JSObject()
         result["providerId"] = credential.provider
-        if (credential is OAuthCredential) {
+        if credential is OAuthCredential {
             let oAuthCredential = credential as! OAuthCredential
             let accessToken = oAuthCredential.accessToken
-            if (accessToken != nil) {
+            if accessToken != nil {
                 result["accessToken"] = accessToken
             }
             let idToken = oAuthCredential.idToken
-            if (idToken != nil) {
+            if idToken != nil {
                 result["idToken"] = idToken
             }
             let secret = oAuthCredential.secret
-            if (secret != nil) {
+            if secret != nil {
                 result["secret"] = secret
             }
         }
