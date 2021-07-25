@@ -101,7 +101,7 @@ export interface SignInResult {
   /**
    * Credentials returned by an auth provider.
    */
-  credential: AuthCredential | null;
+  credential: AuthCredential | OAuthCredential | null;
 }
 
 export interface User {
