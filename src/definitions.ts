@@ -98,6 +98,10 @@ export interface SignInResult {
    * The currently signed-in user, or null if there isn't any.
    */
   user: User | null;
+  /**
+   * Credentials returned by an auth provider.
+   */
+  credential: AuthCredential | null;
 }
 
 export interface User {
@@ -110,4 +114,32 @@ export interface User {
   providerId: string;
   tenantId: string | null;
   uid: string;
+}
+
+export interface AuthCredential {
+  /**
+   * The authentication provider ID for the credential.
+   * For example, 'google.com'.
+   */
+  providerId: string;
+  /**
+   * The authentication sign in method for the credential.
+   * For example, 'password'.
+   */
+  signInMethod: string;
+}
+
+export interface OAuthCredential extends AuthCredential {
+  /**
+   * The OAuth access token associated with the credential if it belongs to an OAuth provider.
+   */
+  accessToken?: string;
+  /**
+   * The OAuth ID token associated with the credential if it belongs to an OIDC provider.
+   */
+  idToken?: string;
+  /**
+   * The OAuth access token secret associated with the credential if it belongs to an OAuth 1.0 provider.
+   */
+  secret?: string;
 }
