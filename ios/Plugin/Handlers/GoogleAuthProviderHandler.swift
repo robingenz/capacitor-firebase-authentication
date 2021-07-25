@@ -16,18 +16,18 @@ class GoogleAuthProviderHandler: NSObject {
         guard let clientId = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientId)
         guard let controller = self.pluginImplementation.getPlugin().bridge?.viewController else { return }
-        
+
         DispatchQueue.main.async {
             GIDSignIn.sharedInstance.signIn(with: config, presenting: controller) { user, error in
                 if let error = error {
                     self.pluginImplementation.handleFailedSignIn(error: error)
                     return
                 }
-                
+
                 guard let authentication = user?.authentication else { return }
                 guard let idToken = authentication.idToken else { return }
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
-                
+
                 self.pluginImplementation.handleSuccessfulSignIn(credential: credential)
             }
         }

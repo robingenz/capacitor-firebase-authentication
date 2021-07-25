@@ -112,10 +112,8 @@ public class FirebaseAuthentication {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential succeeded.");
                             FirebaseUser user = getCurrentUser();
-                            JSObject userResult = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user);
-                            JSObject result = new JSObject();
-                            result.put("user", userResult);
-                            call.resolve(result);
+                            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, credential);
+                            call.resolve(signInResult);
                         } else {
                             Log.w(TAG, "signInWithCredential failed.", task.getException());
                             call.reject(ERROR_SIGN_IN_FAILED);

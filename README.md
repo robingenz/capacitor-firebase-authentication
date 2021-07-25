@@ -338,9 +338,26 @@ Sets the user-facing language code to be the default app language.
 
 #### SignInResult
 
-| Prop       | Type                                          | Description                                               |
-| ---------- | --------------------------------------------- | --------------------------------------------------------- |
-| **`user`** | <code><a href="#user">User</a> \| null</code> | The currently signed-in user, or null if there isn't any. |
+| Prop             | Type                                                                                                                | Description                                               |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| **`user`**       | <code><a href="#user">User</a> \| null</code>                                                                       | The currently signed-in user, or null if there isn't any. |
+| **`credential`** | <code><a href="#authcredential">AuthCredential</a> \| <a href="#oauthcredential">OAuthCredential</a> \| null</code> | Credentials returned by an auth provider.                 |
+
+
+#### AuthCredential
+
+| Prop             | Type                | Description                                                                   |
+| ---------------- | ------------------- | ----------------------------------------------------------------------------- |
+| **`providerId`** | <code>string</code> | The authentication provider ID for the credential. For example, 'google.com'. |
+
+
+#### OAuthCredential
+
+| Prop              | Type                | Description                                                                                          |
+| ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------- |
+| **`accessToken`** | <code>string</code> | The OAuth access token associated with the credential if it belongs to an OAuth provider.            |
+| **`idToken`**     | <code>string</code> | The OAuth ID token associated with the credential if it belongs to an OIDC provider.                 |
+| **`secret`**      | <code>string</code> | The OAuth access token secret associated with the credential if it belongs to an OAuth 1.0 provider. |
 
 </docgen-api>
 

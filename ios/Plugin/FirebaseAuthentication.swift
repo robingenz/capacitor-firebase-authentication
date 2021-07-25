@@ -94,9 +94,7 @@ import FirebaseAuth
                 return
             }
             let user = self.getCurrentUser()
-            let userResult = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user)
-            var result = JSObject()
-            result["user"] = userResult
+            let result = FirebaseAuthenticationHelper.createSignInResult(credential, user)
             savedCall.resolve(result)
         }
     }
