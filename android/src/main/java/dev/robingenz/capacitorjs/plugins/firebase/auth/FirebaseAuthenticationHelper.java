@@ -37,7 +37,6 @@ public class FirebaseAuthenticationHelper {
     public static JSObject createCredentialResultFromAuthCredential(AuthCredential credential) {
         JSObject result = new JSObject();
         result.put("providerId", credential.getProvider());
-        result.put("signInMethod", credential.getSignInMethod());
         if (credential instanceof OAuthCredential) {
             String accessToken = ((OAuthCredential) credential).getAccessToken();
             if (accessToken != null) {
