@@ -25,7 +25,7 @@ class OAuthProviderHandler: NSObject {
                 return
             }
             if let credential = credential {
-                self.pluginImplementation.handleSuccessfulSignIn(credential: credential)
+                self.pluginImplementation.handleSuccessfulSignIn(credential: credential, nonce: nil)
             }
         }
     }
