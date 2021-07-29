@@ -4,9 +4,9 @@ import FirebaseCore
 import FirebaseAuth
 
 public class FirebaseAuthenticationHelper {
-    public static func createSignInResult(_ credential: AuthCredential, _ user: User?) -> JSObject {
+    public static func createSignInResult(credential: AuthCredential, user: User?, nonce: String?) -> JSObject {
         let userResult = self.createUserResultFromFirebaseUser(user)
-        let credentialResult = self.createCredentialResultFromAuthCredential(credential)
+        let credentialResult = self.createCredentialResultFromAuthCredential(credential, nonce: nonce)
         var result = JSObject()
         result["user"] = userResult
         result["credential"] = credentialResult
@@ -30,8 +30,8 @@ public class FirebaseAuthenticationHelper {
         return result
     }
 
-    public static func createCredentialResultFromAuthCredential(_ credential: AuthCredential?) -> JSObject? {
-        if credential == nil {
+    public static func createCredentialResultFromAuthCredential(_ credential: AuthCredential?, nonce: String?) -> JSObject? {
+        guard let credential = credential else {
             return nil
         }
         var result = JSObject()
@@ -49,6 +49,9 @@ public class FirebaseAuthenticationHelper {
             if secret != nil {
                 result["secret"] = secret
             }
+        }
+        if let nonce = nonce {
+            result["nonce"] = nonce
         }
         return result
     }

@@ -1,13 +1,11 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth;
 
 import android.util.Log;
-
 import com.getcapacitor.JSObject;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.OAuthCredential;
-
 import java.lang.reflect.Method;
 
 public class FirebaseAuthenticationHelper {
