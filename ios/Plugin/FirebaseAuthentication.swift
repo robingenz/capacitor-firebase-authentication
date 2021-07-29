@@ -84,7 +84,7 @@ import FirebaseAuth
         Auth.auth().useAppLanguage()
     }
 
-    func handleSuccessfulSignIn(credential: AuthCredential) {
+    func handleSuccessfulSignIn(credential: AuthCredential, nonce: String?) {
         Auth.auth().signIn(with: credential) { (_, error) in
             if let error = error {
                 self.handleFailedSignIn(error: error)
@@ -94,7 +94,7 @@ import FirebaseAuth
                 return
             }
             let user = self.getCurrentUser()
-            let result = FirebaseAuthenticationHelper.createSignInResult(credential, user)
+            let result = FirebaseAuthenticationHelper.createSignInResult(credential: credential, user: user, nonce: nonce)
             savedCall.resolve(result)
         }
     }
