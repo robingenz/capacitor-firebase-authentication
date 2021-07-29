@@ -1,16 +1,12 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth;
 
-import android.util.Log;
 import com.getcapacitor.JSObject;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.OAuthCredential;
-import java.lang.reflect.Method;
 
 public class FirebaseAuthenticationHelper {
-
-    public static final String TAG = "FirebaseAuthentication";
 
     public static JSObject createSignInResult(FirebaseUser user, AuthCredential credential) {
         JSObject userResult = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user);
@@ -39,9 +35,6 @@ public class FirebaseAuthenticationHelper {
     }
 
     public static JSObject createCredentialResultFromAuthCredential(AuthCredential credential) {
-        if (credential == null) {
-            return null;
-        }
         JSObject result = new JSObject();
         result.put("providerId", credential.getProvider());
         if (credential instanceof OAuthCredential) {
@@ -58,22 +51,6 @@ public class FirebaseAuthenticationHelper {
                 result.put("secret", secret);
             }
         }
-        if (credential.getProvider().equals("apple.com")) {
-            String rawNonce = FirebaseAuthenticationHelper.tryGetRawNonceFromAuthCredential(credential);
-            if (rawNonce != null) {
-                result.put("nonce", rawNonce);
-            }
-        }
         return result;
-    }
-
-    private static String tryGetRawNonceFromAuthCredential(AuthCredential credential) {
-        try {
-            Method method = credential.getClass().getMethod("getRawNonce");
-            return (String) method.invoke(credential);
-        } catch (Exception ex) {
-            Log.w(TAG, "Try to get raw nonce from auth credential failed.", ex);
-            return null;
-        }
     }
 }
