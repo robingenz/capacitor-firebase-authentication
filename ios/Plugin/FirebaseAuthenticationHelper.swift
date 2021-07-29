@@ -30,7 +30,10 @@ public class FirebaseAuthenticationHelper {
         return result
     }
 
-    public static func createCredentialResultFromAuthCredential(_ credential: AuthCredential) -> JSObject? {
+    public static func createCredentialResultFromAuthCredential(_ credential: AuthCredential?) -> JSObject? {
+        if credential == nil {
+            return nil
+        }
         var result = JSObject()
         result["providerId"] = credential.provider
         if let oAuthCredential = credential as? OAuthCredential {

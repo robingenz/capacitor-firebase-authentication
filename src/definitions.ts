@@ -137,4 +137,8 @@ export interface OAuthCredential extends AuthCredential {
    * The OAuth access token secret associated with the credential if it belongs to an OAuth 1.0 provider.
    */
   secret?: string;
+  /**
+   * The random string used to make sure that the ID token you get was granted specifically in response to your app's authentication request.
+   */
+  nonce?: string;
 }
