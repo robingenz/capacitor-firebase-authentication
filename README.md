@@ -408,7 +408,7 @@ Sets the user-facing language code to be the default app language.
    Currently, only Android and iOS are supported.
    It is planned to support web soon as well (see [#20](https://github.com/robingenz/capacitor-firebase-authentication/issues/20)).
    In the meantime, the [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) can be used.
-1. **How can I use this plugin with the Firebase JavaScript SDK?**
+1. **How can I use this plugin with the Firebase JavaScript SDK?**  
    See [here](https://github.com/robingenz/capacitor-firebase-authentication/blob/main/docs/firebase-js-sdk.md).
 
 ## Changelog
