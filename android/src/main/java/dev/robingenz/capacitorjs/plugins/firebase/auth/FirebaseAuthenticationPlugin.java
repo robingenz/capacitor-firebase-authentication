@@ -13,10 +13,12 @@ import com.google.firebase.auth.FirebaseUser;
 @CapacitorPlugin(name = "FirebaseAuthentication")
 public class FirebaseAuthenticationPlugin extends Plugin {
 
+    private FirebaseAuthenticationConfig config;
     private FirebaseAuthentication implementation;
 
     public void load() {
-        implementation = new FirebaseAuthentication(this);
+        config = getFirebaseAuthenticationConfig();
+        implementation = new FirebaseAuthentication(this, config);
     }
 
     @PluginMethod
@@ -107,5 +109,14 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     @ActivityCallback
     private void handleGoogleAuthProviderActivityResult(PluginCall call, ActivityResult result) {
         implementation.handleGoogleAuthProviderActivityResult(call, result);
+    }
+
+    private FirebaseAuthenticationConfig getFirebaseAuthenticationConfig() {
+        FirebaseAuthenticationConfig config = new FirebaseAuthenticationConfig();
+
+        boolean skipNativeAuth = getConfig().getBoolean("skipNativeAuth", config.getSkipNativeAuth());
+        config.setSkipNativeAuth(skipNativeAuth);
+
+        return config;
     }
 }
