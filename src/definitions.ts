@@ -123,7 +123,7 @@ export interface SignInResult {
   /**
    * Credentials returned by an auth provider.
    */
-  credential: AuthCredential | OAuthCredential | null;
+  credential: AuthCredential | null;
 }
 
 export interface User {
@@ -144,9 +144,6 @@ export interface AuthCredential {
    * For example, 'google.com'.
    */
   providerId: string;
-}
-
-export interface OAuthCredential extends AuthCredential {
   /**
    * The OAuth access token associated with the credential if it belongs to an OAuth provider.
    */
