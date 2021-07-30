@@ -2,10 +2,10 @@ name: Close old issues that need reply
 
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 
 jobs:
-  build:
+  needs-reply:
     runs-on: ubuntu-latest
     steps:
       - name: Close old issues that need reply

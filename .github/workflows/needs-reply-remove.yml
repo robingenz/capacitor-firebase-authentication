@@ -6,7 +6,7 @@ on:
       - created
 
 jobs:
-  build:
+  needs-reply:
     runs-on: ubuntu-latest
     steps:
       - name: Remove needs-reply label
