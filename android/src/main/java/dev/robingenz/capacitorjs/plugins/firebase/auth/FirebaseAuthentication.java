@@ -22,12 +22,14 @@ public class FirebaseAuthentication {
     public static final String TAG = "FirebaseAuthentication";
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
     private FirebaseAuthenticationPlugin plugin;
+    private FirebaseAuthenticationConfig config;
     private FirebaseAuth firebaseAuthInstance;
     private GoogleAuthProviderHandler googleAuthProviderHandler;
     private OAuthProviderHandler oAuthProviderHandler;
 
-    public FirebaseAuthentication(FirebaseAuthenticationPlugin plugin) {
+    public FirebaseAuthentication(FirebaseAuthenticationPlugin plugin, FirebaseAuthenticationConfig config) {
         this.plugin = plugin;
+        this.config = config;
         firebaseAuthInstance = FirebaseAuth.getInstance();
         googleAuthProviderHandler = new GoogleAuthProviderHandler(this);
         oAuthProviderHandler = new OAuthProviderHandler(this);
@@ -102,6 +104,12 @@ public class FirebaseAuthentication {
     }
 
     public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential) {
+        boolean skipNativeAuth = this.config.getSkipNativeAuth();
+        if (skipNativeAuth) {
+            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(null, credential);
+            call.resolve(signInResult);
+            return;
+        }
         firebaseAuthInstance
             .signInWithCredential(credential)
             .addOnCompleteListener(

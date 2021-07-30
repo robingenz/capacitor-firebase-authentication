@@ -51,7 +51,48 @@ The further installation steps depend on the selected authentication method:
 
 ## Configuration
 
-No configuration required for this plugin.
+<docgen-config>
+<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+These configuration values are available:
+
+| Prop                 | Type                 | Description                                                                                                                                                         | Default            |
+| -------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| **`skipNativeAuth`** | <code>boolean</code> | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS. | <code>false</code> |
+
+### Examples
+
+In `capacitor.config.json`:
+
+```json
+{
+  "plugins": {
+    "FirebaseAuthentication": {
+      "skipNativeAuth": false
+    }
+  }
+}
+```
+
+In `capacitor.config.ts`:
+
+```ts
+/// <reference types="@capacitor/firebase-authentication" />
+
+import { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  plugins: {
+    FirebaseAuthentication: {
+      skipNativeAuth: false,
+    },
+  },
+};
+
+export default config;
+```
+
+</docgen-config>
 
 ## Usage
 
@@ -353,30 +394,31 @@ Sets the user-facing language code to be the default app language.
 
 #### OAuthCredential
 
-| Prop              | Type                | Description                                                                                          |
-| ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------- |
-| **`accessToken`** | <code>string</code> | The OAuth access token associated with the credential if it belongs to an OAuth provider.            |
-| **`idToken`**     | <code>string</code> | The OAuth ID token associated with the credential if it belongs to an OIDC provider.                 |
-| **`secret`**      | <code>string</code> | The OAuth access token secret associated with the credential if it belongs to an OAuth 1.0 provider. |
+| Prop              | Type                | Description                                                                                                                              |
+| ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **`accessToken`** | <code>string</code> | The OAuth access token associated with the credential if it belongs to an OAuth provider.                                                |
+| **`idToken`**     | <code>string</code> | The OAuth ID token associated with the credential if it belongs to an OIDC provider.                                                     |
+| **`secret`**      | <code>string</code> | The OAuth access token secret associated with the credential if it belongs to an OAuth 1.0 provider.                                     |
+| **`nonce`**       | <code>string</code> | The random string used to make sure that the ID token you get was granted specifically in response to your app's authentication request. |
 
 </docgen-api>
 
 ## FAQ
 
 1. **What does this plugin do?**  
-This plugin enables the use of [Firebase Authentication](https://firebase.google.com/docs/auth) in a Capacitor app.
-It uses the native Firebase SDK for [Java](https://firebase.google.com/docs/reference/android) (Android) and [Swift](https://firebase.google.com/docs/reference/swift) (iOS). 
-Accordingly, the plugin signs the user in at the native layer of the app.
-The [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) is not required, but can be used.
+   This plugin enables the use of [Firebase Authentication](https://firebase.google.com/docs/auth) in a Capacitor app.
+   It uses the native Firebase SDK for [Java](https://firebase.google.com/docs/reference/android) (Android) and [Swift](https://firebase.google.com/docs/reference/swift) (iOS).
+   Accordingly, the plugin signs the user in at the native layer of the app.
+   The [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) is not required, but can be used.
 1. **Which platforms are supported?**  
-Currently, only Android and iOS are supported. 
-It is planned to support web soon as well (see [#20](https://github.com/robingenz/capacitor-firebase-authentication/issues/20)).
-In the meantime, the [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) can be used.
+   Currently, only Android and iOS are supported.
+   It is planned to support web soon as well (see [#20](https://github.com/robingenz/capacitor-firebase-authentication/issues/20)).
+   In the meantime, the [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) can be used.
 1. **Does this plugin sign the user in on both the native and web layers of Firebase? ([#41](https://github.com/robingenz/capacitor-firebase-authentication/issues/41))**  
-This plugin only signs the user in to the native layer.
-Currently, it also supports only Android and iOS (see [#20](https://github.com/robingenz/capacitor-firebase-authentication/issues/20) for web support).
-If you also want to use the [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) in your app, you need to ensure that the user is also authenticated at the web layer.
-See [#41](https://github.com/robingenz/capacitor-firebase-authentication/issues/41) for more information on this.
+   This plugin only signs the user in to the native layer.
+   Currently, it also supports only Android and iOS (see [#20](https://github.com/robingenz/capacitor-firebase-authentication/issues/20) for web support).
+   If you also want to use the [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) in your app, you need to ensure that the user is also authenticated at the web layer.
+   See [#41](https://github.com/robingenz/capacitor-firebase-authentication/issues/41) for more information on this.
 
 ## Changelog
 

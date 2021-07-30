@@ -1,3 +1,25 @@
+/// <reference types="@capacitor/cli" />
+
+declare module '@capacitor/cli' {
+  export interface PluginsConfig {
+    /**
+     * These configuration values are available:
+     */
+    FirebaseAuthentication?: {
+      /**
+       * Configure whether the plugin should skip the native authentication.
+       * Only needed if you want to use the Firebase JavaScript SDK.
+       *
+       * Only available for Android and iOS.
+       *
+       * @default false
+       * @example false
+       */
+      skipNativeAuth?: boolean;
+    };
+  }
+}
+
 export interface FirebaseAuthenticationPlugin {
   /**
    * Fetches the currently signed-in user.
