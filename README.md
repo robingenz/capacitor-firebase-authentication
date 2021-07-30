@@ -379,23 +379,17 @@ Sets the user-facing language code to be the default app language.
 
 #### SignInResult
 
-| Prop             | Type                                                                                                                | Description                                               |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| **`user`**       | <code><a href="#user">User</a> \| null</code>                                                                       | The currently signed-in user, or null if there isn't any. |
-| **`credential`** | <code><a href="#authcredential">AuthCredential</a> \| <a href="#oauthcredential">OAuthCredential</a> \| null</code> | Credentials returned by an auth provider.                 |
+| Prop             | Type                                                              | Description                                               |
+| ---------------- | ----------------------------------------------------------------- | --------------------------------------------------------- |
+| **`user`**       | <code><a href="#user">User</a> \| null</code>                     | The currently signed-in user, or null if there isn't any. |
+| **`credential`** | <code><a href="#authcredential">AuthCredential</a> \| null</code> | Credentials returned by an auth provider.                 |
 
 
 #### AuthCredential
 
-| Prop             | Type                | Description                                                                   |
-| ---------------- | ------------------- | ----------------------------------------------------------------------------- |
-| **`providerId`** | <code>string</code> | The authentication provider ID for the credential. For example, 'google.com'. |
-
-
-#### OAuthCredential
-
 | Prop              | Type                | Description                                                                                                                              |
 | ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **`providerId`**  | <code>string</code> | The authentication provider ID for the credential. For example, 'google.com'.                                                            |
 | **`accessToken`** | <code>string</code> | The OAuth access token associated with the credential if it belongs to an OAuth provider.                                                |
 | **`idToken`**     | <code>string</code> | The OAuth ID token associated with the credential if it belongs to an OIDC provider.                                                     |
 | **`secret`**      | <code>string</code> | The OAuth access token secret associated with the credential if it belongs to an OAuth 1.0 provider.                                     |
@@ -414,11 +408,8 @@ Sets the user-facing language code to be the default app language.
    Currently, only Android and iOS are supported.
    It is planned to support web soon as well (see [#20](https://github.com/robingenz/capacitor-firebase-authentication/issues/20)).
    In the meantime, the [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) can be used.
-1. **Does this plugin sign the user in on both the native and web layers of Firebase? ([#41](https://github.com/robingenz/capacitor-firebase-authentication/issues/41))**  
-   This plugin only signs the user in to the native layer.
-   Currently, it also supports only Android and iOS (see [#20](https://github.com/robingenz/capacitor-firebase-authentication/issues/20) for web support).
-   If you also want to use the [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) in your app, you need to ensure that the user is also authenticated at the web layer.
-   See [#41](https://github.com/robingenz/capacitor-firebase-authentication/issues/41) for more information on this.
+1. **How can I use this plugin with the Firebase JavaScript SDK?**
+   See [here](https://github.com/robingenz/capacitor-firebase-authentication/blob/main/docs/firebase-js-sdk.md).
 
 ## Changelog
 
