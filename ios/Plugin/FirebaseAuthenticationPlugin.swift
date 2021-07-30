@@ -12,7 +12,7 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
     private var implementation: FirebaseAuthentication?
 
     override public func load() {
-        self.implementation = FirebaseAuthentication(plugin: self)
+        self.implementation = FirebaseAuthentication(plugin: self, config: firebaseAuthenticationConfig())
     }
 
     @objc func getCurrentUser(_ call: CAPPluginCall) {
@@ -75,5 +75,15 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
     @objc func useAppLanguage(_ call: CAPPluginCall) {
         implementation?.useAppLanguage()
         call.resolve()
+    }
+
+    private func firebaseAuthenticationConfig() -> FirebaseAuthenticationConfig {
+        var config = FirebaseAuthenticationConfig()
+
+        if let skipNativeAuth = getConfigValue("skipNativeAuth") as? Bool {
+            config.skipNativeAuth = skipNativeAuth
+        }
+
+        return config
     }
 }

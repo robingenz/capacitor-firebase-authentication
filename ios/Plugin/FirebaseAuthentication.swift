@@ -6,13 +6,15 @@ import FirebaseAuth
 @objc public class FirebaseAuthentication: NSObject {
     public let errorDeviceUnsupported = "Device is not supported. At least iOS 13 is required."
     private let plugin: FirebaseAuthenticationPlugin
+    private let config: FirebaseAuthenticationConfig
     private var appleAuthProviderHandler: AppleAuthProviderHandler?
     private var googleAuthProviderHandler: GoogleAuthProviderHandler?
     private var oAuthProviderHandler: OAuthProviderHandler?
     private var savedCall: CAPPluginCall?
 
-    init(plugin: FirebaseAuthenticationPlugin) {
+    init(plugin: FirebaseAuthenticationPlugin, config: FirebaseAuthenticationConfig) {
         self.plugin = plugin
+        self.config = config
         super.init()
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
@@ -85,6 +87,14 @@ import FirebaseAuth
     }
 
     func handleSuccessfulSignIn(credential: AuthCredential, nonce: String?) {
+        if config.skipNativeAuth == true {
+            guard let savedCall = self.savedCall else {
+                return
+            }
+            let result = FirebaseAuthenticationHelper.createSignInResult(credential: credential, user: nil, nonce: nonce)
+            savedCall.resolve(result)
+            return
+        }
         Auth.auth().signIn(with: credential) { (_, error) in
             if let error = error {
                 self.handleFailedSignIn(error: error)
