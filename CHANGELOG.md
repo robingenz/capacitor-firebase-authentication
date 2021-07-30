@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.3](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.2...v0.3.3) (2021-07-30)
+
+
+### Features
+
+* implement `skipNativeAuth` config option ([#54](https://github.com/robingenz/capacitor-firebase-authentication/issues/54)) ([9bdf53b](https://github.com/robingenz/capacitor-firebase-authentication/commit/9bdf53b89b210461569e903e5131fef961ae3140))
+* **ios:** return `nonce` on sign in  ([#52](https://github.com/robingenz/capacitor-firebase-authentication/issues/52)) ([a0455d8](https://github.com/robingenz/capacitor-firebase-authentication/commit/a0455d828865b4f5227d3ef0c1c93c6afc5c22ec))
+* return `AuthCredential` on sign in ([#51](https://github.com/robingenz/capacitor-firebase-authentication/issues/51)) ([adb8b60](https://github.com/robingenz/capacitor-firebase-authentication/commit/adb8b60726a6e50aac86c3b09d75cc08771f396c))
+* **ios:** update `GoogleSignIn` pod to `6.0.0` ([#45](https://github.com/robingenz/capacitor-firebase-authentication/issues/45)) ([9e5d169](https://github.com/robingenz/capacitor-firebase-authentication/commit/9e5d16902da8146b91e9b82a8dc10230d0b0e92b))
+
 ### [0.3.2](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.1...v0.3.2) (2021-07-14)
 
 
