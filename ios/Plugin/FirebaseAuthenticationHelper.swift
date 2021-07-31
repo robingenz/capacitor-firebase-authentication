@@ -36,7 +36,10 @@ public class FirebaseAuthenticationHelper {
         }
         var result = JSObject()
         result["providerId"] = credential.provider
+        
         if let oAuthCredential = credential as? OAuthCredential {
+            // If it's OAuthCredential, we can get its values directly
+            
             let accessToken = oAuthCredential.accessToken
             if accessToken != nil {
                 result["accessToken"] = accessToken
@@ -49,7 +52,18 @@ public class FirebaseAuthenticationHelper {
             if secret != nil {
                 result["secret"] = secret
             }
+        } else {
+            // However, a AuthCredential doesn't expose idToken/accessToken that
+            // we need. So we use KVC to try and get them.
+        
+            if let idToken = credential.value(forKey: "_IDToken") as? String {
+                result["idToken"] = idToken
+            }
+            if let accessToken = credential.value(forKey: "_accessToken") as? String {
+                result["accessToken"] = accessToken
+            }
         }
+        
         if let nonce = nonce {
             result["nonce"] = nonce
         }
