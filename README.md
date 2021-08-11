@@ -153,12 +153,12 @@ const useAppLanguage = async () => {
 * [`getCurrentUser()`](#getcurrentuser)
 * [`getIdToken(...)`](#getidtoken)
 * [`setLanguageCode(...)`](#setlanguagecode)
-* [`signInWithApple()`](#signinwithapple)
-* [`signInWithGithub()`](#signinwithgithub)
-* [`signInWithGoogle()`](#signinwithgoogle)
-* [`signInWithMicrosoft()`](#signinwithmicrosoft)
-* [`signInWithTwitter()`](#signinwithtwitter)
-* [`signInWithYahoo()`](#signinwithyahoo)
+* [`signInWithApple(...)`](#signinwithapple)
+* [`signInWithGithub(...)`](#signinwithgithub)
+* [`signInWithGoogle(...)`](#signinwithgoogle)
+* [`signInWithMicrosoft(...)`](#signinwithmicrosoft)
+* [`signInWithTwitter(...)`](#signinwithtwitter)
+* [`signInWithYahoo(...)`](#signinwithyahoo)
 * [`signOut()`](#signout)
 * [`useAppLanguage()`](#useapplanguage)
 * [Interfaces](#interfaces)
@@ -217,90 +217,114 @@ Sets the user-facing language code for auth operations.
 --------------------
 
 
-### signInWithApple()
+### signInWithApple(...)
 
 ```typescript
-signInWithApple() => Promise<SignInResult>
+signInWithApple(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the Apple sign-in flow.
 
 Only available for Android and iOS.
 
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
 
-### signInWithGithub()
+### signInWithGithub(...)
 
 ```typescript
-signInWithGithub() => Promise<SignInResult>
+signInWithGithub(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the GitHub sign-in flow.
 
 Only available for Android and iOS.
 
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
 
-### signInWithGoogle()
+### signInWithGoogle(...)
 
 ```typescript
-signInWithGoogle() => Promise<SignInResult>
+signInWithGoogle(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the Google sign-in flow.
 
 Only available for Android and iOS.
 
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
 
-### signInWithMicrosoft()
+### signInWithMicrosoft(...)
 
 ```typescript
-signInWithMicrosoft() => Promise<SignInResult>
+signInWithMicrosoft(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the Microsoft sign-in flow.
 
 Only available for Android and iOS.
 
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
 
-### signInWithTwitter()
+### signInWithTwitter(...)
 
 ```typescript
-signInWithTwitter() => Promise<SignInResult>
+signInWithTwitter(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the Twitter sign-in flow.
 
 Only available for Android and iOS.
 
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
 --------------------
 
 
-### signInWithYahoo()
+### signInWithYahoo(...)
 
 ```typescript
-signInWithYahoo() => Promise<SignInResult>
+signInWithYahoo(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the Yahoo sign-in flow.
 
 Only available for Android and iOS.
+
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
 
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
@@ -394,6 +418,21 @@ Sets the user-facing language code to be the default app language.
 | **`idToken`**     | <code>string</code> | The OAuth ID token associated with the credential if it belongs to an OIDC provider.                                                     |
 | **`secret`**      | <code>string</code> | The OAuth access token secret associated with the credential if it belongs to an OAuth 1.0 provider.                                     |
 | **`nonce`**       | <code>string</code> | The random string used to make sure that the ID token you get was granted specifically in response to your app's authentication request. |
+
+
+#### SignInOptions
+
+| Prop                   | Type                                 | Description                                                                                       |
+| ---------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------- |
+| **`customParameters`** | <code>SignInCustomParameter[]</code> | Configures custom parameters to be passed to the identity provider during the OAuth sign-in flow. |
+
+
+#### SignInCustomParameter
+
+| Prop        | Type                | Description                                                        |
+| ----------- | ------------------- | ------------------------------------------------------------------ |
+| **`key`**   | <code>string</code> | The custom parameter key (e.g. `login_hint`).                      |
+| **`value`** | <code>string</code> | The custom parameter value (e.g. `user@firstadd.onmicrosoft.com`). |
 
 </docgen-api>
 
