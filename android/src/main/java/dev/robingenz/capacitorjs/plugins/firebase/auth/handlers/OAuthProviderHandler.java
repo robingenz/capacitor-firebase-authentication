@@ -1,14 +1,25 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
+import android.util.Log;
+
+import com.getcapacitor.JSArray;
+import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.OAuthProvider;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 
 public class OAuthProviderHandler {
 
+    public static final String TAG = "OAuthProviderHandler";
     private final FirebaseAuthentication pluginImplementation;
 
     public OAuthProviderHandler(FirebaseAuthentication pluginImplementation) {
@@ -17,6 +28,7 @@ public class OAuthProviderHandler {
 
     public void signIn(PluginCall call, String providerId) {
         OAuthProvider.Builder provider = OAuthProvider.newBuilder(providerId);
+        applySignInConfig(call, provider);
         Task<AuthResult> pendingResultTask = pluginImplementation.getFirebaseAuthInstance().getPendingAuthResult();
         if (pendingResultTask == null) {
             startActivityForSignIn(call, provider);
@@ -47,5 +59,25 @@ public class OAuthProviderHandler {
                 }
             )
             .addOnFailureListener(exception -> pluginImplementation.handleFailedSignIn(call, exception));
+    }
+
+    private void applySignInConfig(PluginCall call, OAuthProvider.Builder provider) {
+        JSArray customParameters = call.getArray("customParameters");
+        if (customParameters != null) {
+            try {
+                List<Object> customParametersList = customParameters.toList();
+                for (int i = 0; i < customParametersList.size(); i++) {
+                    JSObject customParameter = JSObject.fromJSONObject((JSONObject) customParametersList.get(i));
+                    String key = customParameter.getString("key");
+                    String value = customParameter.getString("value");
+                    if (key == null || value == null) {
+                        continue;
+                    }
+                    provider.addCustomParameter(key, value);
+                }
+            } catch (JSONException e) {
+                Log.e(TAG, "applySignInConfig failed.", e);
+            }
+        }
     }
 }
