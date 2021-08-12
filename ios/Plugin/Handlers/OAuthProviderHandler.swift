@@ -28,6 +28,9 @@ class OAuthProviderHandler: NSObject {
             guard let value = customParameter["value"] as? String else {
                 continue
             }
+            if provider.customParameters == nil {
+                provider.customParameters = [:]
+            }
             provider.customParameters?[key] = value
         }
     }
