@@ -42,37 +42,37 @@ export interface FirebaseAuthenticationPlugin {
    *
    * Only available for Android and iOS.
    */
-  signInWithApple(): Promise<SignInResult>;
+  signInWithApple(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the GitHub sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signInWithGithub(): Promise<SignInResult>;
+  signInWithGithub(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the Google sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signInWithGoogle(): Promise<SignInResult>;
+  signInWithGoogle(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the Microsoft sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signInWithMicrosoft(): Promise<SignInResult>;
+  signInWithMicrosoft(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the Twitter sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signInWithTwitter(): Promise<SignInResult>;
+  signInWithTwitter(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the Yahoo sign-in flow.
    *
    * Only available for Android and iOS.
    */
-  signInWithYahoo(): Promise<SignInResult>;
+  signInWithYahoo(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the sign-out flow.
    *
@@ -113,6 +113,24 @@ export interface SetLanguageCodeOptions {
    * Example: `en-US`.
    */
   languageCode: string;
+}
+
+export interface SignInOptions {
+  /**
+   * Configures custom parameters to be passed to the identity provider during the OAuth sign-in flow.
+   */
+  customParameters?: SignInCustomParameter[];
+}
+
+export interface SignInCustomParameter {
+  /**
+   * The custom parameter key (e.g. `login_hint`).
+   */
+  key: string;
+  /**
+   * The custom parameter value (e.g. `user@firstadd.onmicrosoft.com`).
+   */
+  value: string;
 }
 
 export interface SignInResult {
