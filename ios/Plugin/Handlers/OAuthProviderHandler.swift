@@ -22,12 +22,10 @@ class OAuthProviderHandler: NSObject {
     private func applySignInConfig(call: CAPPluginCall, provider: OAuthProvider) {
         let customParameters = call.getArray("customParameters", JSObject.self) ?? []
         for (_, customParameter) in customParameters.enumerated() {
-            let key = customParameter["key"] as? String
-            let value = customParameter["value"] as? String
-            guard let key = key else {
+            guard let key = customParameter["key"] as? String else {
                 continue
             }
-            guard let value = value else {
+            guard let value = customParameter["value"] as? String else {
                 continue
             }
             provider.customParameters?[key] = value
