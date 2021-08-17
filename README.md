@@ -210,6 +210,8 @@ setLanguageCode(options: SetLanguageCodeOptions) => Promise<void>
 
 Sets the user-facing language code for auth operations.
 
+Only available for Android and iOS.
+
 | Param         | Type                                                                      |
 | ------------- | ------------------------------------------------------------------------- |
 | **`options`** | <code><a href="#setlanguagecodeoptions">SetLanguageCodeOptions</a></code> |
@@ -351,6 +353,8 @@ useAppLanguage() => Promise<void>
 ```
 
 Sets the user-facing language code to be the default app language.
+
+Only available for Android and iOS.
 
 --------------------
 

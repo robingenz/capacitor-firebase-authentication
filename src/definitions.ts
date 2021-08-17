@@ -35,6 +35,8 @@ export interface FirebaseAuthenticationPlugin {
   getIdToken(options?: GetIdTokenOptions): Promise<GetIdTokenResult>;
   /**
    * Sets the user-facing language code for auth operations.
+   *
+   * Only available for Android and iOS.
    */
   setLanguageCode(options: SetLanguageCodeOptions): Promise<void>;
   /**
@@ -81,6 +83,8 @@ export interface FirebaseAuthenticationPlugin {
   signOut(): Promise<void>;
   /**
    * Sets the user-facing language code to be the default app language.
+   *
+   * Only available for Android and iOS.
    */
   useAppLanguage(): Promise<void>;
 }
