@@ -1,5 +1,4 @@
 import { WebPlugin } from '@capacitor/core';
-
 import type {
   FirebaseAuthenticationPlugin,
   GetCurrentUserResult,
@@ -24,6 +23,10 @@ export class FirebaseAuthenticationWeb
   }
 
   public async signInWithApple(): Promise<SignInResult> {
+    throw new Error('Not implemented on web.');
+  }
+
+  public async signInWithFacebook(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }
 
