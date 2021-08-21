@@ -163,7 +163,8 @@ export interface User {
 export interface AuthCredential {
   /**
    * The authentication provider ID for the credential.
-   * For example, 'google.com'.
+   *
+   * Example: `google.com`.
    */
   providerId: string;
   /**

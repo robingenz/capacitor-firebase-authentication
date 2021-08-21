@@ -417,7 +417,7 @@ Only available for Android and iOS.
 
 | Prop              | Type                | Description                                                                                                                              |
 | ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| **`providerId`**  | <code>string</code> | The authentication provider ID for the credential. For example, 'google.com'.                                                            |
+| **`providerId`**  | <code>string</code> | The authentication provider ID for the credential. Example: `google.com`.                                                                |
 | **`accessToken`** | <code>string</code> | The OAuth access token associated with the credential if it belongs to an OAuth provider.                                                |
 | **`idToken`**     | <code>string</code> | The OAuth ID token associated with the credential if it belongs to an OIDC provider.                                                     |
 | **`secret`**      | <code>string</code> | The OAuth access token secret associated with the credential if it belongs to an OAuth 1.0 provider.                                     |
