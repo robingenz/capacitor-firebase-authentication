@@ -114,8 +114,8 @@
    </array>
    ```
 
-   `[APP_ID]` must be replaced with your Facebook app ID.  
-   `[CLIENT_TOKEN]` must be replaced with your Facebook Client Token.  
+   `[APP_ID]` must be replaced with your Facebook app ID.
+   `[CLIENT_TOKEN]` must be replaced with your Facebook Client Token (App Dashboard > Settings > Advanced > Client Token).  
    `[APP_NAME]` must be replaced with your Facebook app name.
 
 ## Web
