@@ -76,7 +76,7 @@
    }
    ```
 
-1. Add the following lines in your apps's `Info.plist`:
+1. Add the following lines to your apps's `Info.plist`:
 
    ```xml
    <key>CFBundleURLTypes</key>
