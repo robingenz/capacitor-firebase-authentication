@@ -22,7 +22,7 @@ class FacebookAuthProviderHandler: NSObject {
                 }
 
                 guard let token = result?.token else { return }
-                
+
                 let credential = FacebookAuthProvider.credential(withAccessToken: token.tokenString)
                 self.pluginImplementation.handleSuccessfulSignIn(credential: credential, nonce: nil)
             }
