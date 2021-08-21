@@ -67,7 +67,7 @@ public class FacebookAuthProviderHandler {
     }
 
     private void handleCancelCallback() {
-        pluginImplementation.handleFailedSignIn(savedCall, "Facebook login canceled.", null);
+        pluginImplementation.handleFailedSignIn(savedCall, "Login canceled.", null);
     }
 
     private void handleErrorCallback(FacebookException exception) {
