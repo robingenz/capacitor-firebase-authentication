@@ -48,6 +48,11 @@ import FirebaseAuth
         self.appleAuthProviderHandler?.signIn(call: call)
     }
 
+    @objc func signInWithFacebook(_ call: CAPPluginCall) {
+        self.savedCall = call
+        // TODO
+    }
+
     @objc func signInWithGithub(_ call: CAPPluginCall) {
         self.savedCall = call
         self.oAuthProviderHandler?.signIn(call: call, providerId: "github.com")

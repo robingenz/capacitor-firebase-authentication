@@ -46,7 +46,7 @@ public class GoogleAuthProviderHandler {
             AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
             pluginImplementation.handleSuccessfulSignIn(call, credential);
         } catch (ApiException exception) {
-            pluginImplementation.handleFailedSignIn(call, exception);
+            pluginImplementation.handleFailedSignIn(call, null, exception);
         }
     }
 }

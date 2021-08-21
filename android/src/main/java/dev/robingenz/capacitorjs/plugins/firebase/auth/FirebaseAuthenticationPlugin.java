@@ -67,6 +67,11 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void signInWithFacebook(PluginCall call) {
+        implementation.signInWithFacebook(call);
+    }
+
+    @PluginMethod
     public void signInWithGithub(PluginCall call) {
         implementation.signInWithGithub(call);
     }

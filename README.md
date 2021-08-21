@@ -43,6 +43,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
 The further installation steps depend on the selected authentication method:
 
 - [Apple Sign-In](docs/setup-apple.md)
+- [Facebook Sign-In](docs/setup-facebook.md)
 - [GitHub Sign-In](docs/setup-github.md)
 - [Google Sign-In](docs/setup-google.md)
 - [Microsoft Sign-In](docs/setup-microsoft.md)

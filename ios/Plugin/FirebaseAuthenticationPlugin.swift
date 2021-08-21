@@ -48,6 +48,10 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         implementation?.signInWithApple(call)
     }
 
+    @objc func signInWithFacebook(_ call: CAPPluginCall) {
+        implementation?.signInWithFacebook(call)
+    }
+
     @objc func signInWithGithub(_ call: CAPPluginCall) {
         implementation?.signInWithGithub(call)
     }
