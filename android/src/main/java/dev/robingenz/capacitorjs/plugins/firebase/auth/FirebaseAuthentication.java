@@ -112,6 +112,12 @@ public class FirebaseAuthentication {
         googleAuthProviderHandler.handleOnActivityResult(call, result);
     }
 
+    public void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == FacebookAuthProviderHandler.RC_FACEBOOK_AUTH) {
+            facebookAuthProviderHandler.handleOnActivityResult(requestCode, resultCode, data);
+        }
+    }
+
     public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential) {
         boolean skipNativeAuth = this.config.getSkipNativeAuth();
         if (skipNativeAuth) {
