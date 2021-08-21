@@ -83,6 +83,8 @@ import FirebaseAuth
     @objc func signOut(_ call: CAPPluginCall) {
         do {
             try Auth.auth().signOut()
+            googleAuthProviderHandler?.signOut()
+            facebookAuthProviderHandler?.signOut()
             call.resolve()
         } catch let signOutError as NSError {
             call.reject("Error signing out: \(signOutError)")
