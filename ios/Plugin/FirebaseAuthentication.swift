@@ -8,6 +8,7 @@ import FirebaseAuth
     private let plugin: FirebaseAuthenticationPlugin
     private let config: FirebaseAuthenticationConfig
     private var appleAuthProviderHandler: AppleAuthProviderHandler?
+    private var facebookAuthProviderHandler: FacebookAuthProviderHandler?
     private var googleAuthProviderHandler: GoogleAuthProviderHandler?
     private var oAuthProviderHandler: OAuthProviderHandler?
     private var savedCall: CAPPluginCall?
@@ -20,6 +21,7 @@ import FirebaseAuth
             FirebaseApp.configure()
         }
         self.appleAuthProviderHandler = AppleAuthProviderHandler(self)
+        self.facebookAuthProviderHandler = FacebookAuthProviderHandler(self)
         self.googleAuthProviderHandler = GoogleAuthProviderHandler(self)
         self.oAuthProviderHandler = OAuthProviderHandler(self)
     }
@@ -50,7 +52,7 @@ import FirebaseAuth
 
     @objc func signInWithFacebook(_ call: CAPPluginCall) {
         self.savedCall = call
-        // TODO
+        self.facebookAuthProviderHandler?.signIn(call: call)
     }
 
     @objc func signInWithGithub(_ call: CAPPluginCall) {
@@ -102,7 +104,7 @@ import FirebaseAuth
         }
         Auth.auth().signIn(with: credential) { (_, error) in
             if let error = error {
-                self.handleFailedSignIn(error: error)
+                self.handleFailedSignIn(message: nil, error: error)
                 return
             }
             guard let savedCall = self.savedCall else {
@@ -114,11 +116,12 @@ import FirebaseAuth
         }
     }
 
-    func handleFailedSignIn(error: Error) {
+    func handleFailedSignIn(message: String?, error: Error?) {
         guard let savedCall = self.savedCall else {
             return
         }
-        savedCall.reject(error.localizedDescription)
+        let errorMessage = message ?? error?.localizedDescription ?? ""
+        savedCall.reject(errorMessage, nil, error)
     }
 
     func getPlugin() -> FirebaseAuthenticationPlugin {

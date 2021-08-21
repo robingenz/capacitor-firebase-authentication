@@ -20,7 +20,7 @@ class GoogleAuthProviderHandler: NSObject {
         DispatchQueue.main.async {
             GIDSignIn.sharedInstance.signIn(with: config, presenting: controller) { user, error in
                 if let error = error {
-                    self.pluginImplementation.handleFailedSignIn(error: error)
+                    self.pluginImplementation.handleFailedSignIn(message: nil, error: error)
                     return
                 }
 

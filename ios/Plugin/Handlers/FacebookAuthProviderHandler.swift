@@ -17,11 +17,14 @@ class FacebookAuthProviderHandler: NSObject {
         DispatchQueue.main.async {
             self.loginManager.logIn(permissions: ["email", "public_profile"], from: self.pluginImplementation.getPlugin().bridge?.viewController) { result, error in
                 if let error = error {
-                    self.pluginImplementation.handleFailedSignIn(error: error)
+                    self.pluginImplementation.handleFailedSignIn(message: nil, error: error)
                     return
                 }
 
-                guard let token = result?.token else { return }
+                guard let token = result?.token else {
+                    self.pluginImplementation.handleFailedSignIn(message: "Login canceled.", error: nil)
+                    return
+                }
 
                 let credential = FacebookAuthProvider.credential(withAccessToken: token.tokenString)
                 self.pluginImplementation.handleSuccessfulSignIn(credential: credential, nonce: nil)
