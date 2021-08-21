@@ -15,6 +15,8 @@ Pod::Spec.new do |s|
   s.dependency 'Capacitor'
   s.dependency 'Firebase/Auth', '7.11.0'
   s.dependency 'GoogleSignIn', '6.0.0'
+  s.dependency 'FBSDKCoreKit', '11.1.0'
+  s.dependency 'FBSDKLoginKit', '11.1.0'
   s.swift_version = '5.1'
   s.static_framework = true
 end

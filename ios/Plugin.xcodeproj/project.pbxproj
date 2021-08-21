@@ -21,6 +21,7 @@
 		7CD588F02688B4EF002BDF65 /* FirebaseAuthenticationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD588EF2688B4EF002BDF65 /* FirebaseAuthenticationHelper.swift */; };
 		7CD588F22688B5A4002BDF65 /* OAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD588F12688B5A4002BDF65 /* OAuthProviderHandler.swift */; };
 		7CD588F42688B6A7002BDF65 /* AppleAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD588F32688B6A7002BDF65 /* AppleAuthProviderHandler.swift */; };
+		7CE70B7526D1AA220025E915 /* FacebookAuthProviderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE70B7426D1AA220025E915 /* FacebookAuthProviderHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		7CD588EF2688B4EF002BDF65 /* FirebaseAuthenticationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationHelper.swift; sourceTree = "<group>"; };
 		7CD588F12688B5A4002BDF65 /* OAuthProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthProviderHandler.swift; sourceTree = "<group>"; };
 		7CD588F32688B6A7002BDF65 /* AppleAuthProviderHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppleAuthProviderHandler.swift; sourceTree = "<group>"; };
+		7CE70B7426D1AA220025E915 /* FacebookAuthProviderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthProviderHandler.swift; sourceTree = "<group>"; };
 		91781294A431A2A7CC6EB714 /* Pods-Plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Plugin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Plugin/Pods-Plugin.release.xcconfig"; sourceTree = "<group>"; };
 		96ED1B6440D6672E406C8D19 /* Pods-PluginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F65BB2953ECE002E1EF3E424 /* Pods-PluginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PluginTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PluginTests/Pods-PluginTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				7C8E530726656FD100FF4B87 /* GoogleAuthProviderHandler.swift */,
 				7CD588F32688B6A7002BDF65 /* AppleAuthProviderHandler.swift */,
 				7CD588F12688B5A4002BDF65 /* OAuthProviderHandler.swift */,
+				7CE70B7426D1AA220025E915 /* FacebookAuthProviderHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -294,6 +297,10 @@
 				"${BUILT_PRODUCTS_DIR}/Capacitor/Capacitor.framework",
 				"${BUILT_PRODUCTS_DIR}/CapacitorCordova/Cordova.framework",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/FBAEMKit/FBAEMKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit_Basics/FBSDKCoreKit_Basics.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseAuth/FirebaseAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
@@ -310,6 +317,10 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Capacitor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBAEMKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit_Basics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
@@ -351,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CE70B7526D1AA220025E915 /* FacebookAuthProviderHandler.swift in Sources */,
 				7C8E530826656FD100FF4B87 /* GoogleAuthProviderHandler.swift in Sources */,
 				7CD588F02688B4EF002BDF65 /* FirebaseAuthenticationHelper.swift in Sources */,
 				50E1A94820377CB70090CE1A /* FirebaseAuthenticationPlugin.swift in Sources */,
