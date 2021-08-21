@@ -1,7 +1,6 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
 import android.content.Intent;
-
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -12,7 +11,6 @@ import com.facebook.login.widget.LoginButton;
 import com.getcapacitor.PluginCall;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
-
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 
 public class FacebookAuthProviderHandler {
@@ -23,29 +21,30 @@ public class FacebookAuthProviderHandler {
     private LoginButton loginButton;
     private PluginCall savedCall;
 
-
     public FacebookAuthProviderHandler(FirebaseAuthentication pluginImplementation) {
         this.pluginImplementation = pluginImplementation;
         mCallbackManager = CallbackManager.Factory.create();
         loginButton = new LoginButton(pluginImplementation.getPlugin().getContext());
         loginButton.setPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                handleSuccessCallback(loginResult);
-            }
+        loginButton.registerCallback(
+            mCallbackManager,
+            new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    handleSuccessCallback(loginResult);
+                }
 
-            @Override
-            public void onCancel() {
-                handleCancelCallback();
-            }
+                @Override
+                public void onCancel() {
+                    handleCancelCallback();
+                }
 
-            @Override
-            public void onError(FacebookException exception) {
-                handleErrorCallback(exception);
+                @Override
+                public void onError(FacebookException exception) {
+                    handleErrorCallback(exception);
+                }
             }
-        });
-
+        );
     }
 
     public void signIn(PluginCall call) {

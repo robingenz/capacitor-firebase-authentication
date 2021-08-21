@@ -9,10 +9,9 @@ import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.ActivityCallback;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.google.firebase.auth.FirebaseUser;
-
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.FacebookAuthProviderHandler;
 
-@CapacitorPlugin(name = "FirebaseAuthentication", requestCodes = {FacebookAuthProviderHandler.RC_FACEBOOK_AUTH })
+@CapacitorPlugin(name = "FirebaseAuthentication", requestCodes = { FacebookAuthProviderHandler.RC_FACEBOOK_AUTH })
 public class FirebaseAuthenticationPlugin extends Plugin {
 
     private FirebaseAuthenticationConfig config;
