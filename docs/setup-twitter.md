@@ -3,12 +3,12 @@
 ## Android
 
 1. See [Before you begin](https://firebase.google.com/docs/auth/android/twitter-login#before_you_begin) and follow the instructions to configure sign-in with Twitter correctly.  
-**Attention**: Skip step 6. The dependency for the Firebase Authentication Android library is already declared by the plugin.
+   **Attention**: Skip step 6. The dependency for the Firebase Authentication Android library is already declared by the plugin.
 
 ## iOS
 
 1. See [Before you begin](https://firebase.google.com/docs/auth/ios/twitter-login#before_you_begin) and follow the instructions to configure and enable sign-in with Twitter correctly.  
-**Attention**: Skip step 1. The `Firebase/Auth` pod is already added by the plugin.
+   **Attention**: Skip step 2. The `Firebase/Auth` pod is already added by the plugin.
 1. Add custom URL schemes to your Xcode project:
    1. Open your project configuration.
       Select your app from the **TARGETS** section, then select the **Info** tab, and expand the **URL Types** section.
