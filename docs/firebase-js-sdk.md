@@ -35,13 +35,22 @@ const signInWithApple = async () => {
 
 const signInWithGoogle = async () => {
   // 1. Sign in on the native layer
-  const signInResult = await FirebaseAuthentication.signInWithGoogle();
-  const idToken = result.credential?.idToken;
-  if (!idToken) {
-    return;
-  }
-  // 2. Sign in on the web layer using the id token
-  const credential = firebase.auth.GoogleAuthProvider.credential(idToken);
+  await FirebaseAuthentication.signInWithGoogle();
+  // 2. Fetch the Firebase Auth ID Token
+  const { token } = FirebaseAuthentication.getIdToken();
+  // 3. Sign in on the web layer using the id token
+  const credential = firebase.auth.GoogleAuthProvider.credential(token);
+  await firebase.auth().signInWithCredential(credential);
+};
+
+const signInWithMicrosoft = async () => {
+  // 1. Sign in on the native layer
+  await FirebaseAuthentication.signInWithMicrosoft();
+  // 2. Fetch the Firebase Auth ID Token
+  const { token } = FirebaseAuthentication.getIdToken();
+  // 3. Sign in on the web layer using the id token
+  const provider = new firebase.auth.OAuthProvider('microsoft.com');
+  const credential = provider.credential({ idToken: token });
   await firebase.auth().signInWithCredential(credential);
 };
 ```
