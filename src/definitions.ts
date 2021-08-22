@@ -16,6 +16,16 @@ declare module '@capacitor/cli' {
        * @example false
        */
       skipNativeAuth?: boolean;
+      /**
+       * Configure which providers you want to use so that only the providers you need are initialized.
+       * If you do not configure any providers, they will be all initialized.
+       *
+       * Only available for Android and iOS.
+       *
+       * @default ["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com"]
+       * @example ["apple.com", "google.com"]
+       */
+      providers?: string[];
     };
   }
 }

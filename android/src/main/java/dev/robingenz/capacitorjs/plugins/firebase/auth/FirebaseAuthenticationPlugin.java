@@ -128,6 +128,8 @@ public class FirebaseAuthenticationPlugin extends Plugin {
 
         boolean skipNativeAuth = getConfig().getBoolean("skipNativeAuth", config.getSkipNativeAuth());
         config.setSkipNativeAuth(skipNativeAuth);
+        String[] providers = getConfig().getArray("providers", config.getProviders());
+        config.setProviders(providers);
 
         return config;
     }
