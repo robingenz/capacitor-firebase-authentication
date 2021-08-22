@@ -17,6 +17,7 @@ import com.google.firebase.auth.GetTokenResult;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.FacebookAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.OAuthProviderHandler;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.PhoneAuthProviderHandler;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class FirebaseAuthentication {
     private FacebookAuthProviderHandler facebookAuthProviderHandler;
     private GoogleAuthProviderHandler googleAuthProviderHandler;
     private OAuthProviderHandler oAuthProviderHandler;
+    private PhoneAuthProviderHandler phoneAuthProviderHandler;
 
     public FirebaseAuthentication(FirebaseAuthenticationPlugin plugin, FirebaseAuthenticationConfig config) {
         this.plugin = plugin;
@@ -82,6 +84,10 @@ public class FirebaseAuthentication {
 
     public void signInWithMicrosoft(PluginCall call) {
         oAuthProviderHandler.signIn(call, "microsoft.com");
+    }
+
+    public void signInWithPhoneNumber(PluginCall call) {
+        phoneAuthProviderHandler.signIn(call);
     }
 
     public void signInWithTwitter(PluginCall call) {
@@ -181,6 +187,9 @@ public class FirebaseAuthentication {
         }
         if (providerList.contains("google.com")) {
             googleAuthProviderHandler = new GoogleAuthProviderHandler(this);
+        }
+        if (providerList.contains("phone")) {
+            phoneAuthProviderHandler = new PhoneAuthProviderHandler(this);
         }
         oAuthProviderHandler = new OAuthProviderHandler(this);
     }

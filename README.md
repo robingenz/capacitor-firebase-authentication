@@ -89,7 +89,7 @@ const config: CapacitorConfig = {
   plugins: {
     FirebaseAuthentication: {
       skipNativeAuth: false,
-      providers: ["apple.com", "google.com"],
+      providers: ['apple.com', 'google.com'],
     },
   },
 };
@@ -122,6 +122,10 @@ const signInWithApple = async () => {
   await FirebaseAuthentication.signInWithApple();
 };
 
+const signInWithFacebook = async () => {
+  await FirebaseAuthentication.signInWithFacebook();
+};
+
 const signInWithGithub = async () => {
   await FirebaseAuthentication.signInWithGithub();
 };
@@ -132,6 +136,22 @@ const signInWithGoogle = async () => {
 
 const signInWithMicrosoft = async () => {
   await FirebaseAuthentication.signInWithMicrosoft();
+};
+
+const signInWithPhoneNumber = async () => {
+  const promise = FirebaseAuthentication.signInWithPhoneNumber({
+    phoneNumber: '123456789',
+  });
+  FirebaseAuthentication.addListener('phoneCodeSent', ({ verificationId }) => {
+    const smsCode = window.prompt(
+      'Please enter the verification code that was sent to your mobile device.',
+    );
+    FirebaseAuthentication.signInWithPhoneNumber({
+      verificationId,
+      smsCode,
+    });
+  });
+  await promise;
 };
 
 const signInWithTwitter = async () => {
@@ -155,20 +175,22 @@ const useAppLanguage = async () => {
 
 <docgen-index>
 
-* [`getCurrentUser()`](#getcurrentuser)
-* [`getIdToken(...)`](#getidtoken)
-* [`setLanguageCode(...)`](#setlanguagecode)
-* [`signInWithApple(...)`](#signinwithapple)
-* [`signInWithFacebook(...)`](#signinwithfacebook)
-* [`signInWithGithub(...)`](#signinwithgithub)
-* [`signInWithGoogle(...)`](#signinwithgoogle)
-* [`signInWithMicrosoft(...)`](#signinwithmicrosoft)
-* [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
-* [`signInWithTwitter(...)`](#signinwithtwitter)
-* [`signInWithYahoo(...)`](#signinwithyahoo)
-* [`signOut()`](#signout)
-* [`useAppLanguage()`](#useapplanguage)
-* [Interfaces](#interfaces)
+- [`getCurrentUser()`](#getcurrentuser)
+- [`getIdToken(...)`](#getidtoken)
+- [`setLanguageCode(...)`](#setlanguagecode)
+- [`signInWithApple(...)`](#signinwithapple)
+- [`signInWithFacebook(...)`](#signinwithfacebook)
+- [`signInWithGithub(...)`](#signinwithgithub)
+- [`signInWithGoogle(...)`](#signinwithgoogle)
+- [`signInWithMicrosoft(...)`](#signinwithmicrosoft)
+- [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
+- [`signInWithTwitter(...)`](#signinwithtwitter)
+- [`signInWithYahoo(...)`](#signinwithyahoo)
+- [`signOut()`](#signout)
+- [`useAppLanguage()`](#useapplanguage)
+- [`addListener('phoneCodeSent', ...)`](#addlistenerphonecodesent-)
+- [`addListener('phoneCodeAutoRetrievalTimeOut', ...)`](#addlistenerphonecodeautoretrievaltimeout-)
+- [Interfaces](#interfaces)
 
 </docgen-index>
 
@@ -187,8 +209,7 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#getcurrentuserresult">GetCurrentUserResult</a>&gt;</code>
 
---------------------
-
+---
 
 ### getIdToken(...)
 
@@ -206,8 +227,7 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#getidtokenresult">GetIdTokenResult</a>&gt;</code>
 
---------------------
-
+---
 
 ### setLanguageCode(...)
 
@@ -223,8 +243,7 @@ Only available for Android and iOS.
 | ------------- | ------------------------------------------------------------------------- |
 | **`options`** | <code><a href="#setlanguagecodeoptions">SetLanguageCodeOptions</a></code> |
 
---------------------
-
+---
 
 ### signInWithApple(...)
 
@@ -242,8 +261,7 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
---------------------
-
+---
 
 ### signInWithFacebook(...)
 
@@ -261,8 +279,7 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
---------------------
-
+---
 
 ### signInWithGithub(...)
 
@@ -280,8 +297,7 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
---------------------
-
+---
 
 ### signInWithGoogle(...)
 
@@ -299,8 +315,7 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
---------------------
-
+---
 
 ### signInWithMicrosoft(...)
 
@@ -318,27 +333,27 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
---------------------
-
+---
 
 ### signInWithPhoneNumber(...)
 
 ```typescript
-signInWithPhoneNumber(options?: SignInOptions | undefined) => Promise<SignInResult>
+signInWithPhoneNumber(options?: SignInWithPhoneNumberOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the sign-in flow using a phone number.
 
+Either the phone number or the SMS code and verification ID must be provided.
+
 Only available for Android and iOS.
 
-| Param         | Type                                                    |
-| ------------- | ------------------------------------------------------- |
-| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+| Param         | Type                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#signinwithphonenumberoptions">SignInWithPhoneNumberOptions</a></code> |
 
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
---------------------
-
+---
 
 ### signInWithTwitter(...)
 
@@ -356,8 +371,7 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
---------------------
-
+---
 
 ### signInWithYahoo(...)
 
@@ -375,8 +389,7 @@ Only available for Android and iOS.
 
 **Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
 
---------------------
-
+---
 
 ### signOut()
 
@@ -388,8 +401,7 @@ Starts the sign-out flow.
 
 Only available for Android and iOS.
 
---------------------
-
+---
 
 ### useAppLanguage()
 
@@ -401,18 +413,49 @@ Sets the user-facing language code to be the default app language.
 
 Only available for Android and iOS.
 
---------------------
+---
 
+### addListener('phoneCodeSent', ...)
+
+```typescript
+addListener(eventName: 'phoneCodeSent', listenerFunc: (event: PhoneCodeSentEvent) => void) => PluginListenerHandle
+```
+
+Adds an event listener that is called after the verification code is sent by SMS to the specified phone number.
+
+| Param              | Type                                                                                  |
+| ------------------ | ------------------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'phoneCodeSent'</code>                                                          |
+| **`listenerFunc`** | <code>(event: <a href="#phonecodesentevent">PhoneCodeSentEvent</a>) =&gt; void</code> |
+
+**Returns:** <code><a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+---
+
+### addListener('phoneCodeAutoRetrievalTimeOut', ...)
+
+```typescript
+addListener(eventName: 'phoneCodeAutoRetrievalTimeOut', listenerFunc: (event: PhoneCodeAutoRetrievalTimeOutEvent) => void) => PluginListenerHandle
+```
+
+Adds an event listener that is called after the timeout duration for `signInWithPhoneNumber` has passed.
+
+| Param              | Type                                                                                                                  |
+| ------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'phoneCodeAutoRetrievalTimeOut'</code>                                                                          |
+| **`listenerFunc`** | <code>(event: <a href="#phonecodeautoretrievaltimeoutevent">PhoneCodeAutoRetrievalTimeOutEvent</a>) =&gt; void</code> |
+
+**Returns:** <code><a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+---
 
 ### Interfaces
-
 
 #### GetCurrentUserResult
 
 | Prop       | Type                                          | Description                                               |
 | ---------- | --------------------------------------------- | --------------------------------------------------------- |
 | **`user`** | <code><a href="#user">User</a> \| null</code> | The currently signed-in user, or null if there isn't any. |
-
 
 #### User
 
@@ -428,13 +471,11 @@ Only available for Android and iOS.
 | **`tenantId`**      | <code>string \| null</code> |
 | **`uid`**           | <code>string</code>         |
 
-
 #### GetIdTokenResult
 
 | Prop        | Type                | Description                            |
 | ----------- | ------------------- | -------------------------------------- |
 | **`token`** | <code>string</code> | The Firebase Auth ID token JWT string. |
-
 
 #### GetIdTokenOptions
 
@@ -442,13 +483,11 @@ Only available for Android and iOS.
 | ------------------ | -------------------- | --------------------------------------------- |
 | **`forceRefresh`** | <code>boolean</code> | Force refresh regardless of token expiration. |
 
-
 #### SetLanguageCodeOptions
 
 | Prop               | Type                | Description                             |
 | ------------------ | ------------------- | --------------------------------------- |
 | **`languageCode`** | <code>string</code> | BCP 47 language code. Example: `en-US`. |
-
 
 #### SignInResult
 
@@ -456,7 +495,6 @@ Only available for Android and iOS.
 | ---------------- | ----------------------------------------------------------------- | --------------------------------------------------------- |
 | **`user`**       | <code><a href="#user">User</a> \| null</code>                     | The currently signed-in user, or null if there isn't any. |
 | **`credential`** | <code><a href="#authcredential">AuthCredential</a> \| null</code> | Credentials returned by an auth provider.                 |
-
 
 #### AuthCredential
 
@@ -468,13 +506,11 @@ Only available for Android and iOS.
 | **`secret`**      | <code>string</code> | The OAuth access token secret associated with the credential if it belongs to an OAuth 1.0 provider.                                     |
 | **`nonce`**       | <code>string</code> | The random string used to make sure that the ID token you get was granted specifically in response to your app's authentication request. |
 
-
 #### SignInOptions
 
 | Prop                   | Type                                 | Description                                                                                       |
 | ---------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------- |
 | **`customParameters`** | <code>SignInCustomParameter[]</code> | Configures custom parameters to be passed to the identity provider during the OAuth sign-in flow. |
-
 
 #### SignInCustomParameter
 
@@ -482,6 +518,32 @@ Only available for Android and iOS.
 | ----------- | ------------------- | ------------------------------------------------------------------ |
 | **`key`**   | <code>string</code> | The custom parameter key (e.g. `login_hint`).                      |
 | **`value`** | <code>string</code> | The custom parameter value (e.g. `user@firstadd.onmicrosoft.com`). |
+
+#### SignInWithPhoneNumberOptions
+
+| Prop                 | Type                | Description                                                                                   |
+| -------------------- | ------------------- | --------------------------------------------------------------------------------------------- |
+| **`phoneNumber`**    | <code>string</code> | The phone number to be verified.                                                              |
+| **`verificationId`** | <code>string</code> | The verification ID returned by `onPhoneCodeSent` event. The `smsCode` must also be provided. |
+| **`smsCode`**        | <code>string</code> | The verification code from the SMS message. The `verificationId` must also be provided.       |
+
+#### PluginListenerHandle
+
+| Prop         | Type                                      |
+| ------------ | ----------------------------------------- |
+| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
+
+#### PhoneCodeSentEvent
+
+| Prop                 | Type                |
+| -------------------- | ------------------- |
+| **`verificationId`** | <code>string</code> |
+
+#### PhoneCodeAutoRetrievalTimeOutEvent
+
+| Prop                 | Type                |
+| -------------------- | ------------------- |
+| **`verificationId`** | <code>string</code> |
 
 </docgen-api>
 

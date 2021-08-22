@@ -1,5 +1,7 @@
 /// <reference types="@capacitor/cli" />
 
+import type { PluginListenerHandle } from '@capacitor/core';
+
 declare module '@capacitor/cli' {
   export interface PluginsConfig {
     /**
@@ -82,9 +84,13 @@ export interface FirebaseAuthenticationPlugin {
   /**
    * Starts the sign-in flow using a phone number.
    *
+   * Either the phone number or the SMS code and verification ID must be provided.
+   *
    * Only available for Android and iOS.
    */
-  signInWithPhoneNumber(options?: SignInOptions): Promise<SignInResult>;
+  signInWithPhoneNumber(
+    options?: SignInWithPhoneNumberOptions,
+  ): Promise<SignInResult>;
   /**
    * Starts the Twitter sign-in flow.
    *
@@ -109,6 +115,20 @@ export interface FirebaseAuthenticationPlugin {
    * Only available for Android and iOS.
    */
   useAppLanguage(): Promise<void>;
+  /**
+   * Adds an event listener that is called after the verification code is sent by SMS to the specified phone number.
+   */
+  addListener(
+    eventName: 'phoneCodeSent',
+    listenerFunc: (event: PhoneCodeSentEvent) => void,
+  ): PluginListenerHandle;
+  /**
+   * Adds an event listener that is called after the timeout duration for `signInWithPhoneNumber` has passed.
+   */
+  addListener(
+    eventName: 'phoneCodeAutoRetrievalTimeOut',
+    listenerFunc: (event: PhoneCodeAutoRetrievalTimeOutEvent) => void,
+  ): PluginListenerHandle;
 }
 
 export interface GetCurrentUserResult {
@@ -159,6 +179,23 @@ export interface SignInCustomParameter {
   value: string;
 }
 
+export interface SignInWithPhoneNumberOptions {
+  /**
+   * The phone number to be verified.
+   */
+  phoneNumber?: string;
+  /**
+   * The verification ID returned by `onPhoneCodeSent` event.
+   * The `smsCode` must also be provided.
+   */
+  verificationId?: string;
+  /**
+   * The verification code from the SMS message.
+   * The `verificationId` must also be provided.
+   */
+  smsCode?: string;
+}
+
 export interface SignInResult {
   /**
    * The currently signed-in user, or null if there isn't any.
@@ -205,4 +242,12 @@ export interface AuthCredential {
    * The random string used to make sure that the ID token you get was granted specifically in response to your app's authentication request.
    */
   nonce?: string;
+}
+
+export interface PhoneCodeSentEvent {
+  verificationId: string;
+}
+
+export interface PhoneCodeAutoRetrievalTimeOutEvent {
+  verificationId: string;
 }
