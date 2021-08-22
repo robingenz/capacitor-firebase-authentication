@@ -108,6 +108,6 @@ extension AppleAuthProviderHandler: ASAuthorizationControllerDelegate, ASAuthori
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        self.pluginImplementation.handleFailedSignIn(error: error)
+        self.pluginImplementation.handleFailedSignIn(message: nil, error: error)
     }
 }

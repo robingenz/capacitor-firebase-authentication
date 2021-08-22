@@ -43,7 +43,7 @@ public class OAuthProviderHandler {
                     pluginImplementation.handleSuccessfulSignIn(call, credential);
                 }
             )
-            .addOnFailureListener(exception -> pluginImplementation.handleFailedSignIn(call, exception));
+            .addOnFailureListener(exception -> pluginImplementation.handleFailedSignIn(call, null, exception));
     }
 
     private void finishActivityForSignIn(final PluginCall call, Task<AuthResult> pendingResultTask) {
@@ -54,7 +54,7 @@ public class OAuthProviderHandler {
                     pluginImplementation.handleSuccessfulSignIn(call, credential);
                 }
             )
-            .addOnFailureListener(exception -> pluginImplementation.handleFailedSignIn(call, exception));
+            .addOnFailureListener(exception -> pluginImplementation.handleFailedSignIn(call, null, exception));
     }
 
     private void applySignInConfig(PluginCall call, OAuthProvider.Builder provider) {

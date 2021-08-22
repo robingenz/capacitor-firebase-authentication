@@ -38,7 +38,7 @@ class OAuthProviderHandler: NSObject {
     private func startSignInFlow() {
         self.provider?.getCredentialWith(nil) { credential, error in
             if let error = error {
-                self.pluginImplementation.handleFailedSignIn(error: error)
+                self.pluginImplementation.handleFailedSignIn(message: nil, error: error)
                 return
             }
             if let credential = credential {

@@ -2,7 +2,6 @@ package dev.robingenz.capacitorjs.plugins.firebase.auth;
 
 import android.content.Intent;
 import androidx.activity.result.ActivityResult;
-import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -10,8 +9,9 @@ import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.ActivityCallback;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.google.firebase.auth.FirebaseUser;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.FacebookAuthProviderHandler;
 
-@CapacitorPlugin(name = "FirebaseAuthentication")
+@CapacitorPlugin(name = "FirebaseAuthentication", requestCodes = { FacebookAuthProviderHandler.RC_FACEBOOK_AUTH })
 public class FirebaseAuthenticationPlugin extends Plugin {
 
     private FirebaseAuthenticationConfig config;
@@ -67,6 +67,11 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void signInWithFacebook(PluginCall call) {
+        implementation.signInWithFacebook(call);
+    }
+
+    @PluginMethod
     public void signInWithGithub(PluginCall call) {
         implementation.signInWithGithub(call);
     }
@@ -110,6 +115,12 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     @ActivityCallback
     private void handleGoogleAuthProviderActivityResult(PluginCall call, ActivityResult result) {
         implementation.handleGoogleAuthProviderActivityResult(call, result);
+    }
+
+    @Override
+    protected void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
+        super.handleOnActivityResult(requestCode, resultCode, data);
+        implementation.handleOnActivityResult(requestCode, resultCode, data);
     }
 
     private FirebaseAuthenticationConfig getFirebaseAuthenticationConfig() {

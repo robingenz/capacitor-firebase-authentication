@@ -20,14 +20,14 @@ class GoogleAuthProviderHandler: NSObject {
         DispatchQueue.main.async {
             GIDSignIn.sharedInstance.signIn(with: config, presenting: controller) { user, error in
                 if let error = error {
-                    self.pluginImplementation.handleFailedSignIn(error: error)
+                    self.pluginImplementation.handleFailedSignIn(message: nil, error: error)
                     return
                 }
 
                 guard let authentication = user?.authentication else { return }
                 guard let idToken = authentication.idToken else { return }
-                let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
 
+                let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
                 self.pluginImplementation.handleSuccessfulSignIn(credential: credential, nonce: nil)
             }
         }

@@ -27,6 +27,10 @@ export class FirebaseAuthenticationWeb
     throw new Error('Not implemented on web.');
   }
 
+  public async signInWithFacebook(): Promise<SignInResult> {
+    throw new Error('Not implemented on web.');
+  }
+
   public async signInWithGithub(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }

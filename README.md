@@ -43,6 +43,7 @@ func application(_ app: UIApplication, open url: URL, options: [UIApplication.Op
 The further installation steps depend on the selected authentication method:
 
 - [Apple Sign-In](docs/setup-apple.md)
+- [Facebook Sign-In](docs/setup-facebook.md)
 - [GitHub Sign-In](docs/setup-github.md)
 - [Google Sign-In](docs/setup-google.md)
 - [Microsoft Sign-In](docs/setup-microsoft.md)
@@ -154,6 +155,7 @@ const useAppLanguage = async () => {
 * [`getIdToken(...)`](#getidtoken)
 * [`setLanguageCode(...)`](#setlanguagecode)
 * [`signInWithApple(...)`](#signinwithapple)
+* [`signInWithFacebook(...)`](#signinwithfacebook)
 * [`signInWithGithub(...)`](#signinwithgithub)
 * [`signInWithGoogle(...)`](#signinwithgoogle)
 * [`signInWithMicrosoft(...)`](#signinwithmicrosoft)
@@ -226,6 +228,25 @@ signInWithApple(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the Apple sign-in flow.
+
+Only available for Android and iOS.
+
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
+
+--------------------
+
+
+### signInWithFacebook(...)
+
+```typescript
+signInWithFacebook(options?: SignInOptions | undefined) => Promise<SignInResult>
+```
+
+Starts the Facebook sign-in flow.
 
 Only available for Android and iOS.
 

@@ -14,6 +14,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.FacebookAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.OAuthProviderHandler;
 
@@ -24,6 +25,7 @@ public class FirebaseAuthentication {
     private FirebaseAuthenticationPlugin plugin;
     private FirebaseAuthenticationConfig config;
     private FirebaseAuth firebaseAuthInstance;
+    private FacebookAuthProviderHandler facebookAuthProviderHandler;
     private GoogleAuthProviderHandler googleAuthProviderHandler;
     private OAuthProviderHandler oAuthProviderHandler;
 
@@ -31,6 +33,7 @@ public class FirebaseAuthentication {
         this.plugin = plugin;
         this.config = config;
         firebaseAuthInstance = FirebaseAuth.getInstance();
+        facebookAuthProviderHandler = new FacebookAuthProviderHandler(this);
         googleAuthProviderHandler = new GoogleAuthProviderHandler(this);
         oAuthProviderHandler = new OAuthProviderHandler(this);
     }
@@ -65,6 +68,10 @@ public class FirebaseAuthentication {
         oAuthProviderHandler.signIn(call, "apple.com");
     }
 
+    public void signInWithFacebook(PluginCall call) {
+        facebookAuthProviderHandler.signIn(call);
+    }
+
     public void signInWithGithub(PluginCall call) {
         oAuthProviderHandler.signIn(call, "github.com");
     }
@@ -88,6 +95,7 @@ public class FirebaseAuthentication {
     public void signOut(PluginCall call) {
         FirebaseAuth.getInstance().signOut();
         googleAuthProviderHandler.signOut();
+        facebookAuthProviderHandler.signOut();
         call.resolve();
     }
 
@@ -101,6 +109,12 @@ public class FirebaseAuthentication {
 
     public void handleGoogleAuthProviderActivityResult(PluginCall call, ActivityResult result) {
         googleAuthProviderHandler.handleOnActivityResult(call, result);
+    }
+
+    public void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == FacebookAuthProviderHandler.RC_FACEBOOK_AUTH) {
+            facebookAuthProviderHandler.handleOnActivityResult(requestCode, resultCode, data);
+        }
     }
 
     public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential) {
@@ -123,7 +137,7 @@ public class FirebaseAuthentication {
                             JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, credential);
                             call.resolve(signInResult);
                         } else {
-                            Log.w(TAG, "signInWithCredential failed.", task.getException());
+                            Log.e(TAG, "signInWithCredential failed.", task.getException());
                             call.reject(ERROR_SIGN_IN_FAILED);
                         }
                     }
@@ -134,15 +148,18 @@ public class FirebaseAuthentication {
                 new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception ex) {
-                        Log.w(TAG, "signInWithCredential failed.", ex);
+                        Log.e(TAG, "signInWithCredential failed.", ex);
                         call.reject(ERROR_SIGN_IN_FAILED);
                     }
                 }
             );
     }
 
-    public void handleFailedSignIn(PluginCall call, Exception exception) {
-        call.reject(exception.getLocalizedMessage());
+    public void handleFailedSignIn(PluginCall call, String message, Exception exception) {
+        if (message == null && exception != null) {
+            message = exception.getLocalizedMessage();
+        }
+        call.reject(message, exception);
     }
 
     public FirebaseAuth getFirebaseAuthInstance() {

@@ -46,6 +46,12 @@ export interface FirebaseAuthenticationPlugin {
    */
   signInWithApple(options?: SignInOptions): Promise<SignInResult>;
   /**
+   * Starts the Facebook sign-in flow.
+   *
+   * Only available for Android and iOS.
+   */
+  signInWithFacebook(options?: SignInOptions): Promise<SignInResult>;
+  /**
    * Starts the GitHub sign-in flow.
    *
    * Only available for Android and iOS.

@@ -5,6 +5,7 @@ ext {
     androidxEspressoCoreVersion = project.hasProperty('androidxEspressoCoreVersion') ? rootProject.ext.androidxEspressoCoreVersion : '3.3.0'
     firebaseAuthVersion = project.hasProperty('firebaseAuthVersion') ? rootProject.ext.firebaseAuthVersion : '21.0.1'
     playServicesAuthVersion = project.hasProperty('playServicesAuthVersion') ? rootProject.ext.playServicesAuthVersion : '19.0.0'
+    facebookLoginVersion = project.hasProperty('facebookLoginVersion') ? rootProject.ext.facebookLoginVersion : '11.1.0'
 }
 
 buildscript {
@@ -56,6 +57,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
     implementation "com.google.firebase:firebase-auth:$firebaseAuthVersion"
     implementation "com.google.android.gms:play-services-auth:$playServicesAuthVersion"
+    implementation "com.facebook.android:facebook-login:$facebookLoginVersion"
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
