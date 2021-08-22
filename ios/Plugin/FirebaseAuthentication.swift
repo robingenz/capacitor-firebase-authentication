@@ -20,7 +20,7 @@ import FirebaseAuth
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
         }
-        self.initAuthProviderHandlers(config)
+        self.initAuthProviderHandlers(config: config)
     }
 
     @objc func getCurrentUser() -> User? {
