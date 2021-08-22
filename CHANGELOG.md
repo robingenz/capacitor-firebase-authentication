@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.5](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.4...v0.3.5) (2021-08-22)
+
+
+### Features
+
+* add `providers` config option ([#62](https://github.com/robingenz/capacitor-firebase-authentication/issues/62)) ([7b62469](https://github.com/robingenz/capacitor-firebase-authentication/commit/7b624697a0f190b7ea9cfdbf02623b9e7cdf60c1))
+* add Sign-In with Facebook ([#61](https://github.com/robingenz/capacitor-firebase-authentication/issues/61)) ([998aa34](https://github.com/robingenz/capacitor-firebase-authentication/commit/998aa3417c5d0255f71686bafbf6f1c0360c152d))
+
 ### [0.3.4](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.3...v0.3.4) (2021-08-12)
 
 
