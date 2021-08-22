@@ -67,6 +67,11 @@ import FirebaseAuth
         self.oAuthProviderHandler?.signIn(call: call, providerId: "microsoft.com")
     }
 
+    @objc func signInWithPhoneNumber(_ call: CAPPluginCall) {
+        self.savedCall = call
+        self.phoneAuthProviderHandler?.signIn(call: call)
+    }
+
     @objc func signInWithTwitter(_ call: CAPPluginCall) {
         self.savedCall = call
         self.oAuthProviderHandler?.signIn(call: call, providerId: "twitter.com")
