@@ -15,7 +15,7 @@ import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 
 public class FacebookAuthProviderHandler {
 
-    public static final int RC_FACEBOOK_AUTH = 105;
+    public static final int RC_FACEBOOK_AUTH = 0xface;
     private FirebaseAuthentication pluginImplementation;
     private CallbackManager mCallbackManager;
     private LoginButton loginButton;
