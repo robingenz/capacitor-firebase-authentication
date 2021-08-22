@@ -1,4 +1,4 @@
-# Set up authenticate using Microsoft Sign-In
+# Set up authentication using Microsoft Sign-In
 
 ## Android
 

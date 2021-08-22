@@ -43,6 +43,10 @@ export class FirebaseAuthenticationWeb
     throw new Error('Not implemented on web.');
   }
 
+  public async signInWithPhoneNumber(): Promise<SignInResult> {
+    throw new Error('Not implemented on web.');
+  }
+
   public async signInWithTwitter(): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }

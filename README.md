@@ -49,6 +49,7 @@ The further installation steps depend on the selected authentication method:
 - [Microsoft Sign-In](docs/setup-microsoft.md)
 - [Twitter Sign-In](docs/setup-twitter.md)
 - [Yahoo Sign-In](docs/setup-yahoo.md)
+- [Phone Number Sign-In](docs/setup-phone.md)
 
 ## Configuration
 
@@ -57,10 +58,10 @@ The further installation steps depend on the selected authentication method:
 
 These configuration values are available:
 
-| Prop                 | Type                  | Description                                                                                                                                                                                             | Default                                                                                                             |
-| -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **`skipNativeAuth`** | <code>boolean</code>  | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS.                                     | <code>false</code>                                                                                                  |
-| **`providers`**      | <code>string[]</code> | Configure which providers you want to use so that only the providers you need are initialized. If you do not configure any providers, they will be all initialized. Only available for Android and iOS. | <code>["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com"]</code> |
+| Prop                 | Type                  | Description                                                                                                                                                                                             | Default                                                                                                                      |
+| -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **`skipNativeAuth`** | <code>boolean</code>  | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS.                                     | <code>false</code>                                                                                                           |
+| **`providers`**      | <code>string[]</code> | Configure which providers you want to use so that only the providers you need are initialized. If you do not configure any providers, they will be all initialized. Only available for Android and iOS. | <code>["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com", "phone"]</code> |
 
 ### Examples
 
@@ -162,6 +163,7 @@ const useAppLanguage = async () => {
 * [`signInWithGithub(...)`](#signinwithgithub)
 * [`signInWithGoogle(...)`](#signinwithgoogle)
 * [`signInWithMicrosoft(...)`](#signinwithmicrosoft)
+* [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
 * [`signInWithTwitter(...)`](#signinwithtwitter)
 * [`signInWithYahoo(...)`](#signinwithyahoo)
 * [`signOut()`](#signout)
@@ -307,6 +309,25 @@ signInWithMicrosoft(options?: SignInOptions | undefined) => Promise<SignInResult
 ```
 
 Starts the Microsoft sign-in flow.
+
+Only available for Android and iOS.
+
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
+
+--------------------
+
+
+### signInWithPhoneNumber(...)
+
+```typescript
+signInWithPhoneNumber(options?: SignInOptions | undefined) => Promise<SignInResult>
+```
+
+Starts the sign-in flow using a phone number.
 
 Only available for Android and iOS.
 

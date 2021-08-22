@@ -22,7 +22,7 @@ declare module '@capacitor/cli' {
        *
        * Only available for Android and iOS.
        *
-       * @default ["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com"]
+       * @default ["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com", "phone"]
        * @example ["apple.com", "google.com"]
        */
       providers?: string[];
@@ -79,6 +79,12 @@ export interface FirebaseAuthenticationPlugin {
    * Only available for Android and iOS.
    */
   signInWithMicrosoft(options?: SignInOptions): Promise<SignInResult>;
+  /**
+   * Starts the sign-in flow using a phone number.
+   *
+   * Only available for Android and iOS.
+   */
+  signInWithPhoneNumber(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the Twitter sign-in flow.
    *
