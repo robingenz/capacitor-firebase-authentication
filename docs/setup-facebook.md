@@ -22,7 +22,7 @@
 
    <activity
       android:name="com.facebook.FacebookActivity"
-      android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+      android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
       android:label="@string/app_name" />
 
    <activity
