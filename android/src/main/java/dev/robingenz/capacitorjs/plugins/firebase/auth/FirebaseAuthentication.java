@@ -17,6 +17,8 @@ import com.google.firebase.auth.GetTokenResult;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.FacebookAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.OAuthProviderHandler;
+import java.util.Arrays;
+import java.util.List;
 
 public class FirebaseAuthentication {
 
@@ -33,9 +35,7 @@ public class FirebaseAuthentication {
         this.plugin = plugin;
         this.config = config;
         firebaseAuthInstance = FirebaseAuth.getInstance();
-        facebookAuthProviderHandler = new FacebookAuthProviderHandler(this);
-        googleAuthProviderHandler = new GoogleAuthProviderHandler(this);
-        oAuthProviderHandler = new OAuthProviderHandler(this);
+        this.initAuthProviderHandlers(config);
     }
 
     public FirebaseUser getCurrentUser() {
@@ -94,8 +94,12 @@ public class FirebaseAuthentication {
 
     public void signOut(PluginCall call) {
         FirebaseAuth.getInstance().signOut();
-        googleAuthProviderHandler.signOut();
-        facebookAuthProviderHandler.signOut();
+        if (googleAuthProviderHandler != null) {
+            googleAuthProviderHandler.signOut();
+        }
+        if (facebookAuthProviderHandler != null) {
+            facebookAuthProviderHandler.signOut();
+        }
         call.resolve();
     }
 
@@ -112,7 +116,7 @@ public class FirebaseAuthentication {
     }
 
     public void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == FacebookAuthProviderHandler.RC_FACEBOOK_AUTH) {
+        if (requestCode == FacebookAuthProviderHandler.RC_FACEBOOK_AUTH && facebookAuthProviderHandler != null) {
             facebookAuthProviderHandler.handleOnActivityResult(requestCode, resultCode, data);
         }
     }
@@ -168,5 +172,16 @@ public class FirebaseAuthentication {
 
     public FirebaseAuthenticationPlugin getPlugin() {
         return plugin;
+    }
+
+    private void initAuthProviderHandlers(FirebaseAuthenticationConfig config) {
+        List providerList = Arrays.asList(config.getProviders());
+        if (providerList.contains("facebook.com")) {
+            facebookAuthProviderHandler = new FacebookAuthProviderHandler(this);
+        }
+        if (providerList.contains("google.com")) {
+            googleAuthProviderHandler = new GoogleAuthProviderHandler(this);
+        }
+        oAuthProviderHandler = new OAuthProviderHandler(this);
     }
 }

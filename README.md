@@ -57,9 +57,10 @@ The further installation steps depend on the selected authentication method:
 
 These configuration values are available:
 
-| Prop                 | Type                 | Description                                                                                                                                                         | Default            |
-| -------------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| **`skipNativeAuth`** | <code>boolean</code> | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS. | <code>false</code> |
+| Prop                 | Type                  | Description                                                                                                                                                                                             | Default                                                                                                             |
+| -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| **`skipNativeAuth`** | <code>boolean</code>  | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS.                                     | <code>false</code>                                                                                                  |
+| **`providers`**      | <code>string[]</code> | Configure which providers you want to use so that only the providers you need are initialized. If you do not configure any providers, they will be all initialized. Only available for Android and iOS. | <code>["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com"]</code> |
 
 ### Examples
 
@@ -69,7 +70,8 @@ In `capacitor.config.json`:
 {
   "plugins": {
     "FirebaseAuthentication": {
-      "skipNativeAuth": false
+      "skipNativeAuth": false,
+      "providers": ["apple.com", "google.com"]
     }
   }
 }
@@ -86,6 +88,7 @@ const config: CapacitorConfig = {
   plugins: {
     FirebaseAuthentication: {
       skipNativeAuth: false,
+      providers: ["apple.com", "google.com"],
     },
   },
 };

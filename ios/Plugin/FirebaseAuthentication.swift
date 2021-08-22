@@ -20,10 +20,7 @@ import FirebaseAuth
         if FirebaseApp.app() == nil {
             FirebaseApp.configure()
         }
-        self.appleAuthProviderHandler = AppleAuthProviderHandler(self)
-        self.facebookAuthProviderHandler = FacebookAuthProviderHandler(self)
-        self.googleAuthProviderHandler = GoogleAuthProviderHandler(self)
-        self.oAuthProviderHandler = OAuthProviderHandler(self)
+        self.initAuthProviderHandlers(config: config)
     }
 
     @objc func getCurrentUser() -> User? {
@@ -128,5 +125,18 @@ import FirebaseAuth
 
     func getPlugin() -> FirebaseAuthenticationPlugin {
         return self.plugin
+    }
+
+    private func initAuthProviderHandlers(config: FirebaseAuthenticationConfig) {
+        if config.providers.contains("apple.com") {
+            self.appleAuthProviderHandler = AppleAuthProviderHandler(self)
+        }
+        if config.providers.contains("facebook.com") {
+            self.facebookAuthProviderHandler = FacebookAuthProviderHandler(self)
+        }
+        if config.providers.contains("google.com") {
+            self.googleAuthProviderHandler = GoogleAuthProviderHandler(self)
+        }
+        self.oAuthProviderHandler = OAuthProviderHandler(self)
     }
 }
