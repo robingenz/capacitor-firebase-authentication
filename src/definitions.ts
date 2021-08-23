@@ -87,7 +87,7 @@ export interface FirebaseAuthenticationPlugin {
    * Only available for Android and iOS.
    */
   signInWithPhoneNumber(
-    options?: SignInWithPhoneNumberOptions,
+    options: SignInWithPhoneNumberOptions,
   ): Promise<SignInWithPhoneNumberResult>;
   /**
    * Starts the Twitter sign-in flow.

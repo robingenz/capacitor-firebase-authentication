@@ -341,7 +341,7 @@ Only available for Android and iOS.
 ### signInWithPhoneNumber(...)
 
 ```typescript
-signInWithPhoneNumber(options?: SignInWithPhoneNumberOptions | undefined) => Promise<SignInWithPhoneNumberResult>
+signInWithPhoneNumber(options: SignInWithPhoneNumberOptions) => Promise<SignInWithPhoneNumberResult>
 ```
 
 Starts the sign-in flow using a phone number.

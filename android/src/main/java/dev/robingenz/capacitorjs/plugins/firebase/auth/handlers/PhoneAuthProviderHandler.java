@@ -65,11 +65,6 @@ public class PhoneAuthProviderHandler {
                 result.put("verificationId", verificationId);
                 call.resolve(result);
             }
-
-            @Override
-            public void onCodeAutoRetrievalTimeOut(@NonNull String verificationId) {
-                pluginImplementation.handleFailedSignIn(call, "The auto-verification period has timed out.", null);
-            }
         };
     }
 }

@@ -6,6 +6,7 @@ import type {
   GetIdTokenResult,
   SetLanguageCodeOptions,
   SignInResult,
+  SignInWithPhoneNumberOptions,
 } from './definitions';
 
 export class FirebaseAuthenticationWeb
@@ -43,7 +44,9 @@ export class FirebaseAuthenticationWeb
     throw new Error('Not implemented on web.');
   }
 
-  public async signInWithPhoneNumber(): Promise<SignInResult> {
+  public async signInWithPhoneNumber(
+    _options: SignInWithPhoneNumberOptions,
+  ): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
   }
 
