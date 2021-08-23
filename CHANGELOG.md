@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.6](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.5...v0.3.6) (2021-08-23)
+
+
+### Features
+
+* support Phone Number Sign-In ([#63](https://github.com/robingenz/capacitor-firebase-authentication/issues/63)) ([2ea8317](https://github.com/robingenz/capacitor-firebase-authentication/commit/2ea831727baafac41845ad0ebb9ef184605126bd))
+
 ### [0.3.5](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.4...v0.3.5) (2021-08-22)
 
 
