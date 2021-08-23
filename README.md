@@ -139,14 +139,16 @@ const signInWithMicrosoft = async () => {
 };
 
 const signInWithPhoneNumber = async () => {
-  const result = await FirebaseAuthentication.signInWithPhoneNumber({
-    phoneNumber: '123456789',
-  });
+  const { verificationId } = await FirebaseAuthentication.signInWithPhoneNumber(
+    {
+      phoneNumber: '123456789',
+    },
+  );
   const verificationCode = window.prompt(
     'Please enter the verification code that was sent to your mobile device.',
   );
   await FirebaseAuthentication.signInWithPhoneNumber({
-    verificationId: result.verificationId,
+    verificationId,
     verificationCode,
   });
 };
