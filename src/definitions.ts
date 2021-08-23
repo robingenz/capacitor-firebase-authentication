@@ -1,7 +1,5 @@
 /// <reference types="@capacitor/cli" />
 
-import type { PluginListenerHandle } from '@capacitor/core';
-
 declare module '@capacitor/cli' {
   export interface PluginsConfig {
     /**
@@ -90,7 +88,7 @@ export interface FirebaseAuthenticationPlugin {
    */
   signInWithPhoneNumber(
     options?: SignInWithPhoneNumberOptions,
-  ): Promise<SignInResult>;
+  ): Promise<SignInWithPhoneNumberResult>;
   /**
    * Starts the Twitter sign-in flow.
    *
@@ -115,13 +113,6 @@ export interface FirebaseAuthenticationPlugin {
    * Only available for Android and iOS.
    */
   useAppLanguage(): Promise<void>;
-  /**
-   * Adds an event listener that is called after the verification code is sent by SMS to the specified phone number.
-   */
-  addListener(
-    eventName: 'phoneCodeSent',
-    listenerFunc: (event: PhoneCodeSentEvent) => void,
-  ): PluginListenerHandle;
 }
 
 export interface GetCurrentUserResult {
@@ -178,7 +169,7 @@ export interface SignInWithPhoneNumberOptions {
    */
   phoneNumber?: string;
   /**
-   * The verification ID returned by `onPhoneCodeSent` event.
+   * The verification ID which will be returned when `signInWithPhoneNumber` is called for the first time.
    * The `verificationCode` must also be provided.
    */
   verificationId?: string;
@@ -198,6 +189,13 @@ export interface SignInResult {
    * Credentials returned by an auth provider.
    */
   credential: AuthCredential | null;
+}
+
+export interface SignInWithPhoneNumberResult extends SignInResult {
+  /**
+   * The verification ID, which is needed to identify the verification code.
+   */
+  verificationId?: string;
 }
 
 export interface User {
@@ -235,8 +233,4 @@ export interface AuthCredential {
    * The random string used to make sure that the ID token you get was granted specifically in response to your app's authentication request.
    */
   nonce?: string;
-}
-
-export interface PhoneCodeSentEvent {
-  verificationId: string;
 }

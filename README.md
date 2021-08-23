@@ -139,19 +139,16 @@ const signInWithMicrosoft = async () => {
 };
 
 const signInWithPhoneNumber = async () => {
-  const promise = FirebaseAuthentication.signInWithPhoneNumber({
+  const result = await FirebaseAuthentication.signInWithPhoneNumber({
     phoneNumber: '123456789',
   });
-  FirebaseAuthentication.addListener('phoneCodeSent', ({ verificationId }) => {
-    const verificationCode = window.prompt(
-      'Please enter the verification code that was sent to your mobile device.',
-    );
-    FirebaseAuthentication.signInWithPhoneNumber({
-      verificationId,
-      verificationCode,
-    });
+  const verificationCode = window.prompt(
+    'Please enter the verification code that was sent to your mobile device.',
+  );
+  await FirebaseAuthentication.signInWithPhoneNumber({
+    verificationId: result.verificationId,
+    verificationCode,
   });
-  await promise;
 };
 
 const signInWithTwitter = async () => {
@@ -188,7 +185,6 @@ const useAppLanguage = async () => {
 * [`signInWithYahoo(...)`](#signinwithyahoo)
 * [`signOut()`](#signout)
 * [`useAppLanguage()`](#useapplanguage)
-* [`addListener('phoneCodeSent', ...)`](#addlistenerphonecodesent-)
 * [Interfaces](#interfaces)
 
 </docgen-index>
@@ -345,7 +341,7 @@ Only available for Android and iOS.
 ### signInWithPhoneNumber(...)
 
 ```typescript
-signInWithPhoneNumber(options?: SignInWithPhoneNumberOptions | undefined) => Promise<SignInResult>
+signInWithPhoneNumber(options?: SignInWithPhoneNumberOptions | undefined) => Promise<SignInWithPhoneNumberResult>
 ```
 
 Starts the sign-in flow using a phone number.
@@ -358,7 +354,7 @@ Only available for Android and iOS.
 | ------------- | ------------------------------------------------------------------------------------- |
 | **`options`** | <code><a href="#signinwithphonenumberoptions">SignInWithPhoneNumberOptions</a></code> |
 
-**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
+**Returns:** <code>Promise&lt;<a href="#signinwithphonenumberresult">SignInWithPhoneNumberResult</a>&gt;</code>
 
 --------------------
 
@@ -423,24 +419,6 @@ useAppLanguage() => Promise<void>
 Sets the user-facing language code to be the default app language.
 
 Only available for Android and iOS.
-
---------------------
-
-
-### addListener('phoneCodeSent', ...)
-
-```typescript
-addListener(eventName: 'phoneCodeSent', listenerFunc: (event: PhoneCodeSentEvent) => void) => PluginListenerHandle
-```
-
-Adds an event listener that is called after the verification code is sent by SMS to the specified phone number.
-
-| Param              | Type                                                                                  |
-| ------------------ | ------------------------------------------------------------------------------------- |
-| **`eventName`**    | <code>'phoneCodeSent'</code>                                                          |
-| **`listenerFunc`** | <code>(event: <a href="#phonecodesentevent">PhoneCodeSentEvent</a>) =&gt; void</code> |
-
-**Returns:** <code><a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
 --------------------
 
@@ -525,27 +503,20 @@ Adds an event listener that is called after the verification code is sent by SMS
 | **`value`** | <code>string</code> | The custom parameter value (e.g. `user@firstadd.onmicrosoft.com`). |
 
 
+#### SignInWithPhoneNumberResult
+
+| Prop                 | Type                | Description                                                             |
+| -------------------- | ------------------- | ----------------------------------------------------------------------- |
+| **`verificationId`** | <code>string</code> | The verification ID, which is needed to identify the verification code. |
+
+
 #### SignInWithPhoneNumberOptions
 
-| Prop                   | Type                | Description                                                                                            |
-| ---------------------- | ------------------- | ------------------------------------------------------------------------------------------------------ |
-| **`phoneNumber`**      | <code>string</code> | The phone number to be verified.                                                                       |
-| **`verificationId`**   | <code>string</code> | The verification ID returned by `onPhoneCodeSent` event. The `verificationCode` must also be provided. |
-| **`verificationCode`** | <code>string</code> | The verification code from the SMS message. The `verificationId` must also be provided.                |
-
-
-#### PluginListenerHandle
-
-| Prop         | Type                                      |
-| ------------ | ----------------------------------------- |
-| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
-
-
-#### PhoneCodeSentEvent
-
-| Prop                 | Type                |
-| -------------------- | ------------------- |
-| **`verificationId`** | <code>string</code> |
+| Prop                   | Type                | Description                                                                                                                                         |
+| ---------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`phoneNumber`**      | <code>string</code> | The phone number to be verified.                                                                                                                    |
+| **`verificationId`**   | <code>string</code> | The verification ID which will be returned when `signInWithPhoneNumber` is called for the first time. The `verificationCode` must also be provided. |
+| **`verificationCode`** | <code>string</code> | The verification code from the SMS message. The `verificationId` must also be provided.                                                             |
 
 </docgen-api>
 

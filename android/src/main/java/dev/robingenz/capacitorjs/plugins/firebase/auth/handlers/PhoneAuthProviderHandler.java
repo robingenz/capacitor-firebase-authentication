@@ -9,7 +9,6 @@ import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthenticationHelper;
-
 import java.util.concurrent.TimeUnit;
 
 public class PhoneAuthProviderHandler {
@@ -62,13 +61,9 @@ public class PhoneAuthProviderHandler {
 
             @Override
             public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken token) {
-                JSObject ret = new JSObject();
-                ret.put("verificationId", verificationId);
-                pluginImplementation.getPlugin().notifyListeners("phoneCodeSent", ret);
-                boolean skipNativeAuth = pluginImplementation.getConfig().getSkipNativeAuth();
-                if (skipNativeAuth) {
-                    pluginImplementation.handleSuccessfulSignIn(call, null);
-                }
+                JSObject result = FirebaseAuthenticationHelper.createSignInResult(null, null);
+                result.put("verificationId", verificationId);
+                call.resolve(result);
             }
 
             @Override
