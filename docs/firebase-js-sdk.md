@@ -55,7 +55,7 @@ const signInWithMicrosoft = async () => {
 
 const signInWithPhoneNumber = async () => {
   // 1. Start phone number verification
-  const result = FirebaseAuthentication.signInWithPhoneNumber({
+  const { verificationId } = FirebaseAuthentication.signInWithPhoneNumber({
     phoneNumber: '123456789',
   });
   // 2. Let the user enter the SMS code
@@ -63,7 +63,7 @@ const signInWithPhoneNumber = async () => {
     'Please enter the verification code that was sent to your mobile device.',
   );
   // 3. Sign in on the web layer using the verification ID and verification code.
-  const credential = firebase.auth.PhoneAuthProvider.credential(result.verificationId, verificationCode);
+  const credential = firebase.auth.PhoneAuthProvider.credential(verificationId, verificationCode);
   await firebase.auth().signInWithCredential(credential);
 };
 ```
