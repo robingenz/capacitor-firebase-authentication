@@ -122,13 +122,6 @@ export interface FirebaseAuthenticationPlugin {
     eventName: 'phoneCodeSent',
     listenerFunc: (event: PhoneCodeSentEvent) => void,
   ): PluginListenerHandle;
-  /**
-   * Adds an event listener that is called after the timeout duration for `signInWithPhoneNumber` has passed.
-   */
-  addListener(
-    eventName: 'phoneCodeAutoRetrievalTimeOut',
-    listenerFunc: (event: PhoneCodeAutoRetrievalTimeOutEvent) => void,
-  ): PluginListenerHandle;
 }
 
 export interface GetCurrentUserResult {
@@ -245,9 +238,5 @@ export interface AuthCredential {
 }
 
 export interface PhoneCodeSentEvent {
-  verificationId: string;
-}
-
-export interface PhoneCodeAutoRetrievalTimeOutEvent {
   verificationId: string;
 }
