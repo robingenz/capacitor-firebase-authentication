@@ -69,10 +69,12 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         let phoneNumber = call.getString("phoneNumber")
         let verificationId = call.getString("verificationId")
         let verificationCode = call.getString("verificationCode")
+
         if phoneNumber == nil && (verificationId == nil || verificationCode == nil) {
             call.reject(errorPhoneNumberVerificationIdCodeMissing)
             return
         }
+
         implementation?.signInWithPhoneNumber(call)
     }
 

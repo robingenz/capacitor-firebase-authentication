@@ -4,7 +4,7 @@ import FirebaseCore
 import FirebaseAuth
 
 public class FirebaseAuthenticationHelper {
-    public static func createSignInResult(credential: AuthCredential, user: User?, nonce: String?) -> JSObject {
+    public static func createSignInResult(credential: AuthCredential?, user: User?, nonce: String?) -> JSObject {
         let userResult = self.createUserResultFromFirebaseUser(user)
         let credentialResult = self.createCredentialResultFromAuthCredential(credential, nonce: nonce)
         var result = JSObject()
@@ -14,19 +14,19 @@ public class FirebaseAuthenticationHelper {
     }
 
     public static func createUserResultFromFirebaseUser(_ user: User?) -> JSObject? {
-        if user == nil {
+        guard let user = user else {
             return nil
         }
         var result = JSObject()
-        result["displayName"] = user?.displayName
-        result["email"] = user?.email
-        result["emailVerified"] = user?.isEmailVerified
-        result["isAnonymous"] = user?.isAnonymous
-        result["phoneNumber"] = user?.phoneNumber
-        result["photoUrl"] = user?.photoURL?.absoluteString
-        result["providerId"] = user?.providerID
-        result["tenantId"] = user?.tenantID
-        result["uid"] = user?.uid
+        result["displayName"] = user.displayName
+        result["email"] = user.email
+        result["emailVerified"] = user.isEmailVerified
+        result["isAnonymous"] = user.isAnonymous
+        result["phoneNumber"] = user.phoneNumber
+        result["photoUrl"] = user.photoURL?.absoluteString
+        result["providerId"] = user.providerID
+        result["tenantId"] = user.tenantID
+        result["uid"] = user.uid
         return result
     }
 

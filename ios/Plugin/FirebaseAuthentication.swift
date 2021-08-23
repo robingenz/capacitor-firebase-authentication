@@ -11,6 +11,7 @@ import FirebaseAuth
     private var facebookAuthProviderHandler: FacebookAuthProviderHandler?
     private var googleAuthProviderHandler: GoogleAuthProviderHandler?
     private var oAuthProviderHandler: OAuthProviderHandler?
+    private var phoneAuthProviderHandler: PhoneAuthProviderHandler?
     private var savedCall: CAPPluginCall?
 
     init(plugin: FirebaseAuthenticationPlugin, config: FirebaseAuthenticationConfig) {
@@ -141,6 +142,9 @@ import FirebaseAuth
         }
         if config.providers.contains("google.com") {
             self.googleAuthProviderHandler = GoogleAuthProviderHandler(self)
+        }
+        if config.providers.contains("phone") {
+            self.phoneAuthProviderHandler = PhoneAuthProviderHandler(self)
         }
         self.oAuthProviderHandler = OAuthProviderHandler(self)
     }
