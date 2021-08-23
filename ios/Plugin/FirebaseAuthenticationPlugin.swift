@@ -9,7 +9,7 @@ import FirebaseAuth
  */
 @objc(FirebaseAuthenticationPlugin)
 public class FirebaseAuthenticationPlugin: CAPPlugin {
-    public let errorPhoneNumberSmsCodeMissing = "phoneNumber or smsCode and verificationId must be provided."
+    public let errorPhoneNumberVerificationIdCodeMissing = "phoneNumber or verificationId and verificationCode must be provided."
     private var implementation: FirebaseAuthentication?
 
     override public func load() {
@@ -68,9 +68,9 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
     @objc func signInWithPhoneNumber(_ call: CAPPluginCall) {
         let phoneNumber = call.getString("phoneNumber")
         let verificationId = call.getString("verificationId")
-        let smsCode = call.getString("smsCode")
-        if phoneNumber == nil && (verificationId == nil || smsCode == nil) {
-            call.reject(errorPhoneNumberSmsCodeMissing)
+        let verificationCode = call.getString("verificationCode")
+        if phoneNumber == nil && (verificationId == nil || verificationCode == nil) {
+            call.reject(errorPhoneNumberVerificationIdCodeMissing)
             return
         }
         implementation?.signInWithPhoneNumber(call)

@@ -8,6 +8,8 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthenticationHelper;
+
 import java.util.concurrent.TimeUnit;
 
 public class PhoneAuthProviderHandler {
@@ -21,12 +23,12 @@ public class PhoneAuthProviderHandler {
     public void signIn(PluginCall call) {
         String phoneNumber = call.getString("phoneNumber");
         String verificationId = call.getString("verificationId");
-        String smsCode = call.getString("smsCode");
+        String verificationCode = call.getString("verificationCode");
 
-        if (smsCode == null) {
+        if (verificationCode == null) {
             verifyPhoneNumber(call, phoneNumber);
         } else {
-            handleSmsCode(call, verificationId, smsCode);
+            handleVerificationCode(call, verificationId, verificationCode);
         }
     }
 
@@ -41,8 +43,8 @@ public class PhoneAuthProviderHandler {
         PhoneAuthProvider.verifyPhoneNumber(options);
     }
 
-    private void handleSmsCode(PluginCall call, String verificationId, String smsCode) {
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, smsCode);
+    private void handleVerificationCode(PluginCall call, String verificationId, String verificationCode) {
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, verificationCode);
         pluginImplementation.handleSuccessfulSignIn(call, credential);
     }
 
@@ -63,6 +65,10 @@ public class PhoneAuthProviderHandler {
                 JSObject ret = new JSObject();
                 ret.put("verificationId", verificationId);
                 pluginImplementation.getPlugin().notifyListeners("phoneCodeSent", ret);
+                boolean skipNativeAuth = pluginImplementation.getConfig().getSkipNativeAuth();
+                if (skipNativeAuth) {
+                    pluginImplementation.handleSuccessfulSignIn(call, null);
+                }
             }
 
             @Override

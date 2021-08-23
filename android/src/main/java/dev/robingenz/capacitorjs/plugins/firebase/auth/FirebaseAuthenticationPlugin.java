@@ -14,7 +14,7 @@ import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.FacebookAuthProv
 @CapacitorPlugin(name = "FirebaseAuthentication", requestCodes = { FacebookAuthProviderHandler.RC_FACEBOOK_AUTH })
 public class FirebaseAuthenticationPlugin extends Plugin {
 
-    public static final String ERROR_PHONE_NUMBER_SMS_CODE_MISSING = "phoneNumber or smsCode and verificationId must be provided.";
+    public static final String ERROR_PHONE_NUMBER_SMS_CODE_MISSING = "phoneNumber or verificationId and verificationCode must be provided.";
     private FirebaseAuthenticationConfig config;
     private FirebaseAuthentication implementation;
 
@@ -91,9 +91,9 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     public void signInWithPhoneNumber(PluginCall call) {
         String phoneNumber = call.getString("phoneNumber");
         String verificationId = call.getString("verificationId");
-        String smsCode = call.getString("smsCode");
+        String verificationCode = call.getString("verificationCode");
 
-        if (phoneNumber == null && (verificationId == null || smsCode == null)) {
+        if (phoneNumber == null && (verificationId == null || verificationCode == null)) {
             call.reject(ERROR_PHONE_NUMBER_SMS_CODE_MISSING);
             return;
         }

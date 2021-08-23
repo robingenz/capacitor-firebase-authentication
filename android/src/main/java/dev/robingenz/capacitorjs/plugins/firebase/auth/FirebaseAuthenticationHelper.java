@@ -5,6 +5,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.OAuthCredential;
+import com.google.firebase.auth.PhoneAuthCredential;
 
 public class FirebaseAuthenticationHelper {
 
@@ -35,6 +36,9 @@ public class FirebaseAuthenticationHelper {
     }
 
     public static JSObject createCredentialResultFromAuthCredential(AuthCredential credential) {
+        if (credential == null) {
+            return null;
+        }
         JSObject result = new JSObject();
         result.put("providerId", credential.getProvider());
         if (credential instanceof OAuthCredential) {
@@ -49,6 +53,12 @@ public class FirebaseAuthenticationHelper {
             String secret = ((OAuthCredential) credential).getSecret();
             if (secret != null) {
                 result.put("secret", secret);
+            }
+        }
+        if (credential instanceof PhoneAuthCredential) {
+            String verificationCode = ((PhoneAuthCredential) credential).getSmsCode();
+            if (verificationCode != null) {
+                result.put("verificationCode", verificationCode);
             }
         }
         return result;

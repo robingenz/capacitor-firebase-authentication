@@ -52,6 +52,21 @@ const signInWithMicrosoft = async () => {
   const provider = new firebase.auth.OAuthProvider('microsoft.com');
   const credential = provider.credential({ idToken: token });
   await firebase.auth().signInWithCredential(credential);
+
+const signInWithPhoneNumber = async () => {
+  // 1. Start phone number verification
+  FirebaseAuthentication.signInWithPhoneNumber({
+    phoneNumber: '123456789',
+  });
+  const listener = FirebaseAuthentication.addListener('phoneCodeSent', ({ verificationId }) => {
+    // 2. Let the user enter the SMS code
+    const verificationCode = window.prompt(
+      'Please enter the verification code that was sent to your mobile device.',
+    );
+    // 3. Sign in on the web layer using the verification ID and verification code.
+    const credential = firebase.auth.PhoneAuthProvider.credential(verificationId, verificationCode);
+    await firebase.auth().signInWithCredential(credential);
+  });
 };
 ```
 

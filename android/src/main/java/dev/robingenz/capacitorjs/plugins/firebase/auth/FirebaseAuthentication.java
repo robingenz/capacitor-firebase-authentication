@@ -180,6 +180,10 @@ public class FirebaseAuthentication {
         return plugin;
     }
 
+    public FirebaseAuthenticationConfig getConfig() {
+        return config;
+    }
+
     private void initAuthProviderHandlers(FirebaseAuthenticationConfig config) {
         List providerList = Arrays.asList(config.getProviders());
         if (providerList.contains("facebook.com")) {

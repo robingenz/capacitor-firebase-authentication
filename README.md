@@ -143,12 +143,12 @@ const signInWithPhoneNumber = async () => {
     phoneNumber: '123456789',
   });
   FirebaseAuthentication.addListener('phoneCodeSent', ({ verificationId }) => {
-    const smsCode = window.prompt(
+    const verificationCode = window.prompt(
       'Please enter the verification code that was sent to your mobile device.',
     );
     FirebaseAuthentication.signInWithPhoneNumber({
       verificationId,
-      smsCode,
+      verificationCode,
     });
   });
   await promise;
@@ -527,11 +527,11 @@ Adds an event listener that is called after the verification code is sent by SMS
 
 #### SignInWithPhoneNumberOptions
 
-| Prop                 | Type                | Description                                                                                   |
-| -------------------- | ------------------- | --------------------------------------------------------------------------------------------- |
-| **`phoneNumber`**    | <code>string</code> | The phone number to be verified.                                                              |
-| **`verificationId`** | <code>string</code> | The verification ID returned by `onPhoneCodeSent` event. The `smsCode` must also be provided. |
-| **`smsCode`**        | <code>string</code> | The verification code from the SMS message. The `verificationId` must also be provided.       |
+| Prop                   | Type                | Description                                                                                            |
+| ---------------------- | ------------------- | ------------------------------------------------------------------------------------------------------ |
+| **`phoneNumber`**      | <code>string</code> | The phone number to be verified.                                                                       |
+| **`verificationId`**   | <code>string</code> | The verification ID returned by `onPhoneCodeSent` event. The `verificationCode` must also be provided. |
+| **`verificationCode`** | <code>string</code> | The verification code from the SMS message. The `verificationId` must also be provided.                |
 
 
 #### PluginListenerHandle

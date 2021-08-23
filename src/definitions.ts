@@ -179,14 +179,14 @@ export interface SignInWithPhoneNumberOptions {
   phoneNumber?: string;
   /**
    * The verification ID returned by `onPhoneCodeSent` event.
-   * The `smsCode` must also be provided.
+   * The `verificationCode` must also be provided.
    */
   verificationId?: string;
   /**
    * The verification code from the SMS message.
    * The `verificationId` must also be provided.
    */
-  smsCode?: string;
+  verificationCode?: string;
 }
 
 export interface SignInResult {
