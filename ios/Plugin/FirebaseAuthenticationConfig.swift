@@ -6,5 +6,6 @@ public struct FirebaseAuthenticationConfig {
                      "google.com",
                      "microsoft.com",
                      "twitter.com",
-                     "yahoo.com"]
+                     "yahoo.com",
+                     "phone"]
 }

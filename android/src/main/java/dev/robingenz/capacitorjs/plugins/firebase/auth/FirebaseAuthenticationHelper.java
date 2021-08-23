@@ -5,6 +5,7 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.auth.OAuthCredential;
+import com.google.firebase.auth.PhoneAuthCredential;
 
 public class FirebaseAuthenticationHelper {
 
@@ -35,6 +36,9 @@ public class FirebaseAuthenticationHelper {
     }
 
     public static JSObject createCredentialResultFromAuthCredential(AuthCredential credential) {
+        if (credential == null) {
+            return null;
+        }
         JSObject result = new JSObject();
         result.put("providerId", credential.getProvider());
         if (credential instanceof OAuthCredential) {

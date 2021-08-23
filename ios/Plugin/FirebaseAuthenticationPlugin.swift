@@ -9,6 +9,7 @@ import FirebaseAuth
  */
 @objc(FirebaseAuthenticationPlugin)
 public class FirebaseAuthenticationPlugin: CAPPlugin {
+    public let errorPhoneNumberVerificationIdCodeMissing = "phoneNumber or verificationId and verificationCode must be provided."
     private var implementation: FirebaseAuthentication?
 
     override public func load() {
@@ -62,6 +63,19 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
 
     @objc func signInWithMicrosoft(_ call: CAPPluginCall) {
         implementation?.signInWithMicrosoft(call)
+    }
+
+    @objc func signInWithPhoneNumber(_ call: CAPPluginCall) {
+        let phoneNumber = call.getString("phoneNumber")
+        let verificationId = call.getString("verificationId")
+        let verificationCode = call.getString("verificationCode")
+
+        if phoneNumber == nil && (verificationId == nil || verificationCode == nil) {
+            call.reject(errorPhoneNumberVerificationIdCodeMissing)
+            return
+        }
+
+        implementation?.signInWithPhoneNumber(call)
     }
 
     @objc func signInWithTwitter(_ call: CAPPluginCall) {

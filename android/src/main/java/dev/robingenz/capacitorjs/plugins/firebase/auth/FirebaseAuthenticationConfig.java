@@ -10,7 +10,8 @@ public class FirebaseAuthenticationConfig {
         "google.com",
         "microsoft.com",
         "twitter.com",
-        "yahoo.com"
+        "yahoo.com",
+        "phone"
     };
 
     public boolean getSkipNativeAuth() {

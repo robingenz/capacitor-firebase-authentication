@@ -11,6 +11,7 @@ import FirebaseAuth
     private var facebookAuthProviderHandler: FacebookAuthProviderHandler?
     private var googleAuthProviderHandler: GoogleAuthProviderHandler?
     private var oAuthProviderHandler: OAuthProviderHandler?
+    private var phoneAuthProviderHandler: PhoneAuthProviderHandler?
     private var savedCall: CAPPluginCall?
 
     init(plugin: FirebaseAuthenticationPlugin, config: FirebaseAuthenticationConfig) {
@@ -65,6 +66,11 @@ import FirebaseAuth
     @objc func signInWithMicrosoft(_ call: CAPPluginCall) {
         self.savedCall = call
         self.oAuthProviderHandler?.signIn(call: call, providerId: "microsoft.com")
+    }
+
+    @objc func signInWithPhoneNumber(_ call: CAPPluginCall) {
+        self.savedCall = call
+        self.phoneAuthProviderHandler?.signIn(call: call)
     }
 
     @objc func signInWithTwitter(_ call: CAPPluginCall) {
@@ -136,6 +142,9 @@ import FirebaseAuth
         }
         if config.providers.contains("google.com") {
             self.googleAuthProviderHandler = GoogleAuthProviderHandler(self)
+        }
+        if config.providers.contains("phone") {
+            self.phoneAuthProviderHandler = PhoneAuthProviderHandler(self)
         }
         self.oAuthProviderHandler = OAuthProviderHandler(self)
     }

@@ -49,6 +49,7 @@ The further installation steps depend on the selected authentication method:
 - [Microsoft Sign-In](docs/setup-microsoft.md)
 - [Twitter Sign-In](docs/setup-twitter.md)
 - [Yahoo Sign-In](docs/setup-yahoo.md)
+- [Phone Number Sign-In](docs/setup-phone.md)
 
 ## Configuration
 
@@ -57,10 +58,10 @@ The further installation steps depend on the selected authentication method:
 
 These configuration values are available:
 
-| Prop                 | Type                  | Description                                                                                                                                                                                             | Default                                                                                                             |
-| -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **`skipNativeAuth`** | <code>boolean</code>  | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS.                                     | <code>false</code>                                                                                                  |
-| **`providers`**      | <code>string[]</code> | Configure which providers you want to use so that only the providers you need are initialized. If you do not configure any providers, they will be all initialized. Only available for Android and iOS. | <code>["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com"]</code> |
+| Prop                 | Type                  | Description                                                                                                                                                                                             | Default                                                                                                                      |
+| -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **`skipNativeAuth`** | <code>boolean</code>  | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS.                                     | <code>false</code>                                                                                                           |
+| **`providers`**      | <code>string[]</code> | Configure which providers you want to use so that only the providers you need are initialized. If you do not configure any providers, they will be all initialized. Only available for Android and iOS. | <code>["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com", "phone"]</code> |
 
 ### Examples
 
@@ -121,6 +122,10 @@ const signInWithApple = async () => {
   await FirebaseAuthentication.signInWithApple();
 };
 
+const signInWithFacebook = async () => {
+  await FirebaseAuthentication.signInWithFacebook();
+};
+
 const signInWithGithub = async () => {
   await FirebaseAuthentication.signInWithGithub();
 };
@@ -131,6 +136,21 @@ const signInWithGoogle = async () => {
 
 const signInWithMicrosoft = async () => {
   await FirebaseAuthentication.signInWithMicrosoft();
+};
+
+const signInWithPhoneNumber = async () => {
+  const { verificationId } = await FirebaseAuthentication.signInWithPhoneNumber(
+    {
+      phoneNumber: '123456789',
+    },
+  );
+  const verificationCode = window.prompt(
+    'Please enter the verification code that was sent to your mobile device.',
+  );
+  await FirebaseAuthentication.signInWithPhoneNumber({
+    verificationId,
+    verificationCode,
+  });
 };
 
 const signInWithTwitter = async () => {
@@ -162,6 +182,7 @@ const useAppLanguage = async () => {
 * [`signInWithGithub(...)`](#signinwithgithub)
 * [`signInWithGoogle(...)`](#signinwithgoogle)
 * [`signInWithMicrosoft(...)`](#signinwithmicrosoft)
+* [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
 * [`signInWithTwitter(...)`](#signinwithtwitter)
 * [`signInWithYahoo(...)`](#signinwithyahoo)
 * [`signOut()`](#signout)
@@ -319,6 +340,27 @@ Only available for Android and iOS.
 --------------------
 
 
+### signInWithPhoneNumber(...)
+
+```typescript
+signInWithPhoneNumber(options: SignInWithPhoneNumberOptions) => Promise<SignInWithPhoneNumberResult>
+```
+
+Starts the sign-in flow using a phone number.
+
+Either the phone number or the verification code and verification ID must be provided.
+
+Only available for Android and iOS.
+
+| Param         | Type                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#signinwithphonenumberoptions">SignInWithPhoneNumberOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#signinwithphonenumberresult">SignInWithPhoneNumberResult</a>&gt;</code>
+
+--------------------
+
+
 ### signInWithTwitter(...)
 
 ```typescript
@@ -461,6 +503,22 @@ Only available for Android and iOS.
 | ----------- | ------------------- | ------------------------------------------------------------------ |
 | **`key`**   | <code>string</code> | The custom parameter key (e.g. `login_hint`).                      |
 | **`value`** | <code>string</code> | The custom parameter value (e.g. `user@firstadd.onmicrosoft.com`). |
+
+
+#### SignInWithPhoneNumberResult
+
+| Prop                 | Type                | Description                                                             |
+| -------------------- | ------------------- | ----------------------------------------------------------------------- |
+| **`verificationId`** | <code>string</code> | The verification ID, which is needed to identify the verification code. |
+
+
+#### SignInWithPhoneNumberOptions
+
+| Prop                   | Type                | Description                                                                                                                                         |
+| ---------------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`phoneNumber`**      | <code>string</code> | The phone number to be verified.                                                                                                                    |
+| **`verificationId`**   | <code>string</code> | The verification ID which will be returned when `signInWithPhoneNumber` is called for the first time. The `verificationCode` must also be provided. |
+| **`verificationCode`** | <code>string</code> | The verification code from the SMS message. The `verificationId` must also be provided.                                                             |
 
 </docgen-api>
 

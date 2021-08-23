@@ -22,7 +22,7 @@ declare module '@capacitor/cli' {
        *
        * Only available for Android and iOS.
        *
-       * @default ["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com"]
+       * @default ["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com", "phone"]
        * @example ["apple.com", "google.com"]
        */
       providers?: string[];
@@ -79,6 +79,16 @@ export interface FirebaseAuthenticationPlugin {
    * Only available for Android and iOS.
    */
   signInWithMicrosoft(options?: SignInOptions): Promise<SignInResult>;
+  /**
+   * Starts the sign-in flow using a phone number.
+   *
+   * Either the phone number or the verification code and verification ID must be provided.
+   *
+   * Only available for Android and iOS.
+   */
+  signInWithPhoneNumber(
+    options: SignInWithPhoneNumberOptions,
+  ): Promise<SignInWithPhoneNumberResult>;
   /**
    * Starts the Twitter sign-in flow.
    *
@@ -153,6 +163,23 @@ export interface SignInCustomParameter {
   value: string;
 }
 
+export interface SignInWithPhoneNumberOptions {
+  /**
+   * The phone number to be verified.
+   */
+  phoneNumber?: string;
+  /**
+   * The verification ID which will be returned when `signInWithPhoneNumber` is called for the first time.
+   * The `verificationCode` must also be provided.
+   */
+  verificationId?: string;
+  /**
+   * The verification code from the SMS message.
+   * The `verificationId` must also be provided.
+   */
+  verificationCode?: string;
+}
+
 export interface SignInResult {
   /**
    * The currently signed-in user, or null if there isn't any.
@@ -162,6 +189,13 @@ export interface SignInResult {
    * Credentials returned by an auth provider.
    */
   credential: AuthCredential | null;
+}
+
+export interface SignInWithPhoneNumberResult extends SignInResult {
+  /**
+   * The verification ID, which is needed to identify the verification code.
+   */
+  verificationId?: string;
 }
 
 export interface User {

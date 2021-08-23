@@ -14,6 +14,7 @@ import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.FacebookAuthProv
 @CapacitorPlugin(name = "FirebaseAuthentication", requestCodes = { FacebookAuthProviderHandler.RC_FACEBOOK_AUTH })
 public class FirebaseAuthenticationPlugin extends Plugin {
 
+    public static final String ERROR_PHONE_NUMBER_SMS_CODE_MISSING = "phoneNumber or verificationId and verificationCode must be provided.";
     private FirebaseAuthenticationConfig config;
     private FirebaseAuthentication implementation;
 
@@ -87,6 +88,20 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void signInWithPhoneNumber(PluginCall call) {
+        String phoneNumber = call.getString("phoneNumber");
+        String verificationId = call.getString("verificationId");
+        String verificationCode = call.getString("verificationCode");
+
+        if (phoneNumber == null && (verificationId == null || verificationCode == null)) {
+            call.reject(ERROR_PHONE_NUMBER_SMS_CODE_MISSING);
+            return;
+        }
+
+        implementation.signInWithPhoneNumber(call);
+    }
+
+    @PluginMethod
     public void signInWithTwitter(PluginCall call) {
         implementation.signInWithTwitter(call);
     }
@@ -112,15 +127,19 @@ public class FirebaseAuthenticationPlugin extends Plugin {
         super.startActivityForResult(call, intent, callbackName);
     }
 
-    @ActivityCallback
-    private void handleGoogleAuthProviderActivityResult(PluginCall call, ActivityResult result) {
-        implementation.handleGoogleAuthProviderActivityResult(call, result);
+    public void notifyListeners(String eventName, JSObject data) {
+        super.notifyListeners(eventName, data);
     }
 
     @Override
     protected void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
         super.handleOnActivityResult(requestCode, resultCode, data);
         implementation.handleOnActivityResult(requestCode, resultCode, data);
+    }
+
+    @ActivityCallback
+    private void handleGoogleAuthProviderActivityResult(PluginCall call, ActivityResult result) {
+        implementation.handleGoogleAuthProviderActivityResult(call, result);
     }
 
     private FirebaseAuthenticationConfig getFirebaseAuthenticationConfig() {
