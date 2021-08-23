@@ -348,7 +348,7 @@ signInWithPhoneNumber(options: SignInWithPhoneNumberOptions) => Promise<SignInWi
 
 Starts the sign-in flow using a phone number.
 
-Either the phone number or the SMS code and verification ID must be provided.
+Either the phone number or the verification code and verification ID must be provided.
 
 Only available for Android and iOS.
 
