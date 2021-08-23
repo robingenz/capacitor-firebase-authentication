@@ -55,12 +55,6 @@ public class FirebaseAuthenticationHelper {
                 result.put("secret", secret);
             }
         }
-        if (credential instanceof PhoneAuthCredential) {
-            String verificationCode = ((PhoneAuthCredential) credential).getSmsCode();
-            if (verificationCode != null) {
-                result.put("verificationCode", verificationCode);
-            }
-        }
         return result;
     }
 }
