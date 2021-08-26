@@ -127,10 +127,10 @@ public class FirebaseAuthentication {
         }
     }
 
-    public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential) {
+    public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential, String idToken) {
         boolean skipNativeAuth = this.config.getSkipNativeAuth();
         if (skipNativeAuth) {
-            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(null, credential);
+            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(null, credential, idToken);
             call.resolve(signInResult);
             return;
         }
@@ -144,7 +144,7 @@ public class FirebaseAuthentication {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential succeeded.");
                             FirebaseUser user = getCurrentUser();
-                            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, credential);
+                            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, credential, idToken);
                             call.resolve(signInResult);
                         } else {
                             Log.e(TAG, "signInWithCredential failed.", task.getException());

@@ -4,21 +4,24 @@ import com.getcapacitor.JSObject;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
+import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.OAuthCredential;
 import com.google.firebase.auth.PhoneAuthCredential;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.OAuthProviderHandler;
 
 public class FirebaseAuthenticationHelper {
 
-    public static JSObject createSignInResult(FirebaseUser user, AuthCredential credential) {
-        JSObject userResult = FirebaseAuthenticationHelper.createUserResultFromFirebaseUser(user);
-        JSObject credentialResult = FirebaseAuthenticationHelper.createCredentialResultFromAuthCredential(credential);
+    public static JSObject createSignInResult(FirebaseUser user, AuthCredential credential, String idToken) {
+        JSObject userResult = FirebaseAuthenticationHelper.createUserResult(user);
+        JSObject credentialResult = FirebaseAuthenticationHelper.createCredentialResult(credential, idToken);
         JSObject result = new JSObject();
         result.put("user", userResult);
         result.put("credential", credentialResult);
         return result;
     }
 
-    public static JSObject createUserResultFromFirebaseUser(FirebaseUser user) {
+    public static JSObject createUserResult(FirebaseUser user) {
         if (user == null) {
             return null;
         }
@@ -35,25 +38,30 @@ public class FirebaseAuthenticationHelper {
         return result;
     }
 
-    public static JSObject createCredentialResultFromAuthCredential(AuthCredential credential) {
-        if (credential == null) {
+    public static JSObject createCredentialResult(AuthCredential credential, String idToken) {
+        if (credential == null && idToken == null) {
             return null;
         }
         JSObject result = new JSObject();
-        result.put("providerId", credential.getProvider());
-        if (credential instanceof OAuthCredential) {
-            String accessToken = ((OAuthCredential) credential).getAccessToken();
-            if (accessToken != null) {
-                result.put("accessToken", accessToken);
+        if (credential != null) {
+            result.put("providerId", credential.getProvider());
+            if (credential instanceof OAuthCredential) {
+                String oAuthAccessToken = ((OAuthCredential) credential).getAccessToken();
+                if (oAuthAccessToken != null) {
+                    result.put("accessToken", oAuthAccessToken);
+                }
+                String oAuthIdToken = ((OAuthCredential) credential).getIdToken();
+                if (oAuthIdToken != null) {
+                    result.put("idToken", oAuthIdToken);
+                }
+                String oAuthSecret = ((OAuthCredential) credential).getSecret();
+                if (oAuthSecret != null) {
+                    result.put("secret", oAuthSecret);
+                }
             }
-            String idToken = ((OAuthCredential) credential).getIdToken();
-            if (idToken != null) {
-                result.put("idToken", idToken);
-            }
-            String secret = ((OAuthCredential) credential).getSecret();
-            if (secret != null) {
-                result.put("secret", secret);
-            }
+        }
+        if (idToken != null) {
+            result.put("idToken", idToken);
         }
         return result;
     }

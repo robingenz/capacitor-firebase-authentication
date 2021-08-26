@@ -16,6 +16,7 @@ import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 public class FacebookAuthProviderHandler {
 
     public static final int RC_FACEBOOK_AUTH = 0xface;
+    public static final String ERROR_SIGN_IN_CANCELED = "Sign in canceled.";
     private FirebaseAuthentication pluginImplementation;
     private CallbackManager mCallbackManager;
     private LoginButton loginButton;
@@ -61,13 +62,14 @@ public class FacebookAuthProviderHandler {
     }
 
     private void handleSuccessCallback(LoginResult loginResult) {
-        AccessToken token = loginResult.getAccessToken();
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        pluginImplementation.handleSuccessfulSignIn(savedCall, credential);
+        AccessToken accessToken = loginResult.getAccessToken();
+        String token = accessToken.getToken();
+        AuthCredential credential = FacebookAuthProvider.getCredential(token);
+        pluginImplementation.handleSuccessfulSignIn(savedCall, credential, token);
     }
 
     private void handleCancelCallback() {
-        pluginImplementation.handleFailedSignIn(savedCall, "Login canceled.", null);
+        pluginImplementation.handleFailedSignIn(savedCall, ERROR_SIGN_IN_CANCELED, null);
     }
 
     private void handleErrorCallback(FacebookException exception) {

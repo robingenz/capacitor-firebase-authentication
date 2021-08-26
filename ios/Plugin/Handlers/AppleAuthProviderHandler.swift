@@ -104,7 +104,7 @@ extension AppleAuthProviderHandler: ASAuthorizationControllerDelegate, ASAuthori
             return
         }
         let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
-        self.pluginImplementation.handleSuccessfulSignIn(credential: credential, nonce: nonce)
+        self.pluginImplementation.handleSuccessfulSignIn(credential: credential, idToken: idTokenString, nonce: nonce)
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
