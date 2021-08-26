@@ -25,7 +25,6 @@ public class FirebaseAuthentication {
 
     public static final String TAG = "FirebaseAuthentication";
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
-    public static final String ERROR_NO_USER_SIGNED_IN = "Currently no user is signed in.";
     private FirebaseAuthenticationPlugin plugin;
     private FirebaseAuthenticationConfig config;
     private FirebaseAuth firebaseAuthInstance;
@@ -47,10 +46,6 @@ public class FirebaseAuthentication {
 
     public void getIdToken(Boolean forceRefresh, final GetIdTokenResultCallback resultCallback) {
         FirebaseUser user = getCurrentUser();
-        if (user == null) {
-            resultCallback.error(ERROR_NO_USER_SIGNED_IN);
-            return;
-        }
         Task<GetTokenResult> tokenResultTask = user.getIdToken(forceRefresh);
         tokenResultTask.addOnCompleteListener(
             new OnCompleteListener<GetTokenResult>() {
