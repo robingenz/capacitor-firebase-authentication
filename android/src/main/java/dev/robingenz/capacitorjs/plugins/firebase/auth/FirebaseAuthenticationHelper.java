@@ -45,21 +45,22 @@ public class FirebaseAuthenticationHelper {
         JSObject result = new JSObject();
         if (credential != null) {
             result.put("providerId", credential.getProvider());
+            if (credential instanceof OAuthCredential) {
+                String oAuthAccessToken = ((OAuthCredential) credential).getAccessToken();
+                if (oAuthAccessToken != null) {
+                    result.put("accessToken", oAuthAccessToken);
+                }
+                String oAuthIdToken = ((OAuthCredential) credential).getIdToken();
+                if (oAuthIdToken != null) {
+                    result.put("idToken", oAuthIdToken);
+                }
+                String oAuthSecret = ((OAuthCredential) credential).getSecret();
+                if (oAuthSecret != null) {
+                    result.put("secret", oAuthSecret);
+                }
+            }
         }
-        if (credential instanceof OAuthCredential) {
-            String oAuthAccessToken = ((OAuthCredential) credential).getAccessToken();
-            if (oAuthAccessToken != null) {
-                result.put("accessToken", oAuthAccessToken);
-            }
-            String oAuthIdToken = ((OAuthCredential) credential).getIdToken();
-            if (oAuthIdToken != null) {
-                result.put("idToken", oAuthIdToken);
-            }
-            String oAuthSecret = ((OAuthCredential) credential).getSecret();
-            if (oAuthSecret != null) {
-                result.put("secret", oAuthSecret);
-            }
-        } else if (idToken != null) {
+        if (idToken != null) {
             result.put("idToken", idToken);
         }
         return result;
