@@ -7,6 +7,7 @@ import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.OAuthCredential;
 import com.google.firebase.auth.OAuthProvider;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 import java.util.List;
@@ -40,7 +41,7 @@ public class OAuthProviderHandler {
             .addOnSuccessListener(
                 authResult -> {
                     AuthCredential credential = authResult.getCredential();
-                    pluginImplementation.handleSuccessfulSignIn(call, credential);
+                    pluginImplementation.handleSuccessfulSignIn(call, credential, null);
                 }
             )
             .addOnFailureListener(exception -> pluginImplementation.handleFailedSignIn(call, null, exception));
@@ -51,7 +52,7 @@ public class OAuthProviderHandler {
             .addOnSuccessListener(
                 authResult -> {
                     AuthCredential credential = authResult.getCredential();
-                    pluginImplementation.handleSuccessfulSignIn(call, credential);
+                    pluginImplementation.handleSuccessfulSignIn(call, credential, null);
                 }
             )
             .addOnFailureListener(exception -> pluginImplementation.handleFailedSignIn(call, null, exception));

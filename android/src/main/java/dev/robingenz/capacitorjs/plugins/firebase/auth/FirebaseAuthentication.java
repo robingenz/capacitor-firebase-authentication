@@ -25,6 +25,7 @@ public class FirebaseAuthentication {
 
     public static final String TAG = "FirebaseAuthentication";
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
+    public static final String ERROR_NO_USER_SIGNED_IN = "Currently no user is signed in.";
     private FirebaseAuthenticationPlugin plugin;
     private FirebaseAuthenticationConfig config;
     private FirebaseAuth firebaseAuthInstance;
@@ -46,6 +47,10 @@ public class FirebaseAuthentication {
 
     public void getIdToken(Boolean forceRefresh, final GetIdTokenResultCallback resultCallback) {
         FirebaseUser user = getCurrentUser();
+        if (user == null) {
+            resultCallback.error(ERROR_NO_USER_SIGNED_IN);
+            return;
+        }
         Task<GetTokenResult> tokenResultTask = user.getIdToken(forceRefresh);
         tokenResultTask.addOnCompleteListener(
             new OnCompleteListener<GetTokenResult>() {
@@ -127,10 +132,10 @@ public class FirebaseAuthentication {
         }
     }
 
-    public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential) {
+    public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential, String idToken) {
         boolean skipNativeAuth = this.config.getSkipNativeAuth();
         if (skipNativeAuth) {
-            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(null, credential);
+            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(null, credential, idToken);
             call.resolve(signInResult);
             return;
         }
@@ -144,7 +149,7 @@ public class FirebaseAuthentication {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithCredential succeeded.");
                             FirebaseUser user = getCurrentUser();
-                            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, credential);
+                            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, credential, idToken);
                             call.resolve(signInResult);
                         } else {
                             Log.e(TAG, "signInWithCredential failed.", task.getException());

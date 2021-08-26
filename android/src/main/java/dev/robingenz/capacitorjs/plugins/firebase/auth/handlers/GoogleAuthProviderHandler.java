@@ -2,6 +2,7 @@ package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
 import android.content.Intent;
 import androidx.activity.result.ActivityResult;
+import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -11,6 +12,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.OAuthCredential;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.R;
 
@@ -44,7 +46,7 @@ public class GoogleAuthProviderHandler {
             GoogleSignInAccount account = task.getResult(ApiException.class);
             String idToken = account.getIdToken();
             AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-            pluginImplementation.handleSuccessfulSignIn(call, credential);
+            pluginImplementation.handleSuccessfulSignIn(call, credential, idToken);
         } catch (ApiException exception) {
             pluginImplementation.handleFailedSignIn(call, null, exception);
         }

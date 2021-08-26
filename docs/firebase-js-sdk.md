@@ -10,7 +10,7 @@ To do this, follow these steps:
 
 1. [Add Firebase to your JavaScript project](https://firebase.google.com/docs/web/setup)
 1. Set the configuration option `skipNativeAuth` to `true` (see [here](https://github.com/robingenz/capacitor-firebase-authentication#configuration)).
-1. Sign in on the native layer, create web credentials and sign in on the web using [`signInWithCredential`](https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signinwithcredential) (see [Examples](#examples)).
+1. Sign in on the native layer, create web credentials and sign in on the web using [`signInWithCredential`](https://firebase.google.com/docs/reference/js/auth.md#signinwithcredential) (see [Examples](#examples)).
 
 ## Examples
 
@@ -37,7 +37,7 @@ const signInWithGoogle = async () => {
   // 1. Sign in on the native layer
   await FirebaseAuthentication.signInWithGoogle();
   // 2. Fetch the Firebase Auth ID Token
-  const { token } = FirebaseAuthentication.getIdToken();
+  const { token } = await FirebaseAuthentication.getIdToken();
   // 3. Sign in on the web layer using the id token
   const credential = firebase.auth.GoogleAuthProvider.credential(token);
   await firebase.auth().signInWithCredential(credential);
@@ -47,7 +47,7 @@ const signInWithMicrosoft = async () => {
   // 1. Sign in on the native layer
   await FirebaseAuthentication.signInWithMicrosoft();
   // 2. Fetch the Firebase Auth ID Token
-  const { token } = FirebaseAuthentication.getIdToken();
+  const { token } = await FirebaseAuthentication.getIdToken();
   // 3. Sign in on the web layer using the id token
   const provider = new firebase.auth.OAuthProvider('microsoft.com');
   const credential = provider.credential({ idToken: token });
