@@ -22,8 +22,6 @@ import firebase from 'firebase/app';
 const signInWithApple = async () => {
   // 1. Sign in on the native layer
   const signInResult = await FirebaseAuthentication.signInWithApple();
-  const idToken = result.credential?.idToken;
-  const nonce = result.credential?.nonce;
   // 2. Sign in on the web layer using the id token and nonce
   const provider = new firebase.auth.OAuthProvider('apple.com');
   const credential = provider.credential({
