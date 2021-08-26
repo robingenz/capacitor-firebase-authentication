@@ -98,12 +98,12 @@ import FirebaseAuth
         Auth.auth().useAppLanguage()
     }
 
-    func handleSuccessfulSignIn(credential: AuthCredential, nonce: String?) {
+    func handleSuccessfulSignIn(credential: AuthCredential, idToken: String?, nonce: String?) {
         if config.skipNativeAuth == true {
             guard let savedCall = self.savedCall else {
                 return
             }
-            let result = FirebaseAuthenticationHelper.createSignInResult(credential: credential, user: nil, nonce: nonce)
+            let result = FirebaseAuthenticationHelper.createSignInResult(credential: credential, user: nil, idToken: idToken, nonce: nonce)
             savedCall.resolve(result)
             return
         }
@@ -116,7 +116,7 @@ import FirebaseAuth
                 return
             }
             let user = self.getCurrentUser()
-            let result = FirebaseAuthenticationHelper.createSignInResult(credential: credential, user: user, nonce: nonce)
+            let result = FirebaseAuthenticationHelper.createSignInResult(credential: credential, user: user, idToken: idToken, nonce: nonce)
             savedCall.resolve(result)
         }
     }

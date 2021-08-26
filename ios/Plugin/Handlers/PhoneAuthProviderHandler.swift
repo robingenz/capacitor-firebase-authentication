@@ -35,7 +35,7 @@ class PhoneAuthProviderHandler: NSObject {
                     return
                 }
 
-                var result = FirebaseAuthenticationHelper.createSignInResult(credential: nil, user: nil, nonce: nil)
+                var result = FirebaseAuthenticationHelper.createSignInResult(credential: nil, user: nil, idToken: nil, nonce: nil)
                 result["verificationId"] = verificationID
                 call.resolve(result)
             }
@@ -49,6 +49,6 @@ class PhoneAuthProviderHandler: NSObject {
             withVerificationID: verificationID,
             verificationCode: verificationCode
         )
-        self.pluginImplementation.handleSuccessfulSignIn(credential: credential, nonce: nil)
+        self.pluginImplementation.handleSuccessfulSignIn(credential: credential, idToken: nil, nonce: nil)
     }
 }
