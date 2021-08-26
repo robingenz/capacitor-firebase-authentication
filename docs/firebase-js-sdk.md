@@ -35,23 +35,13 @@ const signInWithApple = async () => {
 
 const signInWithGoogle = async () => {
   // 1. Sign in on the native layer
-  await FirebaseAuthentication.signInWithGoogle();
-  // 2. Fetch the Firebase Auth ID Token
-  const { token } = await FirebaseAuthentication.getIdToken();
-  // 3. Sign in on the web layer using the id token
-  const credential = firebase.auth.GoogleAuthProvider.credential(token);
+  const result = await FirebaseAuthentication.signInWithGoogle();
+  // 2. Sign in on the web layer using the id token
+  const credential = firebase.auth.GoogleAuthProvider.credential(
+    result.credential?.idToken,
+  );
   await firebase.auth().signInWithCredential(credential);
 };
-
-const signInWithMicrosoft = async () => {
-  // 1. Sign in on the native layer
-  await FirebaseAuthentication.signInWithMicrosoft();
-  // 2. Fetch the Firebase Auth ID Token
-  const { token } = await FirebaseAuthentication.getIdToken();
-  // 3. Sign in on the web layer using the id token
-  const provider = new firebase.auth.OAuthProvider('microsoft.com');
-  const credential = provider.credential({ idToken: token });
-  await firebase.auth().signInWithCredential(credential);
 
 const signInWithPhoneNumber = async () => {
   // 1. Start phone number verification
@@ -63,10 +53,18 @@ const signInWithPhoneNumber = async () => {
     'Please enter the verification code that was sent to your mobile device.',
   );
   // 3. Sign in on the web layer using the verification ID and verification code.
-  const credential = firebase.auth.PhoneAuthProvider.credential(verificationId, verificationCode);
+  const credential = firebase.auth.PhoneAuthProvider.credential(
+    verificationId,
+    verificationCode,
+  );
   await firebase.auth().signInWithCredential(credential);
 };
 ```
+
+The dependencies used in these examples:
+
+- `firebase@8.10.0`
+- `@robingenz/capacitor-firebase-authentication@0.3.7`
 
 ## Limitations
 
