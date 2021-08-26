@@ -4,8 +4,9 @@ import FirebaseAuth
 import FBSDKLoginKit
 
 class FacebookAuthProviderHandler: NSObject {
-    var pluginImplementation: FirebaseAuthentication
-    var loginManager: LoginManager
+    public let errorSignInCanceled = "Sign in canceled."
+    private var pluginImplementation: FirebaseAuthentication
+    private var loginManager: LoginManager
 
     init(_ pluginImplementation: FirebaseAuthentication) {
         self.pluginImplementation = pluginImplementation
@@ -21,13 +22,14 @@ class FacebookAuthProviderHandler: NSObject {
                     return
                 }
 
-                guard let token = result?.token else {
-                    self.pluginImplementation.handleFailedSignIn(message: "Login canceled.", error: nil)
+                guard let accessToken = result?.token else {
+                    self.pluginImplementation.handleFailedSignIn(message: self.errorSignInCanceled, error: nil)
                     return
                 }
 
-                let credential = FacebookAuthProvider.credential(withAccessToken: token.tokenString)
-                self.pluginImplementation.handleSuccessfulSignIn(credential: credential, nonce: nil)
+                let token = accessToken.tokenString
+                let credential = FacebookAuthProvider.credential(withAccessToken: token)
+                self.pluginImplementation.handleSuccessfulSignIn(credential: credential, idToken: token, nonce: nil)
             }
         }
     }
