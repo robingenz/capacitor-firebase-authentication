@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.7](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.6...v0.3.7) (2021-08-26)
+
+
+### Bug Fixes
+
+* return `idToken` on sign in ([#67](https://github.com/robingenz/capacitor-firebase-authentication/issues/67)) ([cb2568c](https://github.com/robingenz/capacitor-firebase-authentication/commit/cb2568c8cc9ae68c0e3d46cf01f1f67b6dd89171))
+
 ### [0.3.6](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.5...v0.3.6) (2021-08-23)
 
 
