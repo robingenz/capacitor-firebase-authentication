@@ -24,12 +24,12 @@ const signInWithApple = async () => {
   const signInResult = await FirebaseAuthentication.signInWithApple();
   const idToken = result.credential?.idToken;
   const nonce = result.credential?.nonce;
-  if (!idToken || !nonce) {
-    return;
-  }
   // 2. Sign in on the web layer using the id token and nonce
   const provider = new firebase.auth.OAuthProvider('apple.com');
-  const credential = provider.credential({ idToken, nonce });
+  const credential = provider.credential({
+    idToken: result.credential?.idToken,
+    nonce: result.credential?.nonce,
+  });
   await firebase.auth().signInWithCredential(credential);
 };
 
