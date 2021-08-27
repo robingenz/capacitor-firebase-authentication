@@ -26,7 +26,7 @@ const signInWithApple = async () => {
   const provider = new firebase.auth.OAuthProvider('apple.com');
   const credential = provider.credential({
     idToken: result.credential?.idToken,
-    nonce: result.credential?.nonce,
+    rawNonce: result.credential?.nonce,
   });
   await firebase.auth().signInWithCredential(credential);
 };
