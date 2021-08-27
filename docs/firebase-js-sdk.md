@@ -19,6 +19,22 @@ import { FirebaseAuthentication } from '@robingenz/capacitor-firebase-authentica
 import 'firebase/auth';
 import firebase from 'firebase/app';
 
+// Create a new "Web app" under your project settings on Firebase and fill in your config here
+const firebaseConfig = {
+  apiKey: "...",
+  authDomain: "...",
+  projectId: "...",
+  storageBucket: "...",
+  messagingSenderId: "...",
+  appId: "..."
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+} else {
+  firebase.app();
+}
+
 const signInWithApple = async () => {
   // 1. Sign in on the native layer
   const signInResult = await FirebaseAuthentication.signInWithApple();
