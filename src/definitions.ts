@@ -1,6 +1,7 @@
 /// <reference types="@capacitor/cli" />
 
 import type { PluginListenerHandle } from '@capacitor/core';
+import type { FirebaseOptions } from 'firebase/app';
 
 declare module '@capacitor/cli' {
   export interface PluginsConfig {
@@ -33,6 +34,12 @@ declare module '@capacitor/cli' {
 }
 
 export interface FirebaseAuthenticationPlugin {
+  /**
+   * Initialize the Firebase JavaScript SDK.
+   *
+   * Only available for Web.
+   */
+  initialize(options: FirebaseOptions): Promise<void>;
   /**
    * Fetches the currently signed-in user.
    *
@@ -82,16 +89,6 @@ export interface FirebaseAuthenticationPlugin {
    */
   signInWithMicrosoft(options?: SignInOptions): Promise<SignInResult>;
   /**
-   * Starts the sign-in flow using a phone number.
-   *
-   * Either the phone number or the verification code and verification ID must be provided.
-   *
-   * Only available for Android and iOS.
-   */
-  signInWithPhoneNumber(
-    options: SignInWithPhoneNumberOptions,
-  ): Promise<SignInWithPhoneNumberResult>;
-  /**
    * Starts the Twitter sign-in flow.
    *
    * Only available for Android and iOS.
@@ -103,6 +100,16 @@ export interface FirebaseAuthenticationPlugin {
    * Only available for Android and iOS.
    */
   signInWithYahoo(options?: SignInOptions): Promise<SignInResult>;
+  /**
+   * Starts the sign-in flow using a phone number.
+   *
+   * Either the phone number or the verification code and verification ID must be provided.
+   *
+   * Only available for Android and iOS.
+   */
+  signInWithPhoneNumber(
+    options: SignInWithPhoneNumberOptions,
+  ): Promise<SignInWithPhoneNumberResult>;
   /**
    * Starts the sign-out flow.
    *
