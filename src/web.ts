@@ -28,6 +28,12 @@ import type {
 export class FirebaseAuthenticationWeb
   extends WebPlugin
   implements FirebaseAuthenticationPlugin {
+  constructor() {
+    super();
+    const auth = getAuth();
+    auth.onAuthStateChanged(user => this.handleAuthStateChange(user));
+  }
+
   public async getCurrentUser(): Promise<GetCurrentUserResult> {
     const auth = getAuth();
     const userResult = this.createUserResult(auth.currentUser);
