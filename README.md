@@ -559,11 +559,11 @@ Callback to receive the user's sign-in state change notifications.
 1. **What does this plugin do?**  
    This plugin enables the use of [Firebase Authentication](https://firebase.google.com/docs/auth) in a Capacitor app.
    It uses the Firebase SDK for [Java](https://firebase.google.com/docs/reference/android) (Android), [Swift](https://firebase.google.com/docs/reference/swift) (iOS) and [JavaScript](https://firebase.google.com/docs/reference/js).
-1. **How can I use this plugin with the Firebase JavaScript SDK?**  
-   See [here](https://github.com/robingenz/capacitor-firebase-authentication/blob/main/docs/firebase-js-sdk.md).
-1. **What is the difference between the web implementation of this plugin and the Firebase JS SDK?**
+1. **What is the difference between the web implementation of this plugin and the Firebase JS SDK?**  
    The web implementation of this plugin encapsulates the Firebase JS SDK and enables a consistent interface across all platforms.
    You can decide if you prefer to use the web implementation or the Firebase JS SDK.
+1. **How can I use this plugin with the Firebase JavaScript SDK?**  
+   See [here](https://github.com/robingenz/capacitor-firebase-authentication/blob/main/docs/firebase-js-sdk.md).
 
 ## Changelog
 
