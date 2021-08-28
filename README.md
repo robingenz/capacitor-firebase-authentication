@@ -187,7 +187,10 @@ const useAppLanguage = async () => {
 * [`signInWithYahoo(...)`](#signinwithyahoo)
 * [`signOut()`](#signout)
 * [`useAppLanguage()`](#useapplanguage)
+* [`addListener('authStateChange', ...)`](#addlistenerauthstatechange-)
+* [`removeAllListeners()`](#removealllisteners)
 * [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -425,6 +428,35 @@ Only available for Android and iOS.
 --------------------
 
 
+### addListener('authStateChange', ...)
+
+```typescript
+addListener(eventName: 'authStateChange', listenerFunc: AuthStateChangeListener) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+Listen for the user's sign-in state changes.
+
+| Param              | Type                                                                        |
+| ------------------ | --------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'authStateChange'</code>                                              |
+| **`listenerFunc`** | <code><a href="#authstatechangelistener">AuthStateChangeListener</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### removeAllListeners()
+
+```typescript
+removeAllListeners() => Promise<void>
+```
+
+Remove all listeners for this plugin.
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -519,6 +551,30 @@ Only available for Android and iOS.
 | **`phoneNumber`**      | <code>string</code> | The phone number to be verified.                                                                                                                    |
 | **`verificationId`**   | <code>string</code> | The verification ID which will be returned when `signInWithPhoneNumber` is called for the first time. The `verificationCode` must also be provided. |
 | **`verificationCode`** | <code>string</code> | The verification code from the SMS message. The `verificationId` must also be provided.                                                             |
+
+
+#### PluginListenerHandle
+
+| Prop         | Type                                      |
+| ------------ | ----------------------------------------- |
+| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
+
+
+#### AuthStateChange
+
+| Prop       | Type                                          | Description                                               |
+| ---------- | --------------------------------------------- | --------------------------------------------------------- |
+| **`user`** | <code><a href="#user">User</a> \| null</code> | The currently signed-in user, or null if there isn't any. |
+
+
+### Type Aliases
+
+
+#### AuthStateChangeListener
+
+Callback to receive the user's sign-in state change notifications.
+
+<code>(change: <a href="#authstatechange">AuthStateChange</a>): void</code>
 
 </docgen-api>
 
