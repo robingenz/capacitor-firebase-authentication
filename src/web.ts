@@ -17,6 +17,7 @@ import {
 
 import type {
   AuthCredential,
+  AuthStateChange,
   FirebaseAuthenticationPlugin,
   GetCurrentUserResult,
   GetIdTokenResult,
@@ -36,6 +37,8 @@ export class FirebaseAuthenticationWeb
       return;
     }
     this.app = initializeApp(options);
+    const auth = getAuth();
+    auth.onAuthStateChanged(user => this.handleAuthStateChange(user));
   }
 
   public async getCurrentUser(): Promise<GetCurrentUserResult> {
@@ -136,6 +139,14 @@ export class FirebaseAuthenticationWeb
   public async useAppLanguage(): Promise<void> {
     const auth = getAuth();
     auth.useDeviceLanguage();
+  }
+
+  private handleAuthStateChange(user: FirebaseUser | null): void {
+    const userResult = this.createUserResult(user);
+    const change: AuthStateChange = {
+      user: userResult,
+    };
+    this.notifyListeners('authStateChange', change);
   }
 
   private createSignInResult(

@@ -30,7 +30,7 @@ npm install @robingenz/capacitor-firebase-authentication
 npx cap sync
 ```
 
-Add Firebase to your project if you haven't already ([Android](https://firebase.google.com/docs/android/setup) / [iOS](https://firebase.google.com/docs/ios/setup)).
+Add Firebase to your project if you haven't already ([Android](https://firebase.google.com/docs/android/setup) / [iOS](https://firebase.google.com/docs/ios/setup) / [Web](https://firebase.google.com/docs/web/setup)).
 
 On **iOS**, verify that this function is included in your app's `AppDelegate.swift`:
 
@@ -183,9 +183,9 @@ const useAppLanguage = async () => {
 * [`signInWithGithub(...)`](#signinwithgithub)
 * [`signInWithGoogle(...)`](#signinwithgoogle)
 * [`signInWithMicrosoft(...)`](#signinwithmicrosoft)
-* [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
 * [`signInWithTwitter(...)`](#signinwithtwitter)
 * [`signInWithYahoo(...)`](#signinwithyahoo)
+* [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
 * [`signOut()`](#signout)
 * [`useAppLanguage()`](#useapplanguage)
 * [`addListener('authStateChange', ...)`](#addlistenerauthstatechange-)
@@ -223,8 +223,6 @@ getCurrentUser() => Promise<GetCurrentUserResult>
 
 Fetches the currently signed-in user.
 
-Only available for Android and iOS.
-
 **Returns:** <code>Promise&lt;<a href="#getcurrentuserresult">GetCurrentUserResult</a>&gt;</code>
 
 --------------------
@@ -237,8 +235,6 @@ getIdToken(options?: GetIdTokenOptions | undefined) => Promise<GetIdTokenResult>
 ```
 
 Fetches the Firebase Auth ID Token for the currently signed-in user.
-
-Only available for Android and iOS.
 
 | Param         | Type                                                            |
 | ------------- | --------------------------------------------------------------- |
@@ -257,8 +253,6 @@ setLanguageCode(options: SetLanguageCodeOptions) => Promise<void>
 
 Sets the user-facing language code for auth operations.
 
-Only available for Android and iOS.
-
 | Param         | Type                                                                      |
 | ------------- | ------------------------------------------------------------------------- |
 | **`options`** | <code><a href="#setlanguagecodeoptions">SetLanguageCodeOptions</a></code> |
@@ -273,8 +267,6 @@ signInWithApple(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the Apple sign-in flow.
-
-Only available for Android and iOS.
 
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
@@ -293,8 +285,6 @@ signInWithFacebook(options?: SignInOptions | undefined) => Promise<SignInResult>
 
 Starts the Facebook sign-in flow.
 
-Only available for Android and iOS.
-
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
 | **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
@@ -311,8 +301,6 @@ signInWithGithub(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the GitHub sign-in flow.
-
-Only available for Android and iOS.
 
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
@@ -331,8 +319,6 @@ signInWithGoogle(options?: SignInOptions | undefined) => Promise<SignInResult>
 
 Starts the Google sign-in flow.
 
-Only available for Android and iOS.
-
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
 | **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
@@ -350,7 +336,39 @@ signInWithMicrosoft(options?: SignInOptions | undefined) => Promise<SignInResult
 
 Starts the Microsoft sign-in flow.
 
-Only available for Android and iOS.
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
+
+--------------------
+
+
+### signInWithTwitter(...)
+
+```typescript
+signInWithTwitter(options?: SignInOptions | undefined) => Promise<SignInResult>
+```
+
+Starts the Twitter sign-in flow.
+
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
+
+--------------------
+
+
+### signInWithYahoo(...)
+
+```typescript
+signInWithYahoo(options?: SignInOptions | undefined) => Promise<SignInResult>
+```
+
+Starts the Yahoo sign-in flow.
 
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
@@ -382,44 +400,6 @@ Only available for Android and iOS.
 --------------------
 
 
-### signInWithTwitter(...)
-
-```typescript
-signInWithTwitter(options?: SignInOptions | undefined) => Promise<SignInResult>
-```
-
-Starts the Twitter sign-in flow.
-
-Only available for Android and iOS.
-
-| Param         | Type                                                    |
-| ------------- | ------------------------------------------------------- |
-| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
-
-**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
-
---------------------
-
-
-### signInWithYahoo(...)
-
-```typescript
-signInWithYahoo(options?: SignInOptions | undefined) => Promise<SignInResult>
-```
-
-Starts the Yahoo sign-in flow.
-
-Only available for Android and iOS.
-
-| Param         | Type                                                    |
-| ------------- | ------------------------------------------------------- |
-| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
-
-**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
-
---------------------
-
-
 ### signOut()
 
 ```typescript
@@ -427,8 +407,6 @@ signOut() => Promise<void>
 ```
 
 Starts the sign-out flow.
-
-Only available for Android and iOS.
 
 --------------------
 
@@ -441,8 +419,6 @@ useAppLanguage() => Promise<void>
 
 Sets the user-facing language code to be the default app language.
 
-Only available for Android and iOS.
-
 --------------------
 
 
@@ -453,8 +429,6 @@ addListener(eventName: 'authStateChange', listenerFunc: AuthStateChangeListener)
 ```
 
 Listen for the user's sign-in state changes.
-
-Only available for Android and iOS.
 
 | Param              | Type                                                                        |
 | ------------------ | --------------------------------------------------------------------------- |

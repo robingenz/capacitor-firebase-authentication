@@ -42,62 +42,42 @@ export interface FirebaseAuthenticationPlugin {
   initialize(options: FirebaseOptions): Promise<void>;
   /**
    * Fetches the currently signed-in user.
-   *
-   * Only available for Android and iOS.
    */
   getCurrentUser(): Promise<GetCurrentUserResult>;
   /**
    * Fetches the Firebase Auth ID Token for the currently signed-in user.
-   *
-   * Only available for Android and iOS.
    */
   getIdToken(options?: GetIdTokenOptions): Promise<GetIdTokenResult>;
   /**
    * Sets the user-facing language code for auth operations.
-   *
-   * Only available for Android and iOS.
    */
   setLanguageCode(options: SetLanguageCodeOptions): Promise<void>;
   /**
    * Starts the Apple sign-in flow.
-   *
-   * Only available for Android and iOS.
    */
   signInWithApple(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the Facebook sign-in flow.
-   *
-   * Only available for Android and iOS.
    */
   signInWithFacebook(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the GitHub sign-in flow.
-   *
-   * Only available for Android and iOS.
    */
   signInWithGithub(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the Google sign-in flow.
-   *
-   * Only available for Android and iOS.
    */
   signInWithGoogle(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the Microsoft sign-in flow.
-   *
-   * Only available for Android and iOS.
    */
   signInWithMicrosoft(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the Twitter sign-in flow.
-   *
-   * Only available for Android and iOS.
    */
   signInWithTwitter(options?: SignInOptions): Promise<SignInResult>;
   /**
    * Starts the Yahoo sign-in flow.
-   *
-   * Only available for Android and iOS.
    */
   signInWithYahoo(options?: SignInOptions): Promise<SignInResult>;
   /**
@@ -112,20 +92,14 @@ export interface FirebaseAuthenticationPlugin {
   ): Promise<SignInWithPhoneNumberResult>;
   /**
    * Starts the sign-out flow.
-   *
-   * Only available for Android and iOS.
    */
   signOut(): Promise<void>;
   /**
    * Sets the user-facing language code to be the default app language.
-   *
-   * Only available for Android and iOS.
    */
   useAppLanguage(): Promise<void>;
   /**
    * Listen for the user's sign-in state changes.
-   *
-   * Only available for Android and iOS.
    */
   addListener(
     eventName: 'authStateChange',
