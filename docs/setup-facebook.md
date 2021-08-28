@@ -120,4 +120,4 @@
 
 ## Web
 
-🚧 Currently not supported.
+1. See [Before you begin](https://firebase.google.com/docs/auth/web/facebook-login#before_you_begin) and follow the instructions to configure and enable sign-in with Facebook correctly.

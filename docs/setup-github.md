@@ -19,4 +19,4 @@
 
 ## Web
 
-🚧 Currently not supported.
+1. See [Before you begin](https://firebase.google.com/docs/auth/web/github-auth#before_you_begin) and follow the instructions to configure and enable sign-in with GitHub correctly.

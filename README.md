@@ -30,7 +30,7 @@ npm install @robingenz/capacitor-firebase-authentication
 npx cap sync
 ```
 
-Add Firebase to your project if you haven't already ([Android](https://firebase.google.com/docs/android/setup) / [iOS](https://firebase.google.com/docs/ios/setup)).
+Add Firebase to your project if you haven't already ([Android](https://firebase.google.com/docs/android/setup) / [iOS](https://firebase.google.com/docs/ios/setup) / [Web](https://firebase.google.com/docs/web/setup)).
 
 On **iOS**, verify that this function is included in your app's `AppDelegate.swift`:
 
@@ -182,9 +182,9 @@ const useAppLanguage = async () => {
 * [`signInWithGithub(...)`](#signinwithgithub)
 * [`signInWithGoogle(...)`](#signinwithgoogle)
 * [`signInWithMicrosoft(...)`](#signinwithmicrosoft)
-* [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
 * [`signInWithTwitter(...)`](#signinwithtwitter)
 * [`signInWithYahoo(...)`](#signinwithyahoo)
+* [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
 * [`signOut()`](#signout)
 * [`useAppLanguage()`](#useapplanguage)
 * [`addListener('authStateChange', ...)`](#addlistenerauthstatechange-)
@@ -205,8 +205,6 @@ getCurrentUser() => Promise<GetCurrentUserResult>
 
 Fetches the currently signed-in user.
 
-Only available for Android and iOS.
-
 **Returns:** <code>Promise&lt;<a href="#getcurrentuserresult">GetCurrentUserResult</a>&gt;</code>
 
 --------------------
@@ -219,8 +217,6 @@ getIdToken(options?: GetIdTokenOptions | undefined) => Promise<GetIdTokenResult>
 ```
 
 Fetches the Firebase Auth ID Token for the currently signed-in user.
-
-Only available for Android and iOS.
 
 | Param         | Type                                                            |
 | ------------- | --------------------------------------------------------------- |
@@ -239,8 +235,6 @@ setLanguageCode(options: SetLanguageCodeOptions) => Promise<void>
 
 Sets the user-facing language code for auth operations.
 
-Only available for Android and iOS.
-
 | Param         | Type                                                                      |
 | ------------- | ------------------------------------------------------------------------- |
 | **`options`** | <code><a href="#setlanguagecodeoptions">SetLanguageCodeOptions</a></code> |
@@ -255,8 +249,6 @@ signInWithApple(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the Apple sign-in flow.
-
-Only available for Android and iOS.
 
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
@@ -275,8 +267,6 @@ signInWithFacebook(options?: SignInOptions | undefined) => Promise<SignInResult>
 
 Starts the Facebook sign-in flow.
 
-Only available for Android and iOS.
-
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
 | **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
@@ -293,8 +283,6 @@ signInWithGithub(options?: SignInOptions | undefined) => Promise<SignInResult>
 ```
 
 Starts the GitHub sign-in flow.
-
-Only available for Android and iOS.
 
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
@@ -313,8 +301,6 @@ signInWithGoogle(options?: SignInOptions | undefined) => Promise<SignInResult>
 
 Starts the Google sign-in flow.
 
-Only available for Android and iOS.
-
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
 | **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
@@ -332,7 +318,39 @@ signInWithMicrosoft(options?: SignInOptions | undefined) => Promise<SignInResult
 
 Starts the Microsoft sign-in flow.
 
-Only available for Android and iOS.
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
+
+--------------------
+
+
+### signInWithTwitter(...)
+
+```typescript
+signInWithTwitter(options?: SignInOptions | undefined) => Promise<SignInResult>
+```
+
+Starts the Twitter sign-in flow.
+
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
+
+--------------------
+
+
+### signInWithYahoo(...)
+
+```typescript
+signInWithYahoo(options?: SignInOptions | undefined) => Promise<SignInResult>
+```
+
+Starts the Yahoo sign-in flow.
 
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
@@ -364,44 +382,6 @@ Only available for Android and iOS.
 --------------------
 
 
-### signInWithTwitter(...)
-
-```typescript
-signInWithTwitter(options?: SignInOptions | undefined) => Promise<SignInResult>
-```
-
-Starts the Twitter sign-in flow.
-
-Only available for Android and iOS.
-
-| Param         | Type                                                    |
-| ------------- | ------------------------------------------------------- |
-| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
-
-**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
-
---------------------
-
-
-### signInWithYahoo(...)
-
-```typescript
-signInWithYahoo(options?: SignInOptions | undefined) => Promise<SignInResult>
-```
-
-Starts the Yahoo sign-in flow.
-
-Only available for Android and iOS.
-
-| Param         | Type                                                    |
-| ------------- | ------------------------------------------------------- |
-| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
-
-**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
-
---------------------
-
-
 ### signOut()
 
 ```typescript
@@ -409,8 +389,6 @@ signOut() => Promise<void>
 ```
 
 Starts the sign-out flow.
-
-Only available for Android and iOS.
 
 --------------------
 
@@ -423,8 +401,6 @@ useAppLanguage() => Promise<void>
 
 Sets the user-facing language code to be the default app language.
 
-Only available for Android and iOS.
-
 --------------------
 
 
@@ -435,8 +411,6 @@ addListener(eventName: 'authStateChange', listenerFunc: AuthStateChangeListener)
 ```
 
 Listen for the user's sign-in state changes.
-
-Only available for Android and iOS.
 
 | Param              | Type                                                                        |
 | ------------------ | --------------------------------------------------------------------------- |
@@ -584,15 +558,12 @@ Callback to receive the user's sign-in state change notifications.
 
 1. **What does this plugin do?**  
    This plugin enables the use of [Firebase Authentication](https://firebase.google.com/docs/auth) in a Capacitor app.
-   It uses the native Firebase SDK for [Java](https://firebase.google.com/docs/reference/android) (Android) and [Swift](https://firebase.google.com/docs/reference/swift) (iOS).
-   Accordingly, the plugin signs the user in at the native layer of the app.
-   The [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) is not required, but can be used.
-1. **Which platforms are supported?**  
-   Currently, only Android and iOS are supported.
-   It is planned to support web soon as well (see [#20](https://github.com/robingenz/capacitor-firebase-authentication/issues/20)).
-   In the meantime, the [Firebase JavaScript SDK](https://firebase.google.com/docs/reference/js) can be used.
+   It uses the Firebase SDK for [Java](https://firebase.google.com/docs/reference/android) (Android), [Swift](https://firebase.google.com/docs/reference/swift) (iOS) and [JavaScript](https://firebase.google.com/docs/reference/js).
 1. **How can I use this plugin with the Firebase JavaScript SDK?**  
    See [here](https://github.com/robingenz/capacitor-firebase-authentication/blob/main/docs/firebase-js-sdk.md).
+1. **What is the difference between the web implementation of this plugin and the Firebase JS SDK?**
+   The web implementation of this plugin encapsulates the Firebase JS SDK and enables a consistent interface across all platforms.
+   You can decide if you prefer to use the web implementation or the Firebase JS SDK.
 
 ## Changelog
 
