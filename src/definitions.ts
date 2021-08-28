@@ -1,7 +1,6 @@
 /// <reference types="@capacitor/cli" />
 
 import type { PluginListenerHandle } from '@capacitor/core';
-import type { FirebaseOptions } from 'firebase/app';
 
 declare module '@capacitor/cli' {
   export interface PluginsConfig {
@@ -34,12 +33,6 @@ declare module '@capacitor/cli' {
 }
 
 export interface FirebaseAuthenticationPlugin {
-  /**
-   * Initialize the Firebase JavaScript SDK.
-   *
-   * Only available for Web.
-   */
-  initialize(options: FirebaseOptions): Promise<void>;
   /**
    * Fetches the currently signed-in user.
    */

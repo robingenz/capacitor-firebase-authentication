@@ -174,7 +174,6 @@ const useAppLanguage = async () => {
 
 <docgen-index>
 
-* [`initialize(...)`](#initialize)
 * [`getCurrentUser()`](#getcurrentuser)
 * [`getIdToken(...)`](#getidtoken)
 * [`setLanguageCode(...)`](#setlanguagecode)
@@ -197,23 +196,6 @@ const useAppLanguage = async () => {
 
 <docgen-api>
 <!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
-
-### initialize(...)
-
-```typescript
-initialize(options: FirebaseOptions) => Promise<void>
-```
-
-Initialize the Firebase JavaScript SDK.
-
-Only available for Web.
-
-| Param         | Type                                                        |
-| ------------- | ----------------------------------------------------------- |
-| **`options`** | <code><a href="#firebaseoptions">FirebaseOptions</a></code> |
-
---------------------
-
 
 ### getCurrentUser()
 
@@ -452,20 +434,6 @@ Remove all listeners for this plugin.
 
 
 ### Interfaces
-
-
-#### FirebaseOptions
-
-| Prop                    | Type                | Description                                                                                                                                                       |
-| ----------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`apiKey`**            | <code>string</code> | An encrypted string used when calling certain APIs that don't need to access private user data (example value: `AIzaSyDOCAbC123dEf456GhI789jKl012-MnO`).          |
-| **`authDomain`**        | <code>string</code> | Auth domain for the project ID.                                                                                                                                   |
-| **`databaseURL`**       | <code>string</code> | Default Realtime Database URL.                                                                                                                                    |
-| **`projectId`**         | <code>string</code> | The unique identifier for the project across all of Firebase and Google Cloud.                                                                                    |
-| **`storageBucket`**     | <code>string</code> | The default Cloud Storage bucket name.                                                                                                                            |
-| **`messagingSenderId`** | <code>string</code> | Unique numerical value used to identify each sender that can send Firebse Cloud Messaging messages to client apps.                                                |
-| **`appId`**             | <code>string</code> | Unique identifier for the app.                                                                                                                                    |
-| **`measurementId`**     | <code>string</code> | An ID automatically created when you enable Analytics in your Firebase project and register a web app. In versions 7.20.0 and higher, this parameter is optional. |
 
 
 #### GetCurrentUserResult

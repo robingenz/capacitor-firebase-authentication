@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { WebPlugin } from '@capacitor/core';
-import type { FirebaseApp, FirebaseOptions } from 'firebase/app';
-import { initializeApp } from 'firebase/app';
 import type {
   AuthCredential as FirebaseAuthCredential,
   User as FirebaseUser,
@@ -30,17 +28,6 @@ import type {
 export class FirebaseAuthenticationWeb
   extends WebPlugin
   implements FirebaseAuthenticationPlugin {
-  private app: FirebaseApp | undefined;
-
-  public async initialize(options: FirebaseOptions): Promise<void> {
-    if (this.app) {
-      return;
-    }
-    this.app = initializeApp(options);
-    const auth = getAuth();
-    auth.onAuthStateChanged(user => this.handleAuthStateChange(user));
-  }
-
   public async getCurrentUser(): Promise<GetCurrentUserResult> {
     const auth = getAuth();
     const userResult = this.createUserResult(auth.currentUser);
