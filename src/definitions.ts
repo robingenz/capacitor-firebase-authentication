@@ -1,5 +1,7 @@
 /// <reference types="@capacitor/cli" />
 
+import type { PluginListenerHandle } from '@capacitor/core';
+
 declare module '@capacitor/cli' {
   export interface PluginsConfig {
     /**
@@ -113,6 +115,19 @@ export interface FirebaseAuthenticationPlugin {
    * Only available for Android and iOS.
    */
   useAppLanguage(): Promise<void>;
+  /**
+   * Listen for the user's sign-in state changes.
+   *
+   * Only available for Android and iOS.
+   */
+  addListener(
+    eventName: 'authStateChange',
+    listenerFunc: AuthStateChangeListener,
+  ): Promise<PluginListenerHandle> & PluginListenerHandle;
+  /**
+   * Remove all listeners for this plugin.
+   */
+  removeAllListeners(): Promise<void>;
 }
 
 export interface GetCurrentUserResult {
@@ -233,4 +248,16 @@ export interface AuthCredential {
    * The random string used to make sure that the ID token you get was granted specifically in response to your app's authentication request.
    */
   nonce?: string;
+}
+
+/**
+ * Callback to receive the user's sign-in state change notifications.
+ */
+export type AuthStateChangeListener = (change: AuthStateChange) => void;
+
+export interface AuthStateChange {
+  /**
+   * The currently signed-in user, or null if there isn't any.
+   */
+  user: User | null;
 }

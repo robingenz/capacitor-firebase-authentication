@@ -15,12 +15,14 @@ import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.FacebookAuthProv
 public class FirebaseAuthenticationPlugin extends Plugin {
 
     public static final String ERROR_PHONE_NUMBER_SMS_CODE_MISSING = "phoneNumber or verificationId and verificationCode must be provided.";
+    public static final String AUTH_STATE_CHANGE_EVENT = "authStateChange";
     private FirebaseAuthenticationConfig config;
     private FirebaseAuthentication implementation;
 
     public void load() {
         config = getFirebaseAuthenticationConfig();
         implementation = new FirebaseAuthentication(this, config);
+        implementation.setAuthStateChangeListener(this::updateAuthState);
     }
 
     @PluginMethod
@@ -135,6 +137,14 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     protected void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
         super.handleOnActivityResult(requestCode, resultCode, data);
         implementation.handleOnActivityResult(requestCode, resultCode, data);
+    }
+
+    private void updateAuthState() {
+        FirebaseUser user = implementation.getCurrentUser();
+        JSObject userResult = FirebaseAuthenticationHelper.createUserResult(user);
+        JSObject result = new JSObject();
+        result.put("user", userResult);
+        notifyListeners(AUTH_STATE_CHANGE_EVENT, result);
     }
 
     @ActivityCallback

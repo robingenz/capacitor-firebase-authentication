@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,11 +24,19 @@ import java.util.List;
 
 public class FirebaseAuthentication {
 
+    interface AuthStateChangeListener {
+        void onAuthStateChanged();
+    }
+
+    @Nullable
+    private AuthStateChangeListener authStateChangeListener;
+
     public static final String TAG = "FirebaseAuthentication";
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
     private FirebaseAuthenticationPlugin plugin;
     private FirebaseAuthenticationConfig config;
     private FirebaseAuth firebaseAuthInstance;
+    private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     private FacebookAuthProviderHandler facebookAuthProviderHandler;
     private GoogleAuthProviderHandler googleAuthProviderHandler;
     private OAuthProviderHandler oAuthProviderHandler;
@@ -38,6 +47,22 @@ public class FirebaseAuthentication {
         this.config = config;
         firebaseAuthInstance = FirebaseAuth.getInstance();
         this.initAuthProviderHandlers(config);
+        this.firebaseAuthStateListener =
+            firebaseAuth -> {
+                if (authStateChangeListener != null) {
+                    authStateChangeListener.onAuthStateChanged();
+                }
+            };
+        firebaseAuthInstance.addAuthStateListener(this.firebaseAuthStateListener);
+    }
+
+    public void setAuthStateChangeListener(@Nullable AuthStateChangeListener listener) {
+        this.authStateChangeListener = listener;
+    }
+
+    @Nullable
+    public AuthStateChangeListener getAuthStateChangeListener() {
+        return authStateChangeListener;
     }
 
     public FirebaseUser getCurrentUser() {
