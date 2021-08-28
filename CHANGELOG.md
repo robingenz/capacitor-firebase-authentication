@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.8](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.7...v0.3.8) (2021-08-28)
+
+
+### Features
+
+* add `onAuthStateChanged` listener ([#71](https://github.com/robingenz/capacitor-firebase-authentication/issues/71)) ([b556dc0](https://github.com/robingenz/capacitor-firebase-authentication/commit/b556dc07a67919b4567a516f5a255bdbb2fd340c))
+
+
+### Bug Fixes
+
+* **ios:** `signInWithPhoneNumber` is not implemented ([#73](https://github.com/robingenz/capacitor-firebase-authentication/issues/73)) ([659328b](https://github.com/robingenz/capacitor-firebase-authentication/commit/659328b7ce664509462923242dbfcc29d8071e28))
+
 ### [0.3.7](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.6...v0.3.7) (2021-08-26)
 
 
