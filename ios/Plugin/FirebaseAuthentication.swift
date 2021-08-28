@@ -25,7 +25,7 @@ public typealias AuthStateChangedObserver = () -> Void
             FirebaseApp.configure()
         }
         self.initAuthProviderHandlers(config: config)
-        Auth.auth().addStateDidChangeListener {_,_ in
+        Auth.auth().addStateDidChangeListener {_, _ in
             self.authStateObserver?()
         }
     }

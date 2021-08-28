@@ -98,7 +98,7 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         implementation?.useAppLanguage()
         call.resolve()
     }
-    
+
     @objc func handleAuthStateChange() {
         let user = implementation?.getCurrentUser()
         let userResult = FirebaseAuthenticationHelper.createUserResult(user)
