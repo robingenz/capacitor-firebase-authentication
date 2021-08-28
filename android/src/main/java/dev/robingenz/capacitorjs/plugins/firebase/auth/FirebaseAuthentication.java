@@ -5,7 +5,6 @@ import android.util.Log;
 import androidx.activity.result.ActivityResult;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.getcapacitor.JSObject;
 import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,11 +47,12 @@ public class FirebaseAuthentication {
         this.config = config;
         firebaseAuthInstance = FirebaseAuth.getInstance();
         this.initAuthProviderHandlers(config);
-        this.firebaseAuthStateListener = firebaseAuth -> {
-            if (authStateChangeListener != null) {
-                authStateChangeListener.onAuthStateChanged();
-            }
-        };
+        this.firebaseAuthStateListener =
+            firebaseAuth -> {
+                if (authStateChangeListener != null) {
+                    authStateChangeListener.onAuthStateChanged();
+                }
+            };
         firebaseAuthInstance.addAuthStateListener(this.firebaseAuthStateListener);
     }
 
