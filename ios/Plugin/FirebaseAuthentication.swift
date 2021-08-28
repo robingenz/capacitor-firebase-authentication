@@ -3,8 +3,11 @@ import Capacitor
 import FirebaseCore
 import FirebaseAuth
 
+public typealias AuthStateChangedObserver = () -> Void
+
 @objc public class FirebaseAuthentication: NSObject {
     public let errorDeviceUnsupported = "Device is not supported. At least iOS 13 is required."
+    public var authStateObserver: AuthStateChangedObserver?
     private let plugin: FirebaseAuthenticationPlugin
     private let config: FirebaseAuthenticationConfig
     private var appleAuthProviderHandler: AppleAuthProviderHandler?
@@ -22,6 +25,9 @@ import FirebaseAuth
             FirebaseApp.configure()
         }
         self.initAuthProviderHandlers(config: config)
+        Auth.auth().addStateDidChangeListener {_,_ in
+            self.authStateObserver?()
+        }
     }
 
     @objc func getCurrentUser() -> User? {
