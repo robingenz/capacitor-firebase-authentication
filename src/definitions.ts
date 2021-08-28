@@ -117,6 +117,8 @@ export interface FirebaseAuthenticationPlugin {
   useAppLanguage(): Promise<void>;
   /**
    * Listen for the user's sign-in state changes.
+   *
+   * Only available for Android and iOS.
    */
   addListener(
     eventName: 'authStateChange',

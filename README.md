@@ -436,6 +436,8 @@ addListener(eventName: 'authStateChange', listenerFunc: AuthStateChangeListener)
 
 Listen for the user's sign-in state changes.
 
+Only available for Android and iOS.
+
 | Param              | Type                                                                        |
 | ------------------ | --------------------------------------------------------------------------- |
 | **`eventName`**    | <code>'authStateChange'</code>                                              |
