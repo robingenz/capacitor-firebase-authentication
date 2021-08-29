@@ -26,7 +26,7 @@
 ## Installation
 
 ```
-npm install @robingenz/capacitor-firebase-authentication
+npm install @robingenz/capacitor-firebase-authentication firebase
 npx cap sync
 ```
 
