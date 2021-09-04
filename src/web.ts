@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { WebPlugin } from '@capacitor/core';
 import type {
   AuthCredential as FirebaseAuthCredential,
@@ -58,7 +57,6 @@ export class FirebaseAuthenticationWeb
   }
 
   public async signInWithApple(): Promise<SignInResult> {
-    // @ts-ignore
     const provider = new OAuthProvider('apple.com');
     const auth = getAuth();
     const result = await signInWithPopup(auth, provider);
@@ -75,7 +73,6 @@ export class FirebaseAuthenticationWeb
   }
 
   public async signInWithGithub(): Promise<SignInResult> {
-    // @ts-ignore
     const provider = new OAuthProvider('github.com');
     const auth = getAuth();
     const result = await signInWithPopup(auth, provider);
@@ -92,7 +89,6 @@ export class FirebaseAuthenticationWeb
   }
 
   public async signInWithMicrosoft(): Promise<SignInResult> {
-    // @ts-ignore
     const provider = new OAuthProvider('microsoft.com');
     const auth = getAuth();
     const result = await signInWithPopup(auth, provider);
@@ -101,7 +97,6 @@ export class FirebaseAuthenticationWeb
   }
 
   public async signInWithTwitter(): Promise<SignInResult> {
-    // @ts-ignore
     const provider = new OAuthProvider('twitter.com');
     const auth = getAuth();
     const result = await signInWithPopup(auth, provider);
@@ -110,7 +105,6 @@ export class FirebaseAuthenticationWeb
   }
 
   public async signInWithYahoo(): Promise<SignInResult> {
-    // @ts-ignore
     const provider = new OAuthProvider('yahoo.com');
     const auth = getAuth();
     const result = await signInWithPopup(auth, provider);
