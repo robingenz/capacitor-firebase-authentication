@@ -16,53 +16,61 @@ To do this, follow these steps:
 
 ```js
 import { FirebaseAuthentication } from '@robingenz/capacitor-firebase-authentication';
-import 'firebase/auth';
-import firebase from 'firebase/app';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  OAuthProvider,
+  PhoneAuthProvider,
+  signInWithCredential,
+} from 'firebase/auth';
 
 const signInWithApple = async () => {
-  // 1. Sign in on the native layer
-  const signInResult = await FirebaseAuthentication.signInWithApple();
+  // 1. Create credentials on the native layer
+  const result = await FirebaseAuthentication.signInWithApple();
   // 2. Sign in on the web layer using the id token and nonce
-  const provider = new firebase.auth.OAuthProvider('apple.com');
+  const provider = new OAuthProvider('apple.com');
   const credential = provider.credential({
-    idToken: signInResult.credential?.idToken,
-    rawNonce: signInResult.credential?.nonce,
+    idToken: result.credential?.idToken,
+    rawNonce: result.credential?.nonce,
   });
-  await firebase.auth().signInWithCredential(credential);
+  const auth = getAuth();
+  await signInWithCredential(auth, credential);
 };
 
 const signInWithGoogle = async () => {
-  // 1. Sign in on the native layer
+  // 1. Create credentials on the native layer
   const result = await FirebaseAuthentication.signInWithGoogle();
   // 2. Sign in on the web layer using the id token
-  const credential = firebase.auth.GoogleAuthProvider.credential(
-    result.credential?.idToken,
-  );
-  await firebase.auth().signInWithCredential(credential);
+  const credential = GoogleAuthProvider.credential(result.credential?.idToken);
+  const auth = getAuth();
+  await signInWithCredential(auth, credential);
 };
 
 const signInWithPhoneNumber = async () => {
   // 1. Start phone number verification
-  const { verificationId } = FirebaseAuthentication.signInWithPhoneNumber({
-    phoneNumber: '123456789',
-  });
+  const { verificationId } = await FirebaseAuthentication.signInWithPhoneNumber(
+    {
+      phoneNumber: '123456789',
+    },
+  );
   // 2. Let the user enter the SMS code
   const verificationCode = window.prompt(
     'Please enter the verification code that was sent to your mobile device.',
   );
   // 3. Sign in on the web layer using the verification ID and verification code.
-  const credential = firebase.auth.PhoneAuthProvider.credential(
-    verificationId,
-    verificationCode,
+  const credential = PhoneAuthProvider.credential(
+    verificationId || '',
+    verificationCode || '',
   );
-  await firebase.auth().signInWithCredential(credential);
+  const auth = getAuth();
+  await signInWithCredential(auth, credential);
 };
 ```
 
 The dependencies used in these examples:
 
-- `firebase@8.10.0`
-- `@robingenz/capacitor-firebase-authentication@0.3.7`
+- `firebase@9.0.1`
+- `@robingenz/capacitor-firebase-authentication@0.3.9`
 
 ## Limitations
 
