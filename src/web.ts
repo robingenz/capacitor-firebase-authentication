@@ -96,6 +96,10 @@ export class FirebaseAuthenticationWeb
     return this.createSignInResult(result.user, credential);
   }
 
+  public async signInWithPlayGames(): Promise<SignInResult> {
+    throw new Error('Not supported on web.');
+  }
+
   public async signInWithTwitter(): Promise<SignInResult> {
     const provider = new OAuthProvider('twitter.com');
     const auth = getAuth();

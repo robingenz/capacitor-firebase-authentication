@@ -47,6 +47,7 @@ The further installation steps depend on the selected authentication method:
 - [GitHub Sign-In](docs/setup-github.md)
 - [Google Sign-In](docs/setup-google.md)
 - [Microsoft Sign-In](docs/setup-microsoft.md)
+- [Play Games Sign-In](docs/setup-play-games.md)
 - [Twitter Sign-In](docs/setup-twitter.md)
 - [Yahoo Sign-In](docs/setup-yahoo.md)
 - [Phone Number Sign-In](docs/setup-phone.md)
@@ -138,6 +139,10 @@ const signInWithMicrosoft = async () => {
   await FirebaseAuthentication.signInWithMicrosoft();
 };
 
+const signInWithPlayGames = async () => {
+  await FirebaseAuthentication.signInWithPlayGames();
+};
+
 const signInWithPhoneNumber = async () => {
   const { verificationId } = await FirebaseAuthentication.signInWithPhoneNumber(
     {
@@ -182,6 +187,7 @@ const useAppLanguage = async () => {
 * [`signInWithGithub(...)`](#signinwithgithub)
 * [`signInWithGoogle(...)`](#signinwithgoogle)
 * [`signInWithMicrosoft(...)`](#signinwithmicrosoft)
+* [`signInWithPlayGames(...)`](#signinwithplaygames)
 * [`signInWithTwitter(...)`](#signinwithtwitter)
 * [`signInWithYahoo(...)`](#signinwithyahoo)
 * [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
@@ -317,6 +323,23 @@ signInWithMicrosoft(options?: SignInOptions | undefined) => Promise<SignInResult
 ```
 
 Starts the Microsoft sign-in flow.
+
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
+
+--------------------
+
+
+### signInWithPlayGames(...)
+
+```typescript
+signInWithPlayGames(options?: SignInOptions | undefined) => Promise<SignInResult>
+```
+
+Starts the Play Games sign-in flow.
 
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |

@@ -66,6 +66,10 @@ export interface FirebaseAuthenticationPlugin {
    */
   signInWithMicrosoft(options?: SignInOptions): Promise<SignInResult>;
   /**
+   * Starts the Play Games sign-in flow.
+   */
+  signInWithPlayGames(options?: SignInOptions): Promise<SignInResult>;
+  /**
    * Starts the Twitter sign-in flow.
    */
   signInWithTwitter(options?: SignInOptions): Promise<SignInResult>;
