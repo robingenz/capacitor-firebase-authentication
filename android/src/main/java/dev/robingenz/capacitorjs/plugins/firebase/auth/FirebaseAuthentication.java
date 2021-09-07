@@ -19,6 +19,8 @@ import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.FacebookAuthProv
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.OAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.PhoneAuthProviderHandler;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.PlayGamesAuthProviderHandler;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,6 +43,7 @@ public class FirebaseAuthentication {
     private GoogleAuthProviderHandler googleAuthProviderHandler;
     private OAuthProviderHandler oAuthProviderHandler;
     private PhoneAuthProviderHandler phoneAuthProviderHandler;
+    private PlayGamesAuthProviderHandler playGamesAuthProviderHandler;
 
     public FirebaseAuthentication(FirebaseAuthenticationPlugin plugin, FirebaseAuthenticationConfig config) {
         this.plugin = plugin;
@@ -115,6 +118,10 @@ public class FirebaseAuthentication {
         phoneAuthProviderHandler.signIn(call);
     }
 
+    public void signInWithPlayGames(PluginCall call) {
+        playGamesAuthProviderHandler.signIn(call);
+    }
+
     public void signInWithTwitter(PluginCall call) {
         oAuthProviderHandler.signIn(call, "twitter.com");
     }
@@ -131,6 +138,9 @@ public class FirebaseAuthentication {
         if (facebookAuthProviderHandler != null) {
             facebookAuthProviderHandler.signOut();
         }
+        if (playGamesAuthProviderHandler != null) {
+            playGamesAuthProviderHandler.signOut();
+        }
         call.resolve();
     }
 
@@ -144,6 +154,10 @@ public class FirebaseAuthentication {
 
     public void handleGoogleAuthProviderActivityResult(PluginCall call, ActivityResult result) {
         googleAuthProviderHandler.handleOnActivityResult(call, result);
+    }
+
+    public void handlePlayGamesAuthProviderActivityResult(PluginCall call, ActivityResult result) {
+        playGamesAuthProviderHandler.handleOnActivityResult(call, result);
     }
 
     public void handleOnActivityResult(int requestCode, int resultCode, Intent data) {
@@ -216,6 +230,9 @@ public class FirebaseAuthentication {
         }
         if (providerList.contains("google.com")) {
             googleAuthProviderHandler = new GoogleAuthProviderHandler(this);
+        }
+        if (providerList.contains("playgames.google.com")) {
+            playGamesAuthProviderHandler = new PlayGamesAuthProviderHandler(this);
         }
         if (providerList.contains("phone")) {
             phoneAuthProviderHandler = new PhoneAuthProviderHandler(this);

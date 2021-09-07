@@ -152,6 +152,11 @@ public class FirebaseAuthenticationPlugin extends Plugin {
         implementation.handleGoogleAuthProviderActivityResult(call, result);
     }
 
+    @ActivityCallback
+    private void handlePlayGamesAuthProviderActivityResult(PluginCall call, ActivityResult result) {
+        implementation.handlePlayGamesAuthProviderActivityResult(call, result);
+    }
+
     private FirebaseAuthenticationConfig getFirebaseAuthenticationConfig() {
         FirebaseAuthenticationConfig config = new FirebaseAuthenticationConfig();
 
