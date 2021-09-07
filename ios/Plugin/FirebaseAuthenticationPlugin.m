@@ -12,6 +12,7 @@ CAP_PLUGIN(FirebaseAuthenticationPlugin, "FirebaseAuthentication",
            CAP_PLUGIN_METHOD(signInWithGithub, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signInWithGoogle, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signInWithMicrosoft, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(signInWithPlayGames, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signInWithTwitter, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signInWithYahoo, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(signInWithPhoneNumber, CAPPluginReturnPromise);

@@ -97,7 +97,7 @@ export class FirebaseAuthenticationWeb
   }
 
   public async signInWithPlayGames(): Promise<SignInResult> {
-    throw new Error('Not supported on web.');
+    throw new Error('Not available on web.');
   }
 
   public async signInWithTwitter(): Promise<SignInResult> {
