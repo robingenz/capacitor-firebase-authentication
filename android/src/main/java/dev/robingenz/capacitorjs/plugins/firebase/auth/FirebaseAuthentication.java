@@ -20,7 +20,6 @@ import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProvid
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.OAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.PhoneAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.PlayGamesAuthProviderHandler;
-
 import java.util.Arrays;
 import java.util.List;
 
