@@ -9,6 +9,7 @@ public class FirebaseAuthenticationConfig {
         "github.com",
         "google.com",
         "microsoft.com",
+        "playgames.google.com",
         "twitter.com",
         "yahoo.com",
         "phone"
