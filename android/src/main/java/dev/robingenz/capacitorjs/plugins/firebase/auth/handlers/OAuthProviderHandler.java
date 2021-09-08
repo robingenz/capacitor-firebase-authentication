@@ -11,7 +11,6 @@ import com.google.firebase.auth.OAuthCredential;
 import com.google.firebase.auth.OAuthProvider;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthenticationPlugin;
-
 import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;

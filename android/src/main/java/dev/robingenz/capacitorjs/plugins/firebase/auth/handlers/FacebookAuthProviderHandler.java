@@ -2,7 +2,6 @@ package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
 import android.content.Intent;
 import android.util.Log;
-
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -28,30 +27,30 @@ public class FacebookAuthProviderHandler {
     public FacebookAuthProviderHandler(FirebaseAuthentication pluginImplementation) {
         this.pluginImplementation = pluginImplementation;
         try {
-          mCallbackManager = CallbackManager.Factory.create();
-          loginButton = new LoginButton(pluginImplementation.getPlugin().getContext());
-          loginButton.setPermissions("email", "public_profile");
-          loginButton.registerCallback(
-              mCallbackManager,
-              new FacebookCallback<LoginResult>() {
-                  @Override
-                  public void onSuccess(LoginResult loginResult) {
-                      handleSuccessCallback(loginResult);
-                  }
+            mCallbackManager = CallbackManager.Factory.create();
+            loginButton = new LoginButton(pluginImplementation.getPlugin().getContext());
+            loginButton.setPermissions("email", "public_profile");
+            loginButton.registerCallback(
+                mCallbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        handleSuccessCallback(loginResult);
+                    }
 
-                  @Override
-                  public void onCancel() {
-                      handleCancelCallback();
-                  }
+                    @Override
+                    public void onCancel() {
+                        handleCancelCallback();
+                    }
 
-                  @Override
-                  public void onError(FacebookException exception) {
-                      handleErrorCallback(exception);
-                  }
-              }
-          );
+                    @Override
+                    public void onError(FacebookException exception) {
+                        handleErrorCallback(exception);
+                    }
+                }
+            );
         } catch (Exception exception) {
-          Log.e(FirebaseAuthenticationPlugin.TAG, "initialization failed.", exception);
+            Log.e(FirebaseAuthenticationPlugin.TAG, "initialization failed.", exception);
         }
     }
 
