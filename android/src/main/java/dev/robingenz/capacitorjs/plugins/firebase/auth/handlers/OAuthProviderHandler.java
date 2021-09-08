@@ -10,13 +10,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.OAuthCredential;
 import com.google.firebase.auth.OAuthProvider;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthenticationPlugin;
 import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class OAuthProviderHandler {
 
-    public static final String TAG = "OAuthProviderHandler";
     private final FirebaseAuthentication pluginImplementation;
 
     public OAuthProviderHandler(FirebaseAuthentication pluginImplementation) {
@@ -72,8 +72,8 @@ public class OAuthProviderHandler {
                     }
                     provider.addCustomParameter(key, value);
                 }
-            } catch (JSONException e) {
-                Log.e(TAG, "applySignInConfig failed.", e);
+            } catch (JSONException exception) {
+                Log.e(FirebaseAuthenticationPlugin.TAG, "applySignInConfig failed.", exception);
             }
         }
     }

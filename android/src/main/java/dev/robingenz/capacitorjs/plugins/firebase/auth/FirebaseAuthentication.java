@@ -32,7 +32,6 @@ public class FirebaseAuthentication {
     @Nullable
     private AuthStateChangeListener authStateChangeListener;
 
-    public static final String TAG = "FirebaseAuthentication";
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
     private FirebaseAuthenticationPlugin plugin;
     private FirebaseAuthenticationConfig config;
@@ -180,12 +179,12 @@ public class FirebaseAuthentication {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithCredential succeeded.");
+                            Log.d(FirebaseAuthenticationPlugin.TAG, "signInWithCredential succeeded.");
                             FirebaseUser user = getCurrentUser();
                             JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, credential, idToken);
                             call.resolve(signInResult);
                         } else {
-                            Log.e(TAG, "signInWithCredential failed.", task.getException());
+                            Log.e(FirebaseAuthenticationPlugin.TAG, "signInWithCredential failed.", task.getException());
                             call.reject(ERROR_SIGN_IN_FAILED);
                         }
                     }
@@ -195,8 +194,8 @@ public class FirebaseAuthentication {
                 plugin.getActivity(),
                 new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception ex) {
-                        Log.e(TAG, "signInWithCredential failed.", ex);
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.e(FirebaseAuthenticationPlugin.TAG, "signInWithCredential failed.", exception);
                         call.reject(ERROR_SIGN_IN_FAILED);
                     }
                 }
