@@ -19,8 +19,9 @@ declare module '@capacitor/cli' {
        */
       skipNativeAuth?: boolean;
       /**
-       * Configure which providers you want to use so that only the providers you need are initialized.
+       * Configure which providers you want to use so that only the providers you need are fully initialized.
        * If you do not configure any providers, they will be all initialized.
+       * Please note that this does not prevent the automatic initialization of third-party SDKs.
        *
        * Only available for Android and iOS.
        *

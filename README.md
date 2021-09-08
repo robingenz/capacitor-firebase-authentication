@@ -51,6 +51,10 @@ The further installation steps depend on the selected authentication method:
 - [Yahoo Sign-In](docs/setup-yahoo.md)
 - [Phone Number Sign-In](docs/setup-phone.md)
 
+**Attention**: Please note that this plugin uses third-party SDKs to offer native sign-in.
+These SDKs can initialize on their own and collect various data.
+[Here](docs/third-party-sdks.md) you can find more information.
+
 ## Configuration
 
 <docgen-config>
@@ -58,10 +62,10 @@ The further installation steps depend on the selected authentication method:
 
 These configuration values are available:
 
-| Prop                 | Type                  | Description                                                                                                                                                                                             | Default                                                                                                                      |
-| -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| **`skipNativeAuth`** | <code>boolean</code>  | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS.                                     | <code>false</code>                                                                                                           |
-| **`providers`**      | <code>string[]</code> | Configure which providers you want to use so that only the providers you need are initialized. If you do not configure any providers, they will be all initialized. Only available for Android and iOS. | <code>["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com", "phone"]</code> |
+| Prop                 | Type                  | Description                                                                                                                                                                                                                                                                                            | Default                                                                                                                      |
+| -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| **`skipNativeAuth`** | <code>boolean</code>  | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS.                                                                                                                                    | <code>false</code>                                                                                                           |
+| **`providers`**      | <code>string[]</code> | Configure which providers you want to use so that only the providers you need are fully initialized. If you do not configure any providers, they will be all initialized. Please note that this does not prevent the automatic initialization of third-party SDKs. Only available for Android and iOS. | <code>["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com", "phone"]</code> |
 
 ### Examples
 
