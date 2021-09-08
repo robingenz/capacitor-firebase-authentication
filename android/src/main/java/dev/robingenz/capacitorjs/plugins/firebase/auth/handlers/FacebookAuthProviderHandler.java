@@ -1,6 +1,8 @@
 package dev.robingenz.capacitorjs.plugins.firebase.auth.handlers;
 
 import android.content.Intent;
+import android.util.Log;
+
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -12,6 +14,7 @@ import com.getcapacitor.PluginCall;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FacebookAuthProvider;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthenticationPlugin;
 
 public class FacebookAuthProviderHandler {
 
@@ -24,28 +27,32 @@ public class FacebookAuthProviderHandler {
 
     public FacebookAuthProviderHandler(FirebaseAuthentication pluginImplementation) {
         this.pluginImplementation = pluginImplementation;
-        mCallbackManager = CallbackManager.Factory.create();
-        loginButton = new LoginButton(pluginImplementation.getPlugin().getContext());
-        loginButton.setPermissions("email", "public_profile");
-        loginButton.registerCallback(
-            mCallbackManager,
-            new FacebookCallback<LoginResult>() {
-                @Override
-                public void onSuccess(LoginResult loginResult) {
-                    handleSuccessCallback(loginResult);
-                }
+        try {
+          mCallbackManager = CallbackManager.Factory.create();
+          loginButton = new LoginButton(pluginImplementation.getPlugin().getContext());
+          loginButton.setPermissions("email", "public_profile");
+          loginButton.registerCallback(
+              mCallbackManager,
+              new FacebookCallback<LoginResult>() {
+                  @Override
+                  public void onSuccess(LoginResult loginResult) {
+                      handleSuccessCallback(loginResult);
+                  }
 
-                @Override
-                public void onCancel() {
-                    handleCancelCallback();
-                }
+                  @Override
+                  public void onCancel() {
+                      handleCancelCallback();
+                  }
 
-                @Override
-                public void onError(FacebookException exception) {
-                    handleErrorCallback(exception);
-                }
-            }
-        );
+                  @Override
+                  public void onError(FacebookException exception) {
+                      handleErrorCallback(exception);
+                  }
+              }
+          );
+        } catch (Exception exception) {
+          Log.e(FirebaseAuthenticationPlugin.TAG, "initialization failed.", exception);
+        }
     }
 
     public void signIn(PluginCall call) {
