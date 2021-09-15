@@ -105,6 +105,11 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void signInWithPlayGames(PluginCall call) {
+        implementation.signInWithPlayGames(call);
+    }
+
+    @PluginMethod
     public void signInWithTwitter(PluginCall call) {
         implementation.signInWithTwitter(call);
     }
