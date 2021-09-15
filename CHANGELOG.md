@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.11](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.10...v0.3.11) (2021-09-15)
+
+
+### Features
+
+* **android:** support Play Games sign-in ([#83](https://github.com/robingenz/capacitor-firebase-authentication/issues/83)) ([d086a0e](https://github.com/robingenz/capacitor-firebase-authentication/commit/d086a0ee5a1259a93155b65b7c378377ae38ab9a))
+
 ### [0.3.10](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.9...v0.3.10) (2021-09-08)
 
 
