@@ -82,6 +82,10 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         implementation?.signInWithPhoneNumber(call)
     }
 
+    @objc func signInWithPlayGames(_ call: CAPPluginCall) {
+        call.reject("Not available on iOS.")
+    }
+
     @objc func signInWithTwitter(_ call: CAPPluginCall) {
         implementation?.signInWithTwitter(call)
     }

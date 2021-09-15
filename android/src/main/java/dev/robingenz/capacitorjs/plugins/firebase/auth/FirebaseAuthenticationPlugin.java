@@ -105,6 +105,11 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void signInWithPlayGames(PluginCall call) {
+        implementation.signInWithPlayGames(call);
+    }
+
+    @PluginMethod
     public void signInWithTwitter(PluginCall call) {
         implementation.signInWithTwitter(call);
     }
@@ -151,6 +156,11 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     @ActivityCallback
     private void handleGoogleAuthProviderActivityResult(PluginCall call, ActivityResult result) {
         implementation.handleGoogleAuthProviderActivityResult(call, result);
+    }
+
+    @ActivityCallback
+    private void handlePlayGamesAuthProviderActivityResult(PluginCall call, ActivityResult result) {
+        implementation.handlePlayGamesAuthProviderActivityResult(call, result);
     }
 
     private FirebaseAuthenticationConfig getFirebaseAuthenticationConfig() {

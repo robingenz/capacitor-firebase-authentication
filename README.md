@@ -47,6 +47,7 @@ The further installation steps depend on the selected authentication method:
 - [GitHub Sign-In](docs/setup-github.md)
 - [Google Sign-In](docs/setup-google.md)
 - [Microsoft Sign-In](docs/setup-microsoft.md)
+- [Play Games Sign-In](docs/setup-play-games.md)
 - [Twitter Sign-In](docs/setup-twitter.md)
 - [Yahoo Sign-In](docs/setup-yahoo.md)
 - [Phone Number Sign-In](docs/setup-phone.md)
@@ -62,10 +63,10 @@ These SDKs can initialize on their own and collect various data.
 
 These configuration values are available:
 
-| Prop                 | Type                  | Description                                                                                                                                                                                                                                                                                            | Default                                                                                                                      |
-| -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
-| **`skipNativeAuth`** | <code>boolean</code>  | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS.                                                                                                                                    | <code>false</code>                                                                                                           |
-| **`providers`**      | <code>string[]</code> | Configure which providers you want to use so that only the providers you need are fully initialized. If you do not configure any providers, they will be all initialized. Please note that this does not prevent the automatic initialization of third-party SDKs. Only available for Android and iOS. | <code>["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "twitter.com", "yahoo.com", "phone"]</code> |
+| Prop                 | Type                  | Description                                                                                                                                                                                                                                                                                            | Default                                                                                                                                              |
+| -------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`skipNativeAuth`** | <code>boolean</code>  | Configure whether the plugin should skip the native authentication. Only needed if you want to use the Firebase JavaScript SDK. Only available for Android and iOS.                                                                                                                                    | <code>false</code>                                                                                                                                   |
+| **`providers`**      | <code>string[]</code> | Configure which providers you want to use so that only the providers you need are fully initialized. If you do not configure any providers, they will be all initialized. Please note that this does not prevent the automatic initialization of third-party SDKs. Only available for Android and iOS. | <code>["apple.com", "facebook.com", "github.com", "google.com", "microsoft.com", "playgames.google.com", "twitter.com", "yahoo.com", "phone"]</code> |
 
 ### Examples
 
@@ -142,6 +143,10 @@ const signInWithMicrosoft = async () => {
   await FirebaseAuthentication.signInWithMicrosoft();
 };
 
+const signInWithPlayGames = async () => {
+  await FirebaseAuthentication.signInWithPlayGames();
+};
+
 const signInWithPhoneNumber = async () => {
   const { verificationId } = await FirebaseAuthentication.signInWithPhoneNumber(
     {
@@ -186,6 +191,7 @@ const useAppLanguage = async () => {
 * [`signInWithGithub(...)`](#signinwithgithub)
 * [`signInWithGoogle(...)`](#signinwithgoogle)
 * [`signInWithMicrosoft(...)`](#signinwithmicrosoft)
+* [`signInWithPlayGames(...)`](#signinwithplaygames)
 * [`signInWithTwitter(...)`](#signinwithtwitter)
 * [`signInWithYahoo(...)`](#signinwithyahoo)
 * [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
@@ -321,6 +327,23 @@ signInWithMicrosoft(options?: SignInOptions | undefined) => Promise<SignInResult
 ```
 
 Starts the Microsoft sign-in flow.
+
+| Param         | Type                                                    |
+| ------------- | ------------------------------------------------------- |
+| **`options`** | <code><a href="#signinoptions">SignInOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
+
+--------------------
+
+
+### signInWithPlayGames(...)
+
+```typescript
+signInWithPlayGames(options?: SignInOptions | undefined) => Promise<SignInResult>
+```
+
+Starts the Play Games sign-in flow.
 
 | Param         | Type                                                    |
 | ------------- | ------------------------------------------------------- |
