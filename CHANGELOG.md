@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.10](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.9...v0.3.10) (2021-09-08)
+
+
+### Bug Fixes
+
+* catch errors when initializing the Facebook SDK ([#84](https://github.com/robingenz/capacitor-firebase-authentication/issues/84)) ([f6e77da](https://github.com/robingenz/capacitor-firebase-authentication/commit/f6e77da346ddccfbab16f0bb96883d25fe9872c6))
+
 ### [0.3.9](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.8...v0.3.9) (2021-08-28)
 
 

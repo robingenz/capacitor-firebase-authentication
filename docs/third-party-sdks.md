@@ -11,4 +11,4 @@ This app uses the following SDKs, among others:
 ## Facebook SDK
 
 Facebook collects various data with the Facebook Login SDK. 
-[Here](https://de-de.facebook.com/business/m/one-sheeters/gdpr-developer-faqs) you can find more information about this, including how to disable app event logging.
+[Here](https://www.facebook.com/business/m/one-sheeters/gdpr-developer-faqs) you can find more information about this, including how to disable app event logging.
