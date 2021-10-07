@@ -106,6 +106,16 @@ export default config;
 
 ## Usage
 
+There are two ways you can use this library:
+1. Authenticating the Native layer (When you don't need the Firebase JS SDK for the _ios_ and _android_ platforms)
+2. Authenticating the Webview layer (When your app always relies on the Firebase JS SDK being authenticated)
+
+### 1. Authenticating the Native Layer
+
+If you only need to authenticate your users on the native layer of iOS & Android, then you can use the example code below.
+
+This same code can be used by your Capacitor app for the _web_ platform. You can check this [source code](https://github.com/robingenz/capacitor-firebase-authentication/blob/main/src/web.ts) to see exactly what happens when this code is executed on the _web_ platform.
+
 ```typescript
 import { FirebaseAuthentication } from '@robingenz/capacitor-firebase-authentication';
 
@@ -178,6 +188,176 @@ const useAppLanguage = async () => {
   await FirebaseAuthentication.useAppLanguage();
 };
 ```
+
+### 2. Authenticating the Webview Layer
+
+If your app relies on the Firebase JS SDK being authenticated, even on the _ios_ and _android_ platforms, then the examlpe code of (1) above will not be enough.
+
+```typescript
+import { Capacitor } from '@capacitor/core'
+import { FirebaseAuthentication } from '@robingenz/capacitor-firebase-authentication';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  OAuthProvider,
+  PhoneAuthProvider,
+  signInWithCredential,
+  signOut,
+} from 'firebase/auth';
+
+/**
+ * @type {'ios' | 'web' | 'android'}
+ */
+export const platform = Capacitor.platform
+
+const getCurrentUser = async () => {
+  const result = await FirebaseAuthentication.getCurrentUser();
+  return result.user;
+};
+
+const getIdToken = async () => {
+  const result = await FirebaseAuthentication.getIdToken();
+  return result.token;
+};
+
+const setLanguageCode = async () => {
+  await FirebaseAuthentication.setLanguageCode({ languageCode: 'en-US' });
+};
+
+const signInWithApple = async () => {
+  if (platform === 'android') {
+    throw new Error('not supported')
+  }
+  await FirebaseAuthentication.signInWithApple();
+  
+  // for the web platform, nothing else needs to be done
+  if (platform === 'web') return
+  
+  // 2. Sign in on the web layer using the id token and nonce
+  const credential = OAuthProvider.credentialFromJSON({
+    providerId: 'apple.com',
+    signInMethod: 'apple.com',
+    idToken: result.credential?.idToken,
+    nonce: result.credential?.nonce,
+    pendingToken: null
+  })
+  await signInWithCredential(firebaseAuth, credential)
+};
+
+const signInWithFacebook = async () => {
+  await FirebaseAuthentication.signInWithFacebook();
+  
+  // for the web platform, nothing else needs to be done
+  if (platform === 'web') return
+  
+  // TODO: write example code for authenticating the Firebase JS SDK
+};
+
+const signInWithGithub = async () => {
+  await FirebaseAuthentication.signInWithGithub();
+  
+  // for the web platform, nothing else needs to be done
+  if (platform === 'web') return
+  
+  // TODO: write example code for authenticating the Firebase JS SDK
+};
+
+const signInWithGoogle = async () => {
+  // 1. Create credentials on the native layer
+  const result = await FirebaseAuthentication.signInWithGoogle();
+  
+  // for the web platform, nothing else needs to be done
+  if (platform === 'web') return
+
+  // 2. Sign in on the web layer using the id token
+  const credential = GoogleAuthProvider.credential(result.credential?.idToken);
+  const auth = getAuth();
+  await signInWithCredential(auth, credential);
+};
+
+const signInWithMicrosoft = async () => {
+  await FirebaseAuthentication.signInWithMicrosoft();
+  
+  // for the web platform, nothing else needs to be done
+  if (platform === 'web') return
+  
+  // TODO: write example code for authenticating the Firebase JS SDK
+};
+
+const signInWithPlayGames = async () => {
+  await FirebaseAuthentication.signInWithPlayGames();
+  
+  // for the web platform, nothing else needs to be done
+  if (platform === 'web') return
+  
+  // TODO: write example code for authenticating the Firebase JS SDK
+};
+
+const signInWithPhoneNumber = async () => {
+  // 1. Start phone number verification
+  const { verificationId } = await FirebaseAuthentication.signInWithPhoneNumber(
+    {
+      phoneNumber: '123456789',
+    },
+  );
+  // 2. Let the user enter the SMS code
+  const verificationCode = window.prompt(
+    'Please enter the verification code that was sent to your mobile device.',
+  );
+  // 3. Sign in on the web layer using the verification ID and verification code.
+  const credential = PhoneAuthProvider.credential(
+    verificationId || '',
+    verificationCode || '',
+  );
+  const auth = getAuth();
+  await signInWithCredential(auth, credential);
+  
+  // for the web platform, nothing else needs to be done
+  if (platform === 'web') return
+  
+  // TODO: currently this code only authenticates the Firebase JS SDK. Must add code that also authenticates the Native layer.
+};
+
+const signInWithTwitter = async () => {
+  await FirebaseAuthentication.signInWithTwitter();
+  
+  // for the web platform, nothing else needs to be done
+  if (platform === 'web') return
+  
+  // TODO: write example code for authenticating the Firebase JS SDK
+};
+
+const signInWithYahoo = async () => {
+  await FirebaseAuthentication.signInWithYahoo();
+  
+  // for the web platform, nothing else needs to be done
+  if (platform === 'web') return
+  
+  // TODO: write example code for authenticating the Firebase JS SDK
+};
+
+const signOut = async () => {
+  // 1. Sign out from the native layer
+  await FirebaseAuthentication.signOut();
+  
+  // for the web platform, nothing else needs to be done
+  if (platform === 'web') return
+  
+  // 2. Sign out from the web layer
+  const auth = getAuth();
+  signOut(auth)
+};
+
+const useAppLanguage = async () => {
+  await FirebaseAuthentication.useAppLanguage();
+};
+```
+
+Please note that the code above is only required for the _ios_ and _android_ platforms. Because when you run your Capacitor app on the web, executing functions as shown above like `await FirebaseAuthentication.signInWithGoogle()` will already authenticate your Firebase JS SDK. This means that for the _web_ platform, you can simply use the functions as shown in (1) above.
+
+:::hint
+If you don't need the native layers of the _ios_ and _android_ platforms to be authenticated at all (because you don't use any other Capacitor plugins that rely on that), then you can set `skipNativeAuth` to `true` in your `capacitor.config` file.
+:::
 
 ## API
 
