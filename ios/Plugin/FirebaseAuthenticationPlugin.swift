@@ -94,6 +94,10 @@ public class FirebaseAuthenticationPlugin: CAPPlugin {
         implementation?.signInWithYahoo(call)
     }
 
+    @objc func signInWithCustomToken(_ call: CAPPluginCall) {
+        implementation?.signInWithCustomToken(call)
+    }
+
     @objc func signOut(_ call: CAPPluginCall) {
         implementation?.signOut(call)
     }

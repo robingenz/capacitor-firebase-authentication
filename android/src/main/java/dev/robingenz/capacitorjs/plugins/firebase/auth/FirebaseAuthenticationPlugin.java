@@ -120,6 +120,11 @@ public class FirebaseAuthenticationPlugin extends Plugin {
     }
 
     @PluginMethod
+    public void signInWithCustomToken(PluginCall call) {
+        implementation.signInWithCustomToken(call);
+    }
+
+    @PluginMethod
     public void signOut(PluginCall call) {
         implementation.signOut(call);
     }
