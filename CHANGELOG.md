@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.12](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.11...v0.3.12) (2021-11-13)
+
+
+### Features
+
+* add `signInWithCustomToken` ([#100](https://github.com/robingenz/capacitor-firebase-authentication/issues/100)) ([ccf7481](https://github.com/robingenz/capacitor-firebase-authentication/commit/ccf7481056242f3886abfa7a3c90574a8bdce079))
+
 ### [0.3.11](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.10...v0.3.11) (2021-09-15)
 
 
