@@ -13,7 +13,7 @@
 
    `[APP_ID]` must be replaced with your Facebook app ID.
 
-1. Add the following elements to `android/app/src/main/AndroidManifest.xml` after the `application` element:
+1. Add the following elements to `android/app/src/main/AndroidManifest.xml` inside the `application` element:
 
    ```xml
    <meta-data
