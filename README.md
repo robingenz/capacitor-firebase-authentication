@@ -51,6 +51,7 @@ The further installation steps depend on the selected authentication method:
 - [Twitter Sign-In](docs/setup-twitter.md)
 - [Yahoo Sign-In](docs/setup-yahoo.md)
 - [Phone Number Sign-In](docs/setup-phone.md)
+- [Custom Token Sign-In](docs/custom-token.md)
 
 **Attention**: Please note that this plugin uses third-party SDKs to offer native sign-in.
 These SDKs can initialize on their own and collect various data.
