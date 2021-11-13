@@ -139,20 +139,32 @@ public class FirebaseAuthentication {
 
         String token = call.getString("token", "");
 
-        this.getFirebaseAuthInstance()
+        firebaseAuthInstance
             .signInWithCustomToken(token)
             .addOnCompleteListener(
                 plugin.getActivity(),
-                (OnCompleteListener<AuthResult>) task -> {
-                    if (task.isSuccessful()) {
-                        Log.d(FirebaseAuthenticationPlugin.TAG, "signInWithCustomToken succeeded.");
-                        FirebaseUser user = getCurrentUser();
-                        JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, null, null);
-                        call.resolve(signInResult);
-                    } else {
-                        Exception err = task.getException();
-                        Log.e(FirebaseAuthenticationPlugin.TAG, "signInWithCustomToken failed.", err);
-                        this.handleFailedSignIn(call, null, err);
+                new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(FirebaseAuthenticationPlugin.TAG, "signInWithCustomToken succeeded.");
+                            FirebaseUser user = getCurrentUser();
+                            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, null, null);
+                            call.resolve(signInResult);
+                        } else {
+                            Log.e(FirebaseAuthenticationPlugin.TAG, "signInWithCustomToken failed.", task.getException());
+                            call.reject(ERROR_SIGN_IN_FAILED);
+                        }
+                    }
+                }
+            )
+            .addOnFailureListener(
+                plugin.getActivity(),
+                new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        Log.e(FirebaseAuthenticationPlugin.TAG, "signInWithCustomToken failed.", exception);
+                        call.reject(ERROR_SIGN_IN_FAILED);
                     }
                 }
             );
