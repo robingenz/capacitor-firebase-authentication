@@ -89,6 +89,15 @@ export interface FirebaseAuthenticationPlugin {
     options: SignInWithPhoneNumberOptions,
   ): Promise<SignInWithPhoneNumberResult>;
   /**
+   * Starts the Custom Token sign-in flow.
+   *
+   * This method cannot be used in combination with `skipNativeAuth` on Android and iOS.
+   * In this case you have to use the `signInWithCustomToken` interface of the Firebase JS SDK directly.
+   */
+  signInWithCustomToken(
+    options: SignInWithCustomTokenOptions,
+  ): Promise<SignInResult>;
+  /**
    * Starts the sign-out flow.
    */
   signOut(): Promise<void>;
@@ -172,6 +181,13 @@ export interface SignInWithPhoneNumberOptions {
    * The `verificationId` must also be provided.
    */
   verificationCode?: string;
+}
+
+export interface SignInWithCustomTokenOptions {
+  /**
+   * The custom token to sign in with.
+   */
+  token: string;
 }
 
 export interface SignInResult {

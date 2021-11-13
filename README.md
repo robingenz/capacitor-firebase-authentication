@@ -195,6 +195,7 @@ const useAppLanguage = async () => {
 * [`signInWithTwitter(...)`](#signinwithtwitter)
 * [`signInWithYahoo(...)`](#signinwithyahoo)
 * [`signInWithPhoneNumber(...)`](#signinwithphonenumber)
+* [`signInWithCustomToken(...)`](#signinwithcustomtoken)
 * [`signOut()`](#signout)
 * [`useAppLanguage()`](#useapplanguage)
 * [`addListener('authStateChange', ...)`](#addlistenerauthstatechange-)
@@ -409,6 +410,26 @@ Only available for Android and iOS.
 --------------------
 
 
+### signInWithCustomToken(...)
+
+```typescript
+signInWithCustomToken(options: SignInWithCustomTokenOptions) => Promise<SignInResult>
+```
+
+Starts the Custom Token sign-in flow.
+
+This method cannot be used in combination with `skipNativeAuth` on Android and iOS.
+In this case you have to use the `signInWithCustomToken` interface of the Firebase JS SDK directly.
+
+| Param         | Type                                                                                  |
+| ------------- | ------------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#signinwithcustomtokenoptions">SignInWithCustomTokenOptions</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#signinresult">SignInResult</a>&gt;</code>
+
+--------------------
+
+
 ### signOut()
 
 ```typescript
@@ -554,6 +575,13 @@ Remove all listeners for this plugin.
 | **`phoneNumber`**      | <code>string</code> | The phone number to be verified.                                                                                                                    |
 | **`verificationId`**   | <code>string</code> | The verification ID which will be returned when `signInWithPhoneNumber` is called for the first time. The `verificationCode` must also be provided. |
 | **`verificationCode`** | <code>string</code> | The verification code from the SMS message. The `verificationId` must also be provided.                                                             |
+
+
+#### SignInWithCustomTokenOptions
+
+| Prop        | Type                | Description                       |
+| ----------- | ------------------- | --------------------------------- |
+| **`token`** | <code>string</code> | The custom token to sign in with. |
 
 
 #### PluginListenerHandle

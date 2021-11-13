@@ -10,6 +10,7 @@ import {
   OAuthCredential,
   OAuthProvider,
   signInWithPopup,
+  signInWithCustomToken,
 } from 'firebase/auth';
 
 import type {
@@ -21,6 +22,7 @@ import type {
   SetLanguageCodeOptions,
   SignInResult,
   SignInWithPhoneNumberOptions,
+  SignInWithCustomTokenOptions,
   User,
 } from './definitions';
 
@@ -120,6 +122,14 @@ export class FirebaseAuthenticationWeb
     _options: SignInWithPhoneNumberOptions,
   ): Promise<SignInResult> {
     throw new Error('Not implemented on web.');
+  }
+
+  public async signInWithCustomToken(
+    options: SignInWithCustomTokenOptions,
+  ): Promise<SignInResult> {
+    const auth = getAuth();
+    const result = await signInWithCustomToken(auth, options.token);
+    return this.createSignInResult(result.user, null);
   }
 
   public async signOut(): Promise<void> {

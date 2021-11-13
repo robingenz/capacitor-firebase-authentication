@@ -33,6 +33,8 @@ public class FirebaseAuthentication {
     private AuthStateChangeListener authStateChangeListener;
 
     public static final String ERROR_SIGN_IN_FAILED = "signIn failed.";
+    public static final String ERROR_CUSTOM_TOKEN_SKIP_NATIVE_AUTH =
+        "signInWithCustomToken cannot be used in combination with skipNativeAuth.";
     private FirebaseAuthenticationPlugin plugin;
     private FirebaseAuthenticationConfig config;
     private FirebaseAuth firebaseAuthInstance;
@@ -126,6 +128,34 @@ public class FirebaseAuthentication {
 
     public void signInWithYahoo(PluginCall call) {
         oAuthProviderHandler.signIn(call, "yahoo.com");
+    }
+
+    public void signInWithCustomToken(PluginCall call) {
+        boolean skipNativeAuth = this.config.getSkipNativeAuth();
+        if (skipNativeAuth) {
+            call.reject(ERROR_CUSTOM_TOKEN_SKIP_NATIVE_AUTH);
+            return;
+        }
+
+        String token = call.getString("token", "");
+
+        this.getFirebaseAuthInstance()
+            .signInWithCustomToken(token)
+            .addOnCompleteListener(
+                plugin.getActivity(),
+                (OnCompleteListener<AuthResult>) task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(FirebaseAuthenticationPlugin.TAG, "signInWithCustomToken succeeded.");
+                        FirebaseUser user = getCurrentUser();
+                        JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, null, null);
+                        call.resolve(signInResult);
+                    } else {
+                        Exception err = task.getException();
+                        Log.e(FirebaseAuthenticationPlugin.TAG, "signInWithCustomToken failed.", err);
+                        this.handleFailedSignIn(call, null, err);
+                    }
+                }
+            );
     }
 
     public void signOut(PluginCall call) {

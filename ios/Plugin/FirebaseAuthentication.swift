@@ -7,6 +7,7 @@ public typealias AuthStateChangedObserver = () -> Void
 
 @objc public class FirebaseAuthentication: NSObject {
     public let errorDeviceUnsupported = "Device is not supported. At least iOS 13 is required."
+    public let errorCustomTokenSkipNativeAuth = "signInWithCustomToken cannot be used in combination with skipNativeAuth."
     public var authStateObserver: AuthStateChangedObserver?
     private let plugin: FirebaseAuthenticationPlugin
     private let config: FirebaseAuthenticationConfig
@@ -87,6 +88,30 @@ public typealias AuthStateChangedObserver = () -> Void
     @objc func signInWithYahoo(_ call: CAPPluginCall) {
         self.savedCall = call
         self.oAuthProviderHandler?.signIn(call: call, providerId: "yahoo.com")
+    }
+
+    @objc func signInWithCustomToken(_ call: CAPPluginCall) {
+        if config.skipNativeAuth == true {
+            call.reject(self.errorCustomTokenSkipNativeAuth)
+            return
+        }
+
+        let token = call.getString("token", "")
+
+        self.savedCall = call
+        Auth.auth().signIn(withCustomToken: token) { _, error in
+            if let error = error {
+                self.handleFailedSignIn(message: nil, error: error)
+                return
+            }
+            guard let savedCall = self.savedCall else {
+                return
+            }
+
+            let user = self.getCurrentUser()
+            let result = FirebaseAuthenticationHelper.createSignInResult(credential: nil, user: user, idToken: nil, nonce: nil)
+            savedCall.resolve(result)
+        }
     }
 
     @objc func signOut(_ call: CAPPluginCall) {
