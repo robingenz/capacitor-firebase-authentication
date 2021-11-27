@@ -173,7 +173,7 @@ export class FirebaseAuthenticationWeb
       emailVerified: user.emailVerified,
       isAnonymous: user.isAnonymous,
       phoneNumber: user.phoneNumber,
-      photoUrl: user.photoURL,
+      photoURL: user.photoURL,
       providerId: user.providerId,
       tenantId: user.tenantId,
       uid: user.uid,
