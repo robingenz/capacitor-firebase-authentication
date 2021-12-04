@@ -16,17 +16,17 @@ Pod::Spec.new do |s|
   s.dependency 'Firebase/Auth', '7.11.0'
   s.swift_version = '5.1'
   s.static_framework = true
-  spec.default_subspec = 'Lite'
+  s.default_subspec = 'Lite'
 
-  spec.subspec 'Lite' do |lite|
+  s.subspec 'Lite' do |lite|
     # Default subspec that does not contain optional third party dependencies.
   end
 
-  spec.subspec 'Google' do |google|
+  s.subspec 'Google' do |google|
     google.dependency 'GoogleSignIn', '6.0.0'
   end
 
-  spec.subspec 'Facebook' do |facebook|
+  s.subspec 'Facebook' do |facebook|
     facebook.dependency 'FBSDKCoreKit', '11.1.0'
     facebook.dependency 'FBSDKLoginKit', '11.1.0'
   end
