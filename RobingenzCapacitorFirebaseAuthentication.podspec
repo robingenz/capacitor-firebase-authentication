@@ -23,12 +23,12 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Google' do |google|
-    google.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DRGCFA_INCLUDE_GOOGLE' }
+    google.xcconfig = { 'OTHER_SWIFT_FLAGS' => '$(inherited) -DRGCFA_INCLUDE_GOOGLE' }
     google.dependency 'GoogleSignIn', '6.0.0'
   end
 
   s.subspec 'Facebook' do |facebook|
-    facebook.xcconfig = { 'OTHER_CFLAGS' => '$(inherited) -DRGCFA_INCLUDE_FACEBOOK' }
+    facebook.xcconfig = { 'OTHER_SWIFT_FLAGS' => '$(inherited) -DRGCFA_INCLUDE_FACEBOOK' }
     facebook.dependency 'FBSDKCoreKit', '11.1.0'
     facebook.dependency 'FBSDKLoginKit', '11.1.0'
   end
