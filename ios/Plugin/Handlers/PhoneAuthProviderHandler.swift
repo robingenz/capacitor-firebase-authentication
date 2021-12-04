@@ -2,7 +2,7 @@ import Foundation
 import Capacitor
 import FirebaseCore
 import FirebaseAuth
-#if INCLUDE_GOOGLE
+#if RGCFA_INCLUDE_GOOGLE
 import GoogleSignIn
 #endif
 
