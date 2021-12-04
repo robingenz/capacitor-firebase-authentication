@@ -2,7 +2,9 @@ import Foundation
 import Capacitor
 import FirebaseCore
 import FirebaseAuth
+#if INCLUDE_GOOGLE
 import GoogleSignIn
+#endif
 
 class GoogleAuthProviderHandler: NSObject {
     var pluginImplementation: FirebaseAuthentication
@@ -13,6 +15,7 @@ class GoogleAuthProviderHandler: NSObject {
     }
 
     func signIn(call: CAPPluginCall) {
+#if INCLUDE_GOOGLE
         guard let clientId = FirebaseApp.app()?.options.clientID else { return }
         let config = GIDConfiguration(clientID: clientId)
         guard let controller = self.pluginImplementation.getPlugin().bridge?.viewController else { return }
@@ -31,9 +34,12 @@ class GoogleAuthProviderHandler: NSObject {
                 self.pluginImplementation.handleSuccessfulSignIn(credential: credential, idToken: idToken, nonce: nil)
             }
         }
+#endif
     }
 
     func signOut() {
+#if INCLUDE_GOOGLE
         GIDSignIn.sharedInstance.signOut()
+#endif
     }
 }
