@@ -2,6 +2,13 @@
 
 ## Android
 
+1.  Add the Facebook Login SDK to your module (app-level) Gradle file (usually `app/build.gradle`):
+      ```diff
+      dependencies {
+      +    // Declare the dependency for the Facebook Login library and specify its version
+      +    implementation "com.facebook.android:facebook-login:11.1.0"
+      }
+      ```
 1. See [Before you begin](https://firebase.google.com/docs/auth/android/facebook-login#before_you_begin) and follow the instructions to configure sign-in with Facebook correctly.  
    **Attention**: Skip step 4. The dependency for the Firebase Authentication Android library is already declared by the plugin.
 1. Add the following `string` elements to `android/app/src/main/res/values/strings.xml` after the `resources` element:

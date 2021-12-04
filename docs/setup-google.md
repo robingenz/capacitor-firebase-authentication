@@ -2,6 +2,13 @@
 
 ## Android
 
+1.  Add the Google Play services SDK to your module (app-level) Gradle file (usually `app/build.gradle`):
+      ```diff
+      dependencies {
+      +    // Declare the dependency for the Google Play services library and specify its version
+      +    implementation "com.google.android.gms:play-services-auth:19.0.0"
+      }
+      ```
 1. Specify your app's SHA-1 fingerprint from the [Settings page](https://console.firebase.google.com/project/_/settings/general/) of the Firebase console.
    Refer to [Authenticating Your Client](https://developers.google.com/android/guides/client-auth) for details on how to get your app's SHA-1 fingerprint.
 1. Enable Google Sign-In in the Firebase console:
