@@ -17,6 +17,14 @@
 
 ## iOS
 
+1.  Add the `RobingenzCapacitorFirebaseAuthentication/Google` pod to your `Podfile` (usually `ios/App/Podfile`):
+      ```diff
+      target 'App' do
+      capacitor_pods
+      # Add your Pods here
+      +  pod 'RobingenzCapacitorFirebaseAuthentication/Google', :path => '../../node_modules/@robingenz/capacitor-firebase-authentication'
+      end
+      ```
 1. Add custom URL schemes to your Xcode project:
    1. Open your project configuration.
       Select your app from the **TARGETS** section, then select the **Info** tab, and expand the **URL Types** section.

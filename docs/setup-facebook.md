@@ -46,6 +46,14 @@
 
 ## iOS
 
+1.  Add the `RobingenzCapacitorFirebaseAuthentication/Facebook` pod to your `Podfile` (usually `ios/App/Podfile`):
+      ```diff
+      target 'App' do
+      capacitor_pods
+      # Add your Pods here
+      +  pod 'RobingenzCapacitorFirebaseAuthentication/Facebook', :path => '../../node_modules/@robingenz/capacitor-firebase-authentication'
+      end
+      ```
 1. See [Before you begin](https://firebase.google.com/docs/auth/ios/facebook-login#before_you_begin) and follow the instructions to configure and enable sign-in with Facebook correctly.  
    **Attention**: Skip step 2. The `Firebase/Auth` pod is already added by the plugin.
 1. Add the following import in your app's `AppDelegate.swift`:
