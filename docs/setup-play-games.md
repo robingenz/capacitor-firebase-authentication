@@ -2,7 +2,7 @@
 
 ## Android
 
-1.  Add the following following project variable to your `variables.gradle` file (usually `android/build.gradle`):
+1.  Add the following project variable to your `variables.gradle` file (usually `android/build.gradle`):
     ```diff
     ext {
     +    rgcfaIncludeGoogle = true
