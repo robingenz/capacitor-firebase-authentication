@@ -2,7 +2,6 @@ import Foundation
 import Capacitor
 import FirebaseCore
 import FirebaseAuth
-import GoogleSignIn
 
 class PhoneAuthProviderHandler: NSObject {
     var pluginImplementation: FirebaseAuthentication

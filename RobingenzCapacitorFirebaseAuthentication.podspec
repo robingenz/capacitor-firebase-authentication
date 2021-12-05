@@ -14,9 +14,22 @@ Pod::Spec.new do |s|
   s.ios.deployment_target  = '12.0'
   s.dependency 'Capacitor'
   s.dependency 'Firebase/Auth', '7.11.0'
-  s.dependency 'GoogleSignIn', '6.0.0'
-  s.dependency 'FBSDKCoreKit', '11.1.0'
-  s.dependency 'FBSDKLoginKit', '11.1.0'
   s.swift_version = '5.1'
   s.static_framework = true
+  s.default_subspec = 'Lite'
+
+  s.subspec 'Lite' do |lite|
+    # Default subspec that does not contain optional third party dependencies.
+  end
+
+  s.subspec 'Google' do |google|
+    google.xcconfig = { 'OTHER_SWIFT_FLAGS' => '$(inherited) -DRGCFA_INCLUDE_GOOGLE' }
+    google.dependency 'GoogleSignIn', '6.0.0'
+  end
+
+  s.subspec 'Facebook' do |facebook|
+    facebook.xcconfig = { 'OTHER_SWIFT_FLAGS' => '$(inherited) -DRGCFA_INCLUDE_FACEBOOK' }
+    facebook.dependency 'FBSDKCoreKit', '11.1.0'
+    facebook.dependency 'FBSDKLoginKit', '11.1.0'
+  end
 end
