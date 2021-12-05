@@ -2,9 +2,6 @@ import Foundation
 import Capacitor
 import FirebaseCore
 import FirebaseAuth
-#if RGCFA_INCLUDE_GOOGLE
-import GoogleSignIn
-#endif
 
 class PhoneAuthProviderHandler: NSObject {
     var pluginImplementation: FirebaseAuthentication
