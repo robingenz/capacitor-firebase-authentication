@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.12...v0.4.0) (2021-12-05)
+
+
+### ⚠ BREAKING CHANGES
+
+* Exclude optional third-party SDKs by default. See `BREAKING.md` file.
+
+### build
+
+* exclude optional third-party SDKs by default ([#110](https://github.com/robingenz/capacitor-firebase-authentication/issues/110)) ([31fcc65](https://github.com/robingenz/capacitor-firebase-authentication/commit/31fcc65535aeabbd9420779c2dc74412057cc337))
+
 ### [0.3.12](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.11...v0.3.12) (2021-11-13)
 
 
