@@ -46,6 +46,15 @@ const signInWithGoogle = async () => {
   await signInWithCredential(auth, credential);
 };
 
+const signInWithFacebook = async () => {
+  // 1. Create credentials on the native layer
+  const result = await FirebaseAuthentication.signInWithFacebook();
+  // 2. Sign in on the web layer using the id token
+  const credential = FacebookAuthProvider.credential(result.credential?.accessToken);
+  const auth = getAuth();
+  await signInWithCredential(auth, credential);
+};
+
 const signInWithPhoneNumber = async () => {
   // 1. Start phone number verification
   const { verificationId } = await FirebaseAuthentication.signInWithPhoneNumber(
