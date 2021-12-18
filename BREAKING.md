@@ -31,6 +31,7 @@ capacitor_pods
 +  pod 'RobingenzCapacitorFirebaseAuthentication/Google', :path => '../../node_modules/@robingenz/capacitor-firebase-authentication'
 end
 ```
+And then run `npx cap sync`.
 
 ### Facebook
 
@@ -51,6 +52,7 @@ capacitor_pods
 +  pod 'RobingenzCapacitorFirebaseAuthentication/Facebook', :path => '../../node_modules/@robingenz/capacitor-firebase-authentication'
 end
 ```
+And then run `npx cap sync`.
 
 ### Play Games
 
