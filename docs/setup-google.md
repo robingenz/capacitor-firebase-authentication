@@ -8,6 +8,7 @@
     +    rgcfaIncludeGoogle = true
     }
     ```
+    Run [`npx cap update`](https://capacitorjs.com/docs/cli/update) to update the native plugins and dependencies.
 1.  Specify your app's SHA-1 fingerprint from the [Settings page](https://console.firebase.google.com/project/_/settings/general/) of the Firebase console.
     Refer to [Authenticating Your Client](https://developers.google.com/android/guides/client-auth) for details on how to get your app's SHA-1 fingerprint.
 1.  Enable Google Sign-In in the Firebase console:
@@ -24,6 +25,7 @@
     +  pod 'RobingenzCapacitorFirebaseAuthentication/Google', :path => '../../node_modules/@robingenz/capacitor-firebase-authentication'
     end
     ```
+    Run [`npx cap update`](https://capacitorjs.com/docs/cli/update) to update the native plugins and dependencies.
 1.  Add custom URL schemes to your Xcode project:
     1.  Open your project configuration.
         Select your app from the **TARGETS** section, then select the **Info** tab, and expand the **URL Types** section.
