@@ -31,7 +31,8 @@ capacitor_pods
 +  pod 'RobingenzCapacitorFirebaseAuthentication/Google', :path => '../../node_modules/@robingenz/capacitor-firebase-authentication'
 end
 ```
-And then run `npx cap sync`.
+
+Finally, you need to update the native plugins and dependencies. To do this, run [`npx cap update`](https://capacitorjs.com/docs/cli/update).
 
 ### Facebook
 
@@ -52,7 +53,8 @@ capacitor_pods
 +  pod 'RobingenzCapacitorFirebaseAuthentication/Facebook', :path => '../../node_modules/@robingenz/capacitor-firebase-authentication'
 end
 ```
-And then run `npx cap sync`.
+
+Finally, you need to update the native plugins and dependencies. To do this, run [`npx cap update`](https://capacitorjs.com/docs/cli/update).
 
 ### Play Games
 
@@ -63,3 +65,5 @@ ext {
 +    rgcfaIncludeGoogle = true
 }
 ```
+
+Finally, you need to update the native plugins and dependencies. To do this, run [`npx cap update`](https://capacitorjs.com/docs/cli/update).
