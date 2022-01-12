@@ -105,6 +105,10 @@ export default config;
 
 </docgen-config>
 
+## Demo
+
+A working example can be found here: [robingenz/capacitor-firebase-authentication-demo](https://github.com/robingenz/capacitor-firebase-authentication-demo)
+
 ## Usage
 
 ```typescript
