@@ -205,6 +205,28 @@ const useAppLanguage = async () => {
 * [`useAppLanguage()`](#useapplanguage)
 * [`addListener('authStateChange', ...)`](#addlistenerauthstatechange)
 * [`removeAllListeners()`](#removealllisteners)
+* [`addListener(string, ...)`](#addlistenerstring)
+* [`removeAllListeners()`](#removealllisteners)
+* [`verify()`](#verify)
+* [`setPersistence(...)`](#setpersistence)
+* [`onAuthStateChanged(...)`](#onauthstatechanged)
+* [`onIdTokenChanged(...)`](#onidtokenchanged)
+* [`updateCurrentUser(...)`](#updatecurrentuser)
+* [`useDeviceLanguage()`](#usedevicelanguage)
+* [`signOut()`](#signout)
+* [`confirm(...)`](#confirm)
+* [`resolveSignIn(...)`](#resolvesignin)
+* [`getSession()`](#getsession)
+* [`enroll(...)`](#enroll)
+* [`unenroll(...)`](#unenroll)
+* [`setItem(...)`](#setitem)
+* [`getItem(...)`](#getitem)
+* [`removeItem(...)`](#removeitem)
+* [`delete()`](#delete)
+* [`getIdToken(...)`](#getidtoken)
+* [`getIdTokenResult(...)`](#getidtokenresult)
+* [`reload()`](#reload)
+* [`toJSON()`](#tojson)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -486,6 +508,334 @@ Remove all listeners for this plugin.
 --------------------
 
 
+### addListener(string, ...)
+
+```typescript
+addListener(eventName: string, listenerFunc: (...args: any[]) => any) => Promise<PluginListenerHandle>
+```
+
+| Param              | Type                                    |
+| ------------------ | --------------------------------------- |
+| **`eventName`**    | <code>string</code>                     |
+| **`listenerFunc`** | <code>(...args: any[]) =&gt; any</code> |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt;</code>
+
+--------------------
+
+
+### removeAllListeners()
+
+```typescript
+removeAllListeners() => Promise<void>
+```
+
+--------------------
+
+
+### verify()
+
+```typescript
+verify() => Promise<string>
+```
+
+Executes the verification process.
+
+**Returns:** <code>Promise&lt;string&gt;</code>
+
+--------------------
+
+
+### setPersistence(...)
+
+```typescript
+setPersistence(persistence: Persistence) => Promise<void>
+```
+
+Changes the type of persistence on the `Auth` instance.
+
+| Param             | Type                                                | Description                                                  |
+| ----------------- | --------------------------------------------------- | ------------------------------------------------------------ |
+| **`persistence`** | <code><a href="#persistence">Persistence</a></code> | - The {@link <a href="#persistence">Persistence</a>} to use. |
+
+--------------------
+
+
+### onAuthStateChanged(...)
+
+```typescript
+onAuthStateChanged(nextOrObserver: NextOrObserver<User | null>, error?: ErrorFn | undefined, completed?: CompleteFn | undefined) => Unsubscribe
+```
+
+Adds an observer for changes to the user's sign-in state.
+
+| Param                | Type                                                                                              | Description                                    |
+| -------------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **`nextOrObserver`** | <code><a href="#nextorobserver">NextOrObserver</a>&lt;<a href="#user">User</a> \| null&gt;</code> | - callback triggered on change.                |
+| **`error`**          | <code><a href="#errorfn">ErrorFn</a></code>                                                       | - callback triggered on error.                 |
+| **`completed`**      | <code><a href="#completefn">CompleteFn</a></code>                                                 | - callback triggered when observer is removed. |
+
+**Returns:** <code><a href="#unsubscribe">Unsubscribe</a></code>
+
+--------------------
+
+
+### onIdTokenChanged(...)
+
+```typescript
+onIdTokenChanged(nextOrObserver: NextOrObserver<User | null>, error?: ErrorFn | undefined, completed?: CompleteFn | undefined) => Unsubscribe
+```
+
+Adds an observer for changes to the signed-in user's ID token.
+
+| Param                | Type                                                                                              | Description                                    |
+| -------------------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **`nextOrObserver`** | <code><a href="#nextorobserver">NextOrObserver</a>&lt;<a href="#user">User</a> \| null&gt;</code> | - callback triggered on change.                |
+| **`error`**          | <code><a href="#errorfn">ErrorFn</a></code>                                                       | - callback triggered on error.                 |
+| **`completed`**      | <code><a href="#completefn">CompleteFn</a></code>                                                 | - callback triggered when observer is removed. |
+
+**Returns:** <code><a href="#unsubscribe">Unsubscribe</a></code>
+
+--------------------
+
+
+### updateCurrentUser(...)
+
+```typescript
+updateCurrentUser(user: User | null) => Promise<void>
+```
+
+Asynchronously sets the provided user as {@link Auth.currentUser} on the {@link Auth} instance.
+
+| Param      | Type                                          | Description                                 |
+| ---------- | --------------------------------------------- | ------------------------------------------- |
+| **`user`** | <code><a href="#user">User</a> \| null</code> | - The new {@link <a href="#user">User</a>}. |
+
+--------------------
+
+
+### useDeviceLanguage()
+
+```typescript
+useDeviceLanguage() => void
+```
+
+Sets the current language to the default device/browser preference.
+
+--------------------
+
+
+### signOut()
+
+```typescript
+signOut() => Promise<void>
+```
+
+Signs out the current user.
+
+--------------------
+
+
+### confirm(...)
+
+```typescript
+confirm(verificationCode: string) => Promise<UserCredential>
+```
+
+Finishes a phone number sign-in, link, or reauthentication.
+
+| Param                  | Type                | Description                                           |
+| ---------------------- | ------------------- | ----------------------------------------------------- |
+| **`verificationCode`** | <code>string</code> | - The code that was sent to the user's mobile device. |
+
+**Returns:** <code>Promise&lt;<a href="#usercredential">UserCredential</a>&gt;</code>
+
+--------------------
+
+
+### resolveSignIn(...)
+
+```typescript
+resolveSignIn(assertion: MultiFactorAssertion) => Promise<UserCredential>
+```
+
+A helper function to help users complete sign in with a second factor using an
+{@link <a href="#multifactorassertion">MultiFactorAssertion</a>} confirming the user successfully completed the second factor
+challenge.
+
+| Param           | Type                                                                  | Description                                           |
+| --------------- | --------------------------------------------------------------------- | ----------------------------------------------------- |
+| **`assertion`** | <code><a href="#multifactorassertion">MultiFactorAssertion</a></code> | - The multi-factor assertion to resolve sign-in with. |
+
+**Returns:** <code>Promise&lt;<a href="#usercredential">UserCredential</a>&gt;</code>
+
+--------------------
+
+
+### getSession()
+
+```typescript
+getSession() => Promise<MultiFactorSession>
+```
+
+Returns the session identifier for a second factor enrollment operation. This is used to
+identify the user trying to enroll a second factor.
+
+**Returns:** <code>Promise&lt;<a href="#multifactorsession">MultiFactorSession</a>&gt;</code>
+
+--------------------
+
+
+### enroll(...)
+
+```typescript
+enroll(assertion: MultiFactorAssertion, displayName?: string | null | undefined) => Promise<void>
+```
+
+
+Enrolls a second factor as identified by the {@link <a href="#multifactorassertion">MultiFactorAssertion</a>} for the
+user.
+
+| Param             | Type                                                                  | Description                                  |
+| ----------------- | --------------------------------------------------------------------- | -------------------------------------------- |
+| **`assertion`**   | <code><a href="#multifactorassertion">MultiFactorAssertion</a></code> | - The multi-factor assertion to enroll with. |
+| **`displayName`** | <code>string \| null</code>                                           | - The display name of the second factor.     |
+
+--------------------
+
+
+### unenroll(...)
+
+```typescript
+unenroll(option: MultiFactorInfo | string) => Promise<void>
+```
+
+Unenrolls the specified second factor.
+
+| Param        | Type                                                                  | Description                            |
+| ------------ | --------------------------------------------------------------------- | -------------------------------------- |
+| **`option`** | <code>string \| <a href="#multifactorinfo">MultiFactorInfo</a></code> | - The multi-factor option to unenroll. |
+
+--------------------
+
+
+### setItem(...)
+
+```typescript
+setItem(key: string, value: string) => Promise<void>
+```
+
+Persist an item in storage.
+
+| Param       | Type                | Description      |
+| ----------- | ------------------- | ---------------- |
+| **`key`**   | <code>string</code> | - storage key.   |
+| **`value`** | <code>string</code> | - storage value. |
+
+--------------------
+
+
+### getItem(...)
+
+```typescript
+getItem(key: string) => Promise<string | null>
+```
+
+Retrieve an item from storage.
+
+| Param     | Type                | Description    |
+| --------- | ------------------- | -------------- |
+| **`key`** | <code>string</code> | - storage key. |
+
+**Returns:** <code>Promise&lt;string | null&gt;</code>
+
+--------------------
+
+
+### removeItem(...)
+
+```typescript
+removeItem(key: string) => Promise<void>
+```
+
+Remove an item from storage.
+
+| Param     | Type                | Description    |
+| --------- | ------------------- | -------------- |
+| **`key`** | <code>string</code> | - storage key. |
+
+--------------------
+
+
+### delete()
+
+```typescript
+delete() => Promise<void>
+```
+
+Deletes and signs out the user.
+
+--------------------
+
+
+### getIdToken(...)
+
+```typescript
+getIdToken(forceRefresh?: boolean | undefined) => Promise<string>
+```
+
+Returns a JSON Web Token (JWT) used to identify the user to a Firebase service.
+
+| Param              | Type                 | Description                                     |
+| ------------------ | -------------------- | ----------------------------------------------- |
+| **`forceRefresh`** | <code>boolean</code> | - Force refresh regardless of token expiration. |
+
+**Returns:** <code>Promise&lt;string&gt;</code>
+
+--------------------
+
+
+### getIdTokenResult(...)
+
+```typescript
+getIdTokenResult(forceRefresh?: boolean | undefined) => Promise<IdTokenResult>
+```
+
+Returns a deserialized JSON Web Token (JWT) used to identitfy the user to a Firebase service.
+
+| Param              | Type                 | Description                                     |
+| ------------------ | -------------------- | ----------------------------------------------- |
+| **`forceRefresh`** | <code>boolean</code> | - Force refresh regardless of token expiration. |
+
+**Returns:** <code>Promise&lt;<a href="#idtokenresult">IdTokenResult</a>&gt;</code>
+
+--------------------
+
+
+### reload()
+
+```typescript
+reload() => Promise<void>
+```
+
+Refreshes the user, if signed in.
+
+--------------------
+
+
+### toJSON()
+
+```typescript
+toJSON() => object
+```
+
+Returns a JSON-serializable representation of this object.
+
+**Returns:** <code>object</code>
+
+--------------------
+
+
 ### Interfaces
 
 
@@ -603,6 +953,99 @@ Remove all listeners for this plugin.
 | **`user`** | <code><a href="#user">User</a> \| null</code> | The currently signed-in user, or null if there isn't any. |
 
 
+#### Persistence
+
+An interface covering the possible persistence mechanism types.
+
+| Prop       | Type                                        | Description                                                                                                                                                                                                                                                   |
+| ---------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`type`** | <code>'SESSION' \| 'LOCAL' \| 'NONE'</code> | Type of <a href="#persistence">Persistence</a>. - 'SESSION' is used for temporary persistence such as `sessionStorage`. - 'LOCAL' is used for long term persistence such as `localStorage` or `IndexedDB`. - 'NONE' is used for in-memory, or no persistence. |
+
+
+#### Observer
+
+| Prop           | Type                                               |
+| -------------- | -------------------------------------------------- |
+| **`next`**     | <code><a href="#nextfn">NextFn</a>&lt;T&gt;</code> |
+| **`error`**    | <code><a href="#errorfn">ErrorFn</a></code>        |
+| **`complete`** | <code><a href="#completefn">CompleteFn</a></code>  |
+
+
+#### Error
+
+| Prop          | Type                |
+| ------------- | ------------------- |
+| **`name`**    | <code>string</code> |
+| **`message`** | <code>string</code> |
+| **`stack`**   | <code>string</code> |
+
+
+#### UserCredential
+
+A structure containing a {@link <a href="#user">User</a>}, the {@link OperationType}, and the provider ID.
+
+| Prop                | Type                                                | Description                                                                              |
+| ------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **`user`**          | <code><a href="#user">User</a></code>               | The user authenticated by this credential.                                               |
+| **`providerId`**    | <code>string \| null</code>                         | The provider which was used to authenticate the user.                                    |
+| **`operationType`** | <code>'link' \| 'reauthenticate' \| 'signIn'</code> | The type of operation which was used to authenticate the user (such as sign-in or link). |
+
+
+#### MultiFactorAssertion
+
+The base class for asserting ownership of a second factor.
+
+| Prop           | Type                 | Description                          |
+| -------------- | -------------------- | ------------------------------------ |
+| **`factorId`** | <code>'phone'</code> | The identifier of the second factor. |
+
+
+#### MultiFactorSession
+
+An interface defining the multi-factor session object used for enrolling a second factor on a
+user or helping sign in an enrolled user with a second factor.
+
+
+#### MultiFactorInfo
+
+A structure containing the information of a second factor entity.
+
+| Prop                 | Type                        | Description                                                         |
+| -------------------- | --------------------------- | ------------------------------------------------------------------- |
+| **`uid`**            | <code>string</code>         | The multi-factor enrollment ID.                                     |
+| **`displayName`**    | <code>string \| null</code> | The user friendly name of the current second factor.                |
+| **`enrollmentTime`** | <code>string</code>         | The enrollment date of the second factor formatted as a UTC string. |
+| **`factorId`**       | <code>'phone'</code>        | The identifier of the second factor.                                |
+
+
+#### IdTokenResult
+
+Interface representing ID token result obtained from {@link <a href="#user">User</a>.getIdTokenResult}.
+
+| Prop                     | Type                                                | Description                                                                                                                |
+| ------------------------ | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **`authTime`**           | <code>string</code>                                 | The authentication time formatted as a UTC string.                                                                         |
+| **`expirationTime`**     | <code>string</code>                                 | The ID token expiration time formatted as a UTC string.                                                                    |
+| **`issuedAtTime`**       | <code>string</code>                                 | The ID token issuance time formatted as a UTC string.                                                                      |
+| **`signInProvider`**     | <code>string \| null</code>                         | The sign-in provider through which the ID token was obtained (anonymous, custom, phone, password, etc).                    |
+| **`signInSecondFactor`** | <code>string \| null</code>                         | The type of second factor associated with this session, provided the user was multi-factor authenticated (eg. phone, etc). |
+| **`token`**              | <code>string</code>                                 | The Firebase Auth ID token JWT string.                                                                                     |
+| **`claims`**             | <code><a href="#parsedtoken">ParsedToken</a></code> | The entire payload claims of the ID token including the standard reserved claims as well as the custom claims.             |
+
+
+#### ParsedToken
+
+Interface representing a parsed ID token.
+
+| Prop              | Type                                                                        | Description                                                                         |
+| ----------------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| **`'exp'`**       | <code>string</code>                                                         | Expiration time of the token.                                                       |
+| **`'sub'`**       | <code>string</code>                                                         | UID of the user.                                                                    |
+| **`'auth_time'`** | <code>string</code>                                                         | Time at which authentication was performed.                                         |
+| **`'iat'`**       | <code>string</code>                                                         | Issuance time of the token.                                                         |
+| **`'firebase'`**  | <code>{ sign_in_provider?: string; sign_in_second_factor?: string; }</code> | Firebase specific claims, containing the provider(s) used to authenticate the user. |
+
+
 ### Type Aliases
 
 
@@ -611,6 +1054,33 @@ Remove all listeners for this plugin.
 Callback to receive the user's sign-in state change notifications.
 
 <code>(change: <a href="#authstatechange">AuthStateChange</a>): void</code>
+
+
+#### Unsubscribe
+
+<code>(): void</code>
+
+
+#### NextOrObserver
+
+Type definition for an event callback.
+
+<code><a href="#nextfn">NextFn</a>&lt;T | null&gt; | <a href="#observer">Observer</a>&lt;T | null&gt;</code>
+
+
+#### NextFn
+
+<code>(value: T): void</code>
+
+
+#### ErrorFn
+
+<code>(error: <a href="#error">Error</a>): void</code>
+
+
+#### CompleteFn
+
+<code>(): void</code>
 
 </docgen-api>
 
