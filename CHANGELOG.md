@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.4.0...v0.4.1) (2022-01-26)
+
+
+### Bug Fixes
+
+* inline source code in esm map files ([680165b](https://github.com/robingenz/capacitor-firebase-authentication/commit/680165b484795eb29f2fc09eb23d40bd0938bf3a))
+
 ## [0.4.0](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.3.12...v0.4.0) (2021-12-05)
 
 
