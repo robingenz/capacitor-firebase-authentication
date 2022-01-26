@@ -203,7 +203,7 @@ const useAppLanguage = async () => {
 * [`signInWithCustomToken(...)`](#signinwithcustomtoken)
 * [`signOut()`](#signout)
 * [`useAppLanguage()`](#useapplanguage)
-* [`addListener('authStateChange', ...)`](#addlistenerauthstatechange-)
+* [`addListener('authStateChange', ...)`](#addlistenerauthstatechange)
 * [`removeAllListeners()`](#removealllisteners)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
