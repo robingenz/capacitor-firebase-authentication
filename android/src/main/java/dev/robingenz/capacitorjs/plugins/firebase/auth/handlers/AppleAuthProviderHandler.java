@@ -11,7 +11,6 @@ import com.google.firebase.auth.OAuthCredential;
 import com.google.firebase.auth.OAuthProvider;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthenticationPlugin;
-
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
 import java.nio.charset.CharsetDecoder;
@@ -36,11 +35,11 @@ public class AppleAuthProviderHandler {
     // From https://firebase.google.com/docs/auth/android/apple#advanced_handle_the_sign-in_flow_manually
     private String generateNonce(int length) {
         SecureRandom generator = new SecureRandom();
-    
+
         CharsetDecoder charsetDecoder = StandardCharsets.US_ASCII.newDecoder();
         charsetDecoder.onUnmappableCharacter(CodingErrorAction.IGNORE);
         charsetDecoder.onMalformedInput(CodingErrorAction.IGNORE);
-    
+
         byte[] bytes = new byte[length];
         ByteBuffer inBuffer = ByteBuffer.wrap(bytes);
         CharBuffer outBuffer = CharBuffer.allocate(length);
@@ -58,7 +57,7 @@ public class AppleAuthProviderHandler {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         byte[] digest = md.digest(s.getBytes());
         StringBuilder hash = new StringBuilder();
-        for (byte c: digest) {
+        for (byte c : digest) {
             hash.append(String.format("%02x", c));
         }
         return hash.toString();
