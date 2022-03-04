@@ -7,7 +7,6 @@ import com.getcapacitor.PluginCall;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.OAuthCredential;
 import com.google.firebase.auth.OAuthProvider;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthentication;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.FirebaseAuthenticationPlugin;
@@ -26,7 +25,7 @@ import org.json.JSONObject;
 public class AppleAuthProviderHandler {
 
     private final FirebaseAuthentication pluginImplementation;
-    private String nonce;
+    private String currentNonce;
 
     public AppleAuthProviderHandler(FirebaseAuthentication pluginImplementation) {
         this.pluginImplementation = pluginImplementation;
@@ -68,9 +67,9 @@ public class AppleAuthProviderHandler {
         applySignInConfig(call, provider);
         Task<AuthResult> pendingResultTask = pluginImplementation.getFirebaseAuthInstance().getPendingAuthResult();
         if (pendingResultTask == null) {
-            nonce = generateNonce(10);
+            currentNonce = generateNonce(32);
             try {
-                provider.addCustomParameter("nonce", sha256(nonce));
+                provider.addCustomParameter("nonce", sha256(currentNonce));
             } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
@@ -87,7 +86,7 @@ public class AppleAuthProviderHandler {
             .addOnSuccessListener(
                 authResult -> {
                     AuthCredential credential = authResult.getCredential();
-                    pluginImplementation.handleSuccessfulSignIn(call, credential, null, nonce);
+                    pluginImplementation.handleSuccessfulSignIn(call, credential, null, currentNonce);
                 }
             )
             .addOnFailureListener(exception -> pluginImplementation.handleFailedSignIn(call, null, exception));
@@ -98,7 +97,7 @@ public class AppleAuthProviderHandler {
             .addOnSuccessListener(
                 authResult -> {
                     AuthCredential credential = authResult.getCredential();
-                    pluginImplementation.handleSuccessfulSignIn(call, credential, null, nonce);
+                    pluginImplementation.handleSuccessfulSignIn(call, credential, null, currentNonce);
                 }
             )
             .addOnFailureListener(exception -> pluginImplementation.handleFailedSignIn(call, null, exception));
