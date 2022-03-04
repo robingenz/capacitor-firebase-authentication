@@ -13,8 +13,12 @@ import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.OAuthProviderHan
 public class FirebaseAuthenticationHelper {
 
     public static JSObject createSignInResult(FirebaseUser user, AuthCredential credential, String idToken) {
+        return createSignInResult(user, credential, idToken, null);
+    }
+
+    public static JSObject createSignInResult(FirebaseUser user, AuthCredential credential, String idToken, String nonce) {
         JSObject userResult = FirebaseAuthenticationHelper.createUserResult(user);
-        JSObject credentialResult = FirebaseAuthenticationHelper.createCredentialResult(credential, idToken);
+        JSObject credentialResult = FirebaseAuthenticationHelper.createCredentialResult(credential, idToken, nonce);
         JSObject result = new JSObject();
         result.put("user", userResult);
         result.put("credential", credentialResult);
@@ -38,7 +42,7 @@ public class FirebaseAuthenticationHelper {
         return result;
     }
 
-    public static JSObject createCredentialResult(AuthCredential credential, String idToken) {
+    public static JSObject createCredentialResult(AuthCredential credential, String idToken, String nonce) {
         if (credential == null && idToken == null) {
             return null;
         }
@@ -62,6 +66,9 @@ public class FirebaseAuthenticationHelper {
         }
         if (idToken != null) {
             result.put("idToken", idToken);
+        }
+        if (nonce != null) {
+            result.put("nonce", nonce);
         }
         return result;
     }
