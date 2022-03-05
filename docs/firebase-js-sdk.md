@@ -50,7 +50,9 @@ const signInWithFacebook = async () => {
   // 1. Create credentials on the native layer
   const result = await FirebaseAuthentication.signInWithFacebook();
   // 2. Sign in on the web layer using the access token
-  const credential = FacebookAuthProvider.credential(result.credential?.accessToken);
+  const credential = FacebookAuthProvider.credential(
+    result.credential?.accessToken,
+  );
   const auth = getAuth();
   await signInWithCredential(auth, credential);
 };
@@ -80,7 +82,3 @@ The dependencies used in these examples:
 
 - `firebase@9.0.1`
 - `@robingenz/capacitor-firebase-authentication@0.3.9`
-
-## Limitations
-
-Unfortunately, it is currently not possible to sign in to Apple on Android using the Firebase JavaScript SDK (see [#53](https://github.com/robingenz/capacitor-firebase-authentication/issues/53)).
