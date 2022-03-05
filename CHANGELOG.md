@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.2](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.4.1...v0.4.2) (2022-03-05)
+
+
+### Features
+
+* **android:** return `nonce` on sign in with Apple ([#137](https://github.com/robingenz/capacitor-firebase-authentication/issues/137)) ([48446af](https://github.com/robingenz/capacitor-firebase-authentication/commit/48446af3b11153268b098998588bf5cfa77edf6d))
+
 ### [0.4.1](https://github.com/robingenz/capacitor-firebase-authentication/compare/v0.4.0...v0.4.1) (2022-01-26)
 
 
