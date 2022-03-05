@@ -15,6 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
+import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.AppleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.FacebookAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.GoogleAuthProviderHandler;
 import dev.robingenz.capacitorjs.plugins.firebase.auth.handlers.OAuthProviderHandler;
@@ -39,6 +40,7 @@ public class FirebaseAuthentication {
     private FirebaseAuthenticationConfig config;
     private FirebaseAuth firebaseAuthInstance;
     private FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+    private AppleAuthProviderHandler appleAuthProviderHandler;
     private FacebookAuthProviderHandler facebookAuthProviderHandler;
     private GoogleAuthProviderHandler googleAuthProviderHandler;
     private OAuthProviderHandler oAuthProviderHandler;
@@ -95,7 +97,7 @@ public class FirebaseAuthentication {
     }
 
     public void signInWithApple(PluginCall call) {
-        oAuthProviderHandler.signIn(call, "apple.com");
+        appleAuthProviderHandler.signIn(call);
     }
 
     public void signInWithFacebook(PluginCall call) {
@@ -207,9 +209,13 @@ public class FirebaseAuthentication {
     }
 
     public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential, String idToken) {
+        handleSuccessfulSignIn(call, credential, idToken, null);
+    }
+
+    public void handleSuccessfulSignIn(final PluginCall call, AuthCredential credential, String idToken, String nonce) {
         boolean skipNativeAuth = this.config.getSkipNativeAuth();
         if (skipNativeAuth) {
-            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(null, credential, idToken);
+            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(null, credential, idToken, nonce);
             call.resolve(signInResult);
             return;
         }
@@ -223,7 +229,7 @@ public class FirebaseAuthentication {
                         if (task.isSuccessful()) {
                             Log.d(FirebaseAuthenticationPlugin.TAG, "signInWithCredential succeeded.");
                             FirebaseUser user = getCurrentUser();
-                            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, credential, idToken);
+                            JSObject signInResult = FirebaseAuthenticationHelper.createSignInResult(user, credential, idToken, nonce);
                             call.resolve(signInResult);
                         } else {
                             Log.e(FirebaseAuthenticationPlugin.TAG, "signInWithCredential failed.", task.getException());
@@ -270,6 +276,9 @@ public class FirebaseAuthentication {
         }
         if (providerList.contains("google.com")) {
             googleAuthProviderHandler = new GoogleAuthProviderHandler(this);
+        }
+        if (providerList.contains("apple.com")) {
+            appleAuthProviderHandler = new AppleAuthProviderHandler(this);
         }
         if (providerList.contains("playgames.google.com")) {
             playGamesAuthProviderHandler = new PlayGamesAuthProviderHandler(this);
